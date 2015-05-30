@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Setup-->
@@ -16,17 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" text="Setup View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-1w-vlD">
-                                <rect key="frame" x="221" y="279" width="157.5" height="41.5"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Setup View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-1w-vlD">
+                                <rect key="frame" x="209" y="279" width="181.5" height="41.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by FirstViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L">
                                 <rect key="frame" x="203" y="329" width="194.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -56,44 +57,161 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Timer View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="211" y="28" width="178.5" height="41.5"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Lane 1" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
+                                <rect key="frame" x="245" y="28" width="110.5" height="41"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2RQ-9R-MKw">
-                                <rect key="frame" x="0.0" y="77" width="600" height="474"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFs-Fg-9f7">
+                                <rect key="frame" x="16" y="513" width="95" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="95" id="IBn-oc-5HB"/>
+                                </constraints>
+                                <state key="normal" title="START">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="StartButtonPressed:" destination="8rJ-Kc-sve" eventType="touchDown" id="0A3-6K-KFg"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2RQ-9R-MKw">
+                                <rect key="frame" x="0.0" y="77" width="600" height="413"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="413" id="91P-KS-Rst"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="8rJ-Kc-sve" id="5Ie-5L-OkI"/>
                                     <outlet property="delegate" destination="8rJ-Kc-sve" id="GzL-Hr-HXX"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdq-QL-N9h">
+                                <rect key="frame" x="515" y="513" width="69" height="30"/>
+                                <state key="normal" title="Stop Next">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="StopNextButtonPressed:" destination="8rJ-Kc-sve" eventType="touchDown" id="EDW-BY-dDg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUr-Vg-etk">
+                                <rect key="frame" x="426" y="513" width="54" height="30"/>
+                                <state key="normal" title="Stop All">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="StopAllButtonPressed:" destination="8rJ-Kc-sve" eventType="touchDown" id="Yqt-Rq-dtB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mO-WE-fnd">
+                                <rect key="frame" x="16" y="40" width="30" height="30"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="EditButtonPressed:" destination="8rJ-Kc-sve" eventType="touchDown" id="fgA-Aw-jip"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCI-ZO-FCJ">
+                                <rect key="frame" x="562" y="48" width="22" height="22"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="lfF-Ap-gbL" kind="presentation" id="iCK-Ev-ayr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2RQ-9R-MKw" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" id="2Ca-zb-rGK"/>
+                            <constraint firstItem="Rdq-QL-N9h" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="F6r-IQ-2OZ"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="CUr-Vg-etk" secondAttribute="bottom" constant="8" id="J6P-pn-Lwz"/>
                             <constraint firstItem="2RQ-9R-MKw" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" id="UFL-7R-hsd"/>
+                            <constraint firstItem="iFs-Fg-9f7" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="ULx-3p-Tz4"/>
                             <constraint firstItem="zEq-FU-wV5" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="8" id="bWZ-XW-u7y"/>
                             <constraint firstAttribute="centerX" secondItem="2RQ-9R-MKw" secondAttribute="centerX" id="hCw-6h-Qra"/>
+                            <constraint firstItem="2RQ-9R-MKw" firstAttribute="top" secondItem="JCI-ZO-FCJ" secondAttribute="bottom" constant="7" id="hJX-RO-cMS"/>
+                            <constraint firstItem="2RQ-9R-MKw" firstAttribute="top" secondItem="4mO-WE-fnd" secondAttribute="bottom" constant="7" id="ihb-7f-ant"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="Rdq-QL-N9h" secondAttribute="bottom" constant="8" id="isz-3Q-nzt"/>
+                            <constraint firstItem="4mO-WE-fnd" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="nKR-sK-aSB"/>
+                            <constraint firstItem="Rdq-QL-N9h" firstAttribute="leading" secondItem="CUr-Vg-etk" secondAttribute="trailing" constant="35" id="qJD-9C-2XQ"/>
                             <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
+                            <constraint firstItem="2RQ-9R-MKw" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" constant="77" id="umd-04-Rl5"/>
+                            <constraint firstItem="JCI-ZO-FCJ" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="xgx-R4-lSa"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="iFs-Fg-9f7" secondAttribute="bottom" constant="8" id="zYB-om-EL2"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Timer" image="second" id="cPa-gy-q4n"/>
                     <connections>
+                        <outlet property="editButton" destination="4mO-WE-fnd" id="O5y-E6-RSI"/>
                         <outlet property="tableView" destination="2RQ-9R-MKw" id="1Xp-xN-EBJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="760" y="364"/>
+            <point key="canvasLocation" x="767" y="364"/>
+        </scene>
+        <!--Add Swimmer Controller-->
+        <scene sceneID="yi5-yt-H26">
+            <objects>
+                <viewController id="lfF-Ap-gbL" customClass="AddSwimmerController" customModule="SwimTimer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eTc-7u-oSq"/>
+                        <viewControllerLayoutGuide type="bottom" id="YMH-Yx-spn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QtA-vl-30K">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLR-NA-dlq">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="74"/>
+                                <items>
+                                    <navigationItem title="Add Swimmer" prompt="Enter new swimmer's name" id="GlU-2h-jO2">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="aHy-cV-DtJ">
+                                            <connections>
+                                                <segue destination="LC9-SW-qrV" kind="unwind" unwindAction="cancelToTimerView:" id="eMa-NB-hLw"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="Mzx-0Q-psD">
+                                            <connections>
+                                                <segue destination="LC9-SW-qrV" kind="unwind" unwindAction="addSwimmerDone:" id="nY8-Ge-r5M"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="req-ov-ddC">
+                                <rect key="frame" x="111" y="121" width="398" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="req-ov-ddC" firstAttribute="leading" secondItem="QtA-vl-30K" secondAttribute="leadingMargin" constant="95" id="OdO-Y9-hKZ"/>
+                            <constraint firstItem="TLR-NA-dlq" firstAttribute="leading" secondItem="QtA-vl-30K" secondAttribute="leading" id="QuR-VG-rNX"/>
+                            <constraint firstItem="TLR-NA-dlq" firstAttribute="top" secondItem="QtA-vl-30K" secondAttribute="top" id="akf-EG-4eu"/>
+                            <constraint firstItem="req-ov-ddC" firstAttribute="top" secondItem="eTc-7u-oSq" secondAttribute="bottom" constant="101" id="pLC-nA-ri1"/>
+                            <constraint firstAttribute="centerX" secondItem="req-ov-ddC" secondAttribute="centerX" constant="-10" id="qSj-ji-zNL"/>
+                            <constraint firstAttribute="trailing" secondItem="TLR-NA-dlq" secondAttribute="trailing" id="y8Z-eD-y7J"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addSwimmerField" destination="req-ov-ddC" id="E3a-m3-0oL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BXa-4a-3nX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="LC9-SW-qrV" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1442" y="364"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController id="49e-Tb-3d3" customClass="TabBarController" customModule="SwimTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" shadowImage="I" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>

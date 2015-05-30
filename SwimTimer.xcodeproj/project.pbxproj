@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		772907531B11DB320091BE9C /* SwimmerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772907521B11DB320091BE9C /* SwimmerCell.swift */; };
+		772907531B11DB320091BE9C /* SwimmerCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772907521B11DB320091BE9C /* SwimmerCellController.swift */; };
 		77298F1E1B0FBC4C00ED5D4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */; };
 		77298F201B0FBC4C00ED5D4F /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F1F1B0FBC4C00ED5D4F /* SetupViewController.swift */; };
 		77298F221B0FBC4C00ED5D4F /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F211B0FBC4C00ED5D4F /* TimerViewController.swift */; };
@@ -15,7 +15,10 @@
 		77298F271B0FBC4C00ED5D4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77298F261B0FBC4C00ED5D4F /* Images.xcassets */; };
 		77298F2A1B0FBC4C00ED5D4F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77298F281B0FBC4C00ED5D4F /* LaunchScreen.xib */; };
 		77298F361B0FBC4C00ED5D4F /* SwimTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F351B0FBC4C00ED5D4F /* SwimTimerTests.swift */; };
-		77C5A4901B12570E005F7426 /* SwimmerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C5A48F1B12570E005F7426 /* SwimmerCell.xib */; };
+		773267091B144B71003BD052 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773267081B144B71003BD052 /* TabBarController.swift */; };
+		7732670B1B15C9C4003BD052 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732670A1B15C9C4003BD052 /* TimerManager.swift */; };
+		7732670D1B17A74E003BD052 /* AddSwimmerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732670C1B17A74E003BD052 /* AddSwimmerController.swift */; };
+		77C5A4901B12570E005F7426 /* SwimmerCellNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C5A48F1B12570E005F7426 /* SwimmerCellNib.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		772907521B11DB320091BE9C /* SwimmerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SwimmerCell.swift; sourceTree = "<group>"; tabWidth = 2; };
+		772907521B11DB320091BE9C /* SwimmerCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SwimmerCellController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		77298F181B0FBC4C00ED5D4F /* SwimTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwimTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77298F1C1B0FBC4C00ED5D4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,7 +44,10 @@
 		77298F2F1B0FBC4C00ED5D4F /* SwimTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwimTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77298F341B0FBC4C00ED5D4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77298F351B0FBC4C00ED5D4F /* SwimTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimTimerTests.swift; sourceTree = "<group>"; };
-		77C5A48F1B12570E005F7426 /* SwimmerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwimmerCell.xib; sourceTree = "<group>"; };
+		773267081B144B71003BD052 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; tabWidth = 2; };
+		7732670A1B15C9C4003BD052 /* TimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; tabWidth = 2; };
+		7732670C1B17A74E003BD052 /* AddSwimmerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSwimmerController.swift; sourceTree = "<group>"; };
+		77C5A48F1B12570E005F7426 /* SwimmerCellNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwimmerCellNib.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,11 +90,14 @@
 			isa = PBXGroup;
 			children = (
 				77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */,
+				773267081B144B71003BD052 /* TabBarController.swift */,
 				77298F1F1B0FBC4C00ED5D4F /* SetupViewController.swift */,
 				77298F211B0FBC4C00ED5D4F /* TimerViewController.swift */,
-				772907521B11DB320091BE9C /* SwimmerCell.swift */,
+				7732670A1B15C9C4003BD052 /* TimerManager.swift */,
+				772907521B11DB320091BE9C /* SwimmerCellController.swift */,
+				7732670C1B17A74E003BD052 /* AddSwimmerController.swift */,
 				77298F231B0FBC4C00ED5D4F /* Main.storyboard */,
-				77C5A48F1B12570E005F7426 /* SwimmerCell.xib */,
+				77C5A48F1B12570E005F7426 /* SwimmerCellNib.xib */,
 				77298F261B0FBC4C00ED5D4F /* Images.xcassets */,
 				77298F281B0FBC4C00ED5D4F /* LaunchScreen.xib */,
 				77298F1B1B0FBC4C00ED5D4F /* Supporting Files */,
@@ -203,7 +212,7 @@
 			files = (
 				77298F251B0FBC4C00ED5D4F /* Main.storyboard in Resources */,
 				77298F2A1B0FBC4C00ED5D4F /* LaunchScreen.xib in Resources */,
-				77C5A4901B12570E005F7426 /* SwimmerCell.xib in Resources */,
+				77C5A4901B12570E005F7426 /* SwimmerCellNib.xib in Resources */,
 				77298F271B0FBC4C00ED5D4F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,9 +231,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				772907531B11DB320091BE9C /* SwimmerCell.swift in Sources */,
+				7732670D1B17A74E003BD052 /* AddSwimmerController.swift in Sources */,
+				772907531B11DB320091BE9C /* SwimmerCellController.swift in Sources */,
 				77298F221B0FBC4C00ED5D4F /* TimerViewController.swift in Sources */,
 				77298F1E1B0FBC4C00ED5D4F /* AppDelegate.swift in Sources */,
+				7732670B1B15C9C4003BD052 /* TimerManager.swift in Sources */,
+				773267091B144B71003BD052 /* TabBarController.swift in Sources */,
 				77298F201B0FBC4C00ED5D4F /* SetupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
