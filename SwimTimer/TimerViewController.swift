@@ -14,8 +14,8 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   var timer = NSTimer()
   var isRunning : Bool = false
   
-  @IBOutlet var addSwimmerButton: UIButton!
-  @IBOutlet var addLaneButton: UIButton!
+  @IBOutlet var addSwimmerButton  : UIButton!
+  @IBOutlet var addLaneButton     : UIButton!
   @IBOutlet var editButton        : UIBarButtonItem!
   @IBOutlet var tableView         : UITableView!
   

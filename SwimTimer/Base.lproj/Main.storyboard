@@ -139,7 +139,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Timer" image="second" id="cPa-gy-q4n"/>
                     <connections>
-                        <outlet property="addLaneButton" destination="FxT-0w-FGe" id="XCg-Ux-uCr"/>
+                        <outlet property="addLaneButton" destination="CTo-Sp-Qil" id="zua-6z-a1R"/>
                         <outlet property="addSwimmerButton" destination="FxT-0w-FGe" id="QEC-k6-bxb"/>
                         <outlet property="editButton" destination="ySB-ZT-G6v" id="KBP-hG-BRg"/>
                         <outlet property="tableView" destination="2RQ-9R-MKw" id="1Xp-xN-EBJ"/>
