@@ -13,11 +13,50 @@ class TimerManager
   static var globalStartTime : NSTimeInterval = NSTimeInterval ()
   
   static var startTime  : NSTimeInterval?
-  static let deltaTime  : NSTimeInterval = 5
+  static let deltaTime  : NSTimeInterval = 3
+  static let countTime  : NSTimeInterval = 0.7
 
-  var swimmerTimers : [SwimmerTimer] = [SwimmerTimer]()
+  var swimmerTimers : [[SwimmerTimer]] = [[SwimmerTimer]]()
+  
+  init ()
+  {
+    // Create an initial lane
+    addLane ()
+  }
   
   var nofSwimmers: Int
+  {
+    get
+    {
+      var total = 0
+      for lane in enumerate (swimmerTimers)
+      {
+        total += lane.element.count
+      }
+      
+      return total
+    }
+  }
+  
+  var allStopped: Bool
+    {
+    get
+    {
+      for lane in enumerate (swimmerTimers)
+      {
+        for timer in lane.element
+        {
+          if (timer.state != SwimmerTimer.State_E.Idle)
+          {
+            return false
+          }
+        }
+      }
+      return true
+    }
+  }
+  
+  var nofLanes: Int
   {
     get
     {
@@ -25,11 +64,34 @@ class TimerManager
     }
   }
   
-  func addSwimmer (name : String)
+  func getNofSwimmers (lane : Int) -> Int
+  {
+    return swimmerTimers[lane].count
+  }
+  
+  func addSwimmer (lane : Int, name : String)
   {
     var swimmerTimer = SwimmerTimer (swimmerName: name)
     
-    swimmerTimers.append(swimmerTimer)
+    swimmerTimers[lane].append(swimmerTimer)
+  }
+  
+  func addLane ()
+  {
+    var lane : [SwimmerTimer] = [SwimmerTimer]()
+    swimmerTimers.append (lane)
+  }
+  
+  func deleteSwimmer (lane : Int, index : Int)
+  {
+    swimmerTimers[lane].removeAtIndex (index)
+  }
+  
+  // Lane 0 cannot be deleted
+  func deleteLane (lane : Int)
+  {
+    swimmerTimers[lane-1].extend (swimmerTimers[lane])
+    swimmerTimers.removeAtIndex(lane)
   }
   
   func stopSwimmer (name : String)
@@ -44,32 +106,38 @@ class TimerManager
     timer!.stop ()
   }
   
-  func fillCell (inout cell : SwimmerCellController, index : Int)
+  func fillCell (lane : Int, index : Int, inout cell : SwimmerCellController)
   {
-    swimmerTimers[index].fillCell (&cell)
+    swimmerTimers[lane][index].fillCell (&cell)
   }
   
   func start ()
   {
     TimerManager.startTime = NSDate.timeIntervalSinceReferenceDate ()
     
-    for (i, timer) in enumerate (swimmerTimers)
+    for lane in enumerate (swimmerTimers)
     {
-      timer.globalStart (NSTimeInterval (i) * TimerManager.deltaTime)
+      for (i, timer) in enumerate (lane.element)
+      {
+        timer.globalStart (NSTimeInterval (i) * TimerManager.deltaTime)
+      }
     }
   }
   
   func stopAll ()
   {
-    for timer in swimmerTimers
+    for lane in enumerate (swimmerTimers)
     {
-      timer.stop ()
+      for timer in lane.element
+      {
+        timer.stop ()
+      }
     }
   }
   
-  func stopNext ()
+  func stopNext (lane : Int)
   {
-    for timer in swimmerTimers
+    for timer in swimmerTimers[lane]
     {
       if (timer.state == .Running)
       {
@@ -81,29 +149,35 @@ class TimerManager
   
   func update ()
   {
-    for timer in swimmerTimers
+    for lane in enumerate (swimmerTimers)
     {
-      timer.update ()
+      for timer in lane.element
+      {
+        timer.update ()
+      }
     }
   }
   
   func findTimer (name : String) -> SwimmerTimer?
   {
-    for timer in swimmerTimers
+    for lane in enumerate (swimmerTimers)
     {
-      if (timer.name == name)
+      for timer in lane.element
       {
-        return timer
+        if (timer.name == name)
+        {
+          return timer
+        }
       }
     }
     return nil
   }
   
-  func moveSwimmer (fromIndex: Int, toIndex: Int)
+  func moveSwimmer (fromLane: Int, fromIndex: Int, toLane: Int, toIndex: Int)
   {
-    let timer = swimmerTimers[fromIndex]
-    swimmerTimers.removeAtIndex (fromIndex)
-    swimmerTimers.insert (timer, atIndex: toIndex)
+    let timer = swimmerTimers[fromLane][fromIndex]
+    swimmerTimers[fromLane].removeAtIndex (fromIndex)
+    swimmerTimers[toLane].insert (timer, atIndex: toIndex)
   }
   
   static func timeToString (time: NSTimeInterval) -> String
@@ -154,26 +228,18 @@ class SwimmerTimer
         return "Idle"
       
       case .Waiting:
-        if (runningTime < -3.0)
+        if (runningTime < -3.0 * TimerManager.countTime)
         {
           return "Wait..."
         }
-        if (runningTime < -2.0)
-        {
-          return "-3"
-        }
-        if (runningTime < -1.0)
-        {
-          return "-2"
-        }
         if (runningTime < 0.0)
         {
-          return "-1"
+          return "\(Int((-runningTime)/TimerManager.countTime + 1.0))"
         }
         return "GO!"
       
       case .Running:
-        if (runningTime < 1.0)
+        if (runningTime < TimerManager.countTime)
         {
           return "GO!"
         }

@@ -20,7 +20,6 @@ class SwimmerCellController: UITableViewCell
   @IBOutlet var stateLabel:   UILabel!
   @IBOutlet var nameLabel:    UILabel!
   @IBOutlet var timeLabel:    UILabel!
-  @IBOutlet var stopButton:   UIButton!
   
   var delegate : SwimmerCellDelegate?
 
