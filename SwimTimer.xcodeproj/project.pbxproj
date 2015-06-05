@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		772907531B11DB320091BE9C /* SwimmerCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772907521B11DB320091BE9C /* SwimmerCellController.swift */; };
 		77298F1E1B0FBC4C00ED5D4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */; };
-		77298F201B0FBC4C00ED5D4F /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F1F1B0FBC4C00ED5D4F /* SetupViewController.swift */; };
+		77298F201B0FBC4C00ED5D4F /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F1F1B0FBC4C00ED5D4F /* ResultsViewController.swift */; };
 		77298F221B0FBC4C00ED5D4F /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F211B0FBC4C00ED5D4F /* TimerViewController.swift */; };
 		77298F251B0FBC4C00ED5D4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77298F231B0FBC4C00ED5D4F /* Main.storyboard */; };
 		77298F271B0FBC4C00ED5D4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77298F261B0FBC4C00ED5D4F /* Images.xcassets */; };
@@ -38,7 +38,7 @@
 		77298F181B0FBC4C00ED5D4F /* SwimTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwimTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77298F1C1B0FBC4C00ED5D4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		77298F1F1B0FBC4C00ED5D4F /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		77298F1F1B0FBC4C00ED5D4F /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		77298F211B0FBC4C00ED5D4F /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		77298F241B0FBC4C00ED5D4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77298F261B0FBC4C00ED5D4F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 				77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */,
 				7732670A1B15C9C4003BD052 /* TimerManager.swift */,
 				773267081B144B71003BD052 /* TabBarController.swift */,
-				77298F1F1B0FBC4C00ED5D4F /* SetupViewController.swift */,
+				77298F1F1B0FBC4C00ED5D4F /* ResultsViewController.swift */,
 				77298F211B0FBC4C00ED5D4F /* TimerViewController.swift */,
 				772907521B11DB320091BE9C /* SwimmerCellController.swift */,
 				774251331B20287100B8BE02 /* LaneHeaderController.swift */,
@@ -245,7 +245,7 @@
 				77298F1E1B0FBC4C00ED5D4F /* AppDelegate.swift in Sources */,
 				7732670B1B15C9C4003BD052 /* TimerManager.swift in Sources */,
 				773267091B144B71003BD052 /* TabBarController.swift in Sources */,
-				77298F201B0FBC4C00ED5D4F /* SetupViewController.swift in Sources */,
+				77298F201B0FBC4C00ED5D4F /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,10 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   @IBOutlet var addSwimmerButton  : UIButton!
   @IBOutlet var addLaneButton     : UIButton!
   @IBOutlet var editButton        : UIBarButtonItem!
+  
+  @IBOutlet var startButton       : UIBarButtonItem!
+  @IBOutlet var stopAllButton     : UIBarButtonItem!
+  
   @IBOutlet var tableView         : UITableView!
   
   override func viewDidLoad()
@@ -98,14 +102,18 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     if tableView.editing
     {
       tableView.setEditing(false, animated: false);
-      editButton.style = UIBarButtonItemStyle.Plain;
-      editButton.title = "Edit";
+      editButton.style      = UIBarButtonItemStyle.Plain;
+      editButton.title      = "Edit";
+      startButton.enabled   = true
+      stopAllButton.enabled = true
     }
     else
     {
       tableView.setEditing(true, animated: true);
       editButton.title = "Done";
       editButton.style =  UIBarButtonItemStyle.Done;
+      startButton.enabled   = false
+      stopAllButton.enabled = false
     }
     redraw ()
   }
