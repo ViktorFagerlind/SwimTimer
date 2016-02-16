@@ -29,7 +29,7 @@ class TimerManager
     get
     {
       var total = 0
-      for lane in enumerate (swimmerTimers)
+      for lane in swimmerTimers.enumerate ()
       {
         total += lane.element.count
       }
@@ -42,7 +42,7 @@ class TimerManager
     {
     get
     {
-      for lane in enumerate (swimmerTimers)
+      for lane in swimmerTimers.enumerate ()
       {
         for timer in lane.element
         {
@@ -71,14 +71,14 @@ class TimerManager
   
   func addSwimmer (lane : Int, name : String)
   {
-    var swimmerTimer = SwimmerTimer (swimmerName: name)
+    let swimmerTimer = SwimmerTimer (swimmerName: name)
     
     swimmerTimers[lane].append(swimmerTimer)
   }
   
   func addLane ()
   {
-    var lane : [SwimmerTimer] = [SwimmerTimer]()
+    let lane : [SwimmerTimer] = [SwimmerTimer]()
     swimmerTimers.append (lane)
   }
   
@@ -90,13 +90,13 @@ class TimerManager
   // Lane 0 cannot be deleted
   func deleteLane (lane : Int)
   {
-    swimmerTimers[lane-1].extend (swimmerTimers[lane])
+    swimmerTimers[lane-1].appendContentsOf (swimmerTimers[lane])
     swimmerTimers.removeAtIndex(lane)
   }
   
   func stopSwimmer (name : String)
   {
-    var timer : SwimmerTimer? = findTimer (name)
+    let timer : SwimmerTimer? = findTimer (name)
     
     if (timer == nil)
     {
@@ -115,9 +115,9 @@ class TimerManager
   {
     TimerManager.startTime = NSDate.timeIntervalSinceReferenceDate ()
     
-    for lane in enumerate (swimmerTimers)
+    for lane in swimmerTimers
     {
-      for (i, timer) in enumerate (lane.element)
+      for (i, timer) in lane.enumerate ()
       {
         timer.globalStart (NSTimeInterval (i) * TimerManager.deltaTime)
       }
@@ -126,7 +126,7 @@ class TimerManager
   
   func stopAll ()
   {
-    for lane in enumerate (swimmerTimers)
+    for lane in swimmerTimers.enumerate ()
     {
       for timer in lane.element
       {
@@ -149,7 +149,7 @@ class TimerManager
   
   func update ()
   {
-    for lane in enumerate (swimmerTimers)
+    for lane in swimmerTimers.enumerate ()
     {
       for timer in lane.element
       {
@@ -160,7 +160,7 @@ class TimerManager
   
   func findTimer (name : String) -> SwimmerTimer?
   {
-    for lane in enumerate (swimmerTimers)
+    for lane in swimmerTimers.enumerate ()
     {
       for timer in lane.element
       {

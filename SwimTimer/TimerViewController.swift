@@ -27,10 +27,10 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   {
     super.viewDidLoad()
     
-    var headerNib = UINib(nibName: "LaneHeadingNib", bundle: nil)
+    let headerNib = UINib(nibName: "LaneHeadingNib", bundle: nil)
     self.tableView.registerNib (headerNib, forCellReuseIdentifier: "header_cell")
     
-    var cellNib = UINib(nibName: "SwimmerCellNib", bundle: nil)
+    let cellNib = UINib(nibName: "SwimmerCellNib", bundle: nil)
     self.tableView.registerNib (cellNib, forCellReuseIdentifier: "swimmer_cell_id")
     
     timerManager.addLane ()
@@ -132,7 +132,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   
   @IBAction func addSwimmerDone (segue:UIStoryboardSegue)
   {
-    var addSwimmerController = segue.sourceViewController as! AddSwimmerController
+    let addSwimmerController = segue.sourceViewController as! AddSwimmerController
     
     // Add swimmer to the last lane
     timerManager.addSwimmer (timerManager.nofLanes-1, name: addSwimmerController.name)
@@ -144,7 +144,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   {
     if (indexPath.row == 0)
     {
-      var headerCell : LaneHeaderController = self.tableView.dequeueReusableCellWithIdentifier("header_cell") as! LaneHeaderController
+      let headerCell : LaneHeaderController = self.tableView.dequeueReusableCellWithIdentifier("header_cell") as! LaneHeaderController
       
       headerCell.lane     = indexPath.section
       headerCell.delegate = self
@@ -176,7 +176,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   
   func tableView (tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
   {
-    println("You selected cell #\(indexPath.row)!")
+    print("You selected cell #\(indexPath.row)!")
   }
   
   func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool
@@ -197,7 +197,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath)
   {
     // Cannot move to before heading
-    var toIndex = toIndexPath.row == 0 ? 0 : toIndexPath.row - 1
+    let toIndex = toIndexPath.row == 0 ? 0 : toIndexPath.row - 1
     
     timerManager.moveSwimmer (fromIndexPath.section, fromIndex: fromIndexPath.row - 1, toLane: toIndexPath.section, toIndex: toIndex)
 
