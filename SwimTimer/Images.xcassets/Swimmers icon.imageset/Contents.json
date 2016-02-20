@@ -1,12 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
-    },
-    {
       "idiom" : "universal",
       "filename" : "Swimmers icon.png",
-      "unassigned" : true,
       "scale" : "1x"
     }
   ],
