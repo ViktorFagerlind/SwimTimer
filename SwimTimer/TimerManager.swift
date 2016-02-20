@@ -106,9 +106,21 @@ class TimerManager
     timer!.stop ()
   }
   
-  func fillCell (lane : Int, index : Int, inout cell : SwimmerCellController)
+  func lapSwimmer (name : String)
   {
-    swimmerTimers[lane][index].fillCell (&cell)
+    let timer : SwimmerTimer? = findTimer (name)
+    
+    if (timer == nil)
+    {
+      return
+    }
+    
+    timer!.lap ()
+  }
+  
+  func fillSwimmerCells (lane : Int, index : Int, inout cell : SwimmerCellController)
+  {
+    swimmerTimers[lane][index].fillCells (&cell)
   }
   
   func start ()
@@ -190,14 +202,14 @@ class TimerManager
     let seconds = UInt(elapsedTime)
     elapsedTime -= NSTimeInterval(seconds)
     
-    //find out the milliseconds to be displayed.
-    let fraction = UInt(elapsedTime * 1000)
+    //find out the 1/100 seconds to be displayed.
+    let fraction = UInt(elapsedTime * 100)
     
     //add the leading zero for minutes, seconds and millseconds and store them as string constants
     let strMinutes  = minutes  > 9 ? String(minutes): "0" + String(minutes)
     let strSeconds  = seconds  > 9 ? String(seconds): "0" + String(seconds)
     let strFraction =
-      fraction > 9 ? (fraction > 99 ? String(fraction) :"0" + String(fraction)) :"00" + String(fraction)
+    fraction <= 9 ? "0" + String(fraction) : String(fraction)
     
     //concatenate minuets, seconds and milliseconds as assign it to the UILabel
     return "\(strMinutes):\(strSeconds):\(strFraction)"
@@ -209,15 +221,19 @@ class SwimmerTimer
 {
   enum State_E {case Idle, Waiting, Running}
   
-  var name       : String
-  var state     : State_E = .Idle
-  var deltaTime  : NSTimeInterval!
-  var resultTime : NSTimeInterval
+  var name              : String
+  var state             : State_E = .Idle
+  var deltaTime         : NSTimeInterval!
+  var resultTime        : NSTimeInterval
+  var lapTime           : NSTimeInterval
+  var lastLapOccurance  : NSTimeInterval
   
   init (swimmerName : String)
   {
-    name       = swimmerName
-    resultTime = 0.0
+    name              = swimmerName
+    resultTime        = 0.0
+    lapTime           = 0.0
+    lastLapOccurance  = 0.0
   }
   
   func stateToString (state : State_E) -> String
@@ -247,15 +263,19 @@ class SwimmerTimer
     }
   }
   
-  func fillCell (inout cell : SwimmerCellController)
+  func fillCells (inout cell : SwimmerCellController)
   {
     // Don't show negatuve times
     var time : NSTimeInterval = runningTime
     time = time < 0.0 ? 0.0 : time
     cell.timeLabel.text   = TimerManager.timeToString (time)
+    cell.lapLabel.text    = TimerManager.timeToString (lapTime)
     
     cell.nameLabel.text   = name
-    cell.stateLabel.text = stateToString (state)
+    cell.stateLabel.text  = stateToString (state)
+    
+    cell.stopButton.enabled = state == .Running
+    cell.lapButton.enabled  = state == .Running
   }
   
   var runningTime: NSTimeInterval
@@ -292,16 +312,37 @@ class SwimmerTimer
   
   func stop ()
   {
-    if (runningTime < 0.0)
+    state = .Idle
+    
+    if (state != .Running)
     {
-      resultTime = 0.0
+      return
+    }
+    
+    resultTime        = runningTime
+    lapTime           = 0.0
+    lastLapOccurance  = 0.0
+  }
+  
+  func lap ()
+  {
+    if (state != .Running)
+    {
+      return
+    }
+    
+    let tmpLap : NSTimeInterval = runningTime - lastLapOccurance
+    
+    lastLapOccurance = runningTime
+    
+    if ( tmpLap < 0.0)
+    {
+      lapTime = 0.0
     }
     else
     {
-      resultTime = runningTime
+      lapTime = tmpLap
     }
-    
-    state = .Idle
   }
   
 }

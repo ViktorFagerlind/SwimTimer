@@ -11,6 +11,7 @@ import UIKit
 protocol SwimmerCellDelegate
 {
   func StopIndividualSwimmer (cellName : String)
+  func LapIndividualSwimmer (cellName : String)
 }
 
 class SwimmerCellController: UITableViewCell
@@ -20,6 +21,10 @@ class SwimmerCellController: UITableViewCell
   @IBOutlet var stateLabel:   UILabel!
   @IBOutlet var nameLabel:    UILabel!
   @IBOutlet var timeLabel:    UILabel!
+  @IBOutlet var lapLabel:     UILabel!
+
+  @IBOutlet var stopButton:   UIButton!
+  @IBOutlet var lapButton:    UIButton!
   
   var delegate : SwimmerCellDelegate?
 
@@ -32,5 +37,13 @@ class SwimmerCellController: UITableViewCell
     }
   }
 
+  @IBAction func LapButtonPressed (sender : AnyObject)
+  {
+    if (delegate != nil)
+    {
+      delegate!.LapIndividualSwimmer (nameLabel.text!)
+    }
+  }
+  
 }
 

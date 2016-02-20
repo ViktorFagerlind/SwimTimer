@@ -34,12 +34,12 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     self.tableView.registerNib (cellNib, forCellReuseIdentifier: "swimmer_cell_id")
     
     timerManager.addLane ()
-    timerManager.addSwimmer (0, name: "Viktor")
-    timerManager.addSwimmer (0, name: "Gabriella")
     timerManager.addSwimmer (0, name: "Tomas")
-    timerManager.addSwimmer (1, name: "Emma")
-    timerManager.addSwimmer (1, name: "Bobby")
-    timerManager.addSwimmer (1, name: "Sara")
+    timerManager.addSwimmer (0, name: "Emma")
+    timerManager.addSwimmer (0, name: "Julia")
+    timerManager.addSwimmer (1, name: "Johan")
+    timerManager.addSwimmer (1, name: "Viktor")
+    timerManager.addSwimmer (1, name: "Anna")
   }
   
   override func didReceiveMemoryWarning()
@@ -84,6 +84,12 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   func StopIndividualSwimmer (cellName : String)
   {
     timerManager.stopSwimmer (cellName)
+    redraw ()
+  }
+  
+  func LapIndividualSwimmer (cellName : String)
+  {
+    timerManager.lapSwimmer (cellName)
     redraw ()
   }
   
@@ -150,6 +156,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       headerCell.delegate = self
       
       headerCell.title.text = "Lane \(indexPath.section)"
+      headerCell.stopNextButton.enabled = isRunning
       
       return headerCell
     }
@@ -159,7 +166,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     cell.delegate = self
     
-    timerManager.fillCell (indexPath.section, index: indexPath.row - 1, cell: &cell)
+    timerManager.fillSwimmerCells (indexPath.section, index: indexPath.row - 1, cell: &cell)
     
     return cell
   }

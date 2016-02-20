@@ -17,7 +17,8 @@ class LaneHeaderController: UITableViewCell
 {
   enum State_E {case Idle, Waiting, Running}
   
-  @IBOutlet var title: UILabel!
+  @IBOutlet var title:          UILabel!
+  @IBOutlet var stopNextButton: UIButton!
   
   var lane      : Int?
   var delegate  : LaneHeaderDelegate?
