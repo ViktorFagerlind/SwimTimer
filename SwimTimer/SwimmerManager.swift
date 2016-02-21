@@ -16,12 +16,14 @@ class SwimmerManager
   
   private init ()
   {
-    addSwimmer ("Tomas",  group: "Race")
-    addSwimmer ("Emma",   group: "Race")
-    addSwimmer ("Julia",  group: "Race")
-    addSwimmer ("Johan",  group: "Race")
-    addSwimmer ("Viktor", group: "Race")
-    addSwimmer ("Anna",   group: "Race")
+    addSwimmer ("Tomas",    group: "Race")
+    addSwimmer ("Emma",     group: "Race")
+    addSwimmer ("Julia",    group: "Race")
+    addSwimmer ("Johan",    group: "Race")
+    addSwimmer ("Viktor",   group: "Race")
+    addSwimmer ("Anna",     group: "Race")
+    addSwimmer ("John Doe", group: "Beginner")
+    addSwimmer ("Jane Doe", group: "Beginner")
   }
   
   var nofSwimmers: Int

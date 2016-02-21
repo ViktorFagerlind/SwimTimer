@@ -259,15 +259,15 @@ class SwimmerTimer
         {
           return "GO!"
         }
-        return "Running"
+        return "Going"
     }
   }
   
   func fillCells (inout cell : SwimmerTimerController)
   {
     // Don't show negative times
-    var time : NSTimeInterval = runningTime
-    time = time < 0.0 ? 0.0 : time
+    let time = state == .Idle ? resultTime : (state == .Waiting ? 0.0 : runningTime)
+    
     cell.timeLabel.text   = TimerManager.timeToString (time)
     cell.lapLabel.text    = TimerManager.timeToString (lapTime)
     
@@ -282,11 +282,6 @@ class SwimmerTimer
   {
     get
     {
-      if (state == .Idle)
-      {
-        return resultTime
-      }
-      
       return NSDate.timeIntervalSinceReferenceDate () - TimerManager.startTime! - deltaTime;
     }
   }
@@ -295,6 +290,9 @@ class SwimmerTimer
   {
     deltaTime = swimmerDeltaTime
     state = .Waiting
+    
+    lapTime           = 0.0
+    lastLapOccurance  = 0.0
   }
   
   func update ()
@@ -312,16 +310,14 @@ class SwimmerTimer
   
   func stop ()
   {
-    if (state != .Running)
+    if (state == .Idle)
     {
       return
     }
     
     state = .Idle
     
-    resultTime        = runningTime
-    lapTime           = 0.0
-    lastLapOccurance  = 0.0
+    resultTime  = max (0.0, runningTime)
   }
   
   func lap ()

@@ -37,9 +37,11 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     timerManager.addSwimmer (0, name: "Tomas")
     timerManager.addSwimmer (0, name: "Emma")
     timerManager.addSwimmer (0, name: "Julia")
+    timerManager.addSwimmer (0, name: "John Doe")
     timerManager.addSwimmer (1, name: "Johan")
     timerManager.addSwimmer (1, name: "Viktor")
     timerManager.addSwimmer (1, name: "Anna")
+    timerManager.addSwimmer (1, name: "Jane Doe")
   }
   
   override func didReceiveMemoryWarning()
@@ -98,7 +100,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     isRunning = true
     timerManager.start ()
     
-    timer = NSTimer.scheduledTimerWithTimeInterval (0.01, target: self, selector: "updateTimers", userInfo: nil, repeats: true)
+    timer = NSTimer.scheduledTimerWithTimeInterval (0.03, target: self, selector: "updateTimers", userInfo: nil, repeats: true)
     
     redraw ()
   }
