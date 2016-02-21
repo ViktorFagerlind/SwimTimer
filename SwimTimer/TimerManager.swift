@@ -118,7 +118,7 @@ class TimerManager
     timer!.lap ()
   }
   
-  func fillSwimmerCells (lane : Int, index : Int, inout cell : SwimmerCellController)
+  func fillSwimmerCells (lane : Int, index : Int, inout cell : SwimmerTimerController)
   {
     swimmerTimers[lane][index].fillCells (&cell)
   }
@@ -263,7 +263,7 @@ class SwimmerTimer
     }
   }
   
-  func fillCells (inout cell : SwimmerCellController)
+  func fillCells (inout cell : SwimmerTimerController)
   {
     // Don't show negatuve times
     var time : NSTimeInterval = runningTime

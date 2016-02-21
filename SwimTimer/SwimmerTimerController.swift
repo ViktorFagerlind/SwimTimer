@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol SwimmerCellDelegate
+protocol SwimmerTimerDelegate
 {
   func StopIndividualSwimmer (cellName : String)
   func LapIndividualSwimmer (cellName : String)
 }
 
-class SwimmerCellController: UITableViewCell
+class SwimmerTimerController: UITableViewCell
 {
   enum State_E {case Idle, Waiting, Running}
   
@@ -26,7 +26,7 @@ class SwimmerCellController: UITableViewCell
   @IBOutlet var stopButton:   UIButton!
   @IBOutlet var lapButton:    UIButton!
   
-  var delegate : SwimmerCellDelegate?
+  var delegate : SwimmerTimerDelegate?
 
   
   @IBAction func StopButtonPressed (sender : AnyObject)

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		772907531B11DB320091BE9C /* SwimmerCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772907521B11DB320091BE9C /* SwimmerCellController.swift */; };
+		772907531B11DB320091BE9C /* SwimmerTimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772907521B11DB320091BE9C /* SwimmerTimerController.swift */; };
 		77298F1E1B0FBC4C00ED5D4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */; };
 		77298F201B0FBC4C00ED5D4F /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F1F1B0FBC4C00ED5D4F /* ResultsViewController.swift */; };
 		77298F221B0FBC4C00ED5D4F /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F211B0FBC4C00ED5D4F /* TimerViewController.swift */; };
@@ -20,7 +20,11 @@
 		7732670D1B17A74E003BD052 /* AddSwimmerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732670C1B17A74E003BD052 /* AddSwimmerController.swift */; };
 		774251321B2027BA00B8BE02 /* LaneHeadingNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 774251311B2027BA00B8BE02 /* LaneHeadingNib.xib */; };
 		774251341B20287100B8BE02 /* LaneHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774251331B20287100B8BE02 /* LaneHeaderController.swift */; };
-		77C5A4901B12570E005F7426 /* SwimmerCellNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C5A48F1B12570E005F7426 /* SwimmerCellNib.xib */; };
+		7780A2441C79D7B700F904EA /* SwimmerNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7780A2431C79D7B700F904EA /* SwimmerNib.xib */; };
+		7780A2461C79DA8200F904EA /* SwimmerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7780A2451C79DA8200F904EA /* SwimmerController.swift */; };
+		77C5A4901B12570E005F7426 /* SwimmerTimerNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C5A48F1B12570E005F7426 /* SwimmerTimerNib.xib */; };
+		77D032B81C7894E700A8D3DD /* SwimmersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D032B71C7894E700A8D3DD /* SwimmersViewController.swift */; };
+		77D032BA1C78975B00A8D3DD /* SwimmerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D032B91C78975B00A8D3DD /* SwimmerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		772907521B11DB320091BE9C /* SwimmerCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SwimmerCellController.swift; sourceTree = "<group>"; tabWidth = 2; };
+		772907521B11DB320091BE9C /* SwimmerTimerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SwimmerTimerController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		77298F181B0FBC4C00ED5D4F /* SwimTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwimTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77298F1C1B0FBC4C00ED5D4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,7 +55,11 @@
 		7732670C1B17A74E003BD052 /* AddSwimmerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSwimmerController.swift; sourceTree = "<group>"; };
 		774251311B2027BA00B8BE02 /* LaneHeadingNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaneHeadingNib.xib; sourceTree = "<group>"; };
 		774251331B20287100B8BE02 /* LaneHeaderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaneHeaderController.swift; sourceTree = "<group>"; };
-		77C5A48F1B12570E005F7426 /* SwimmerCellNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwimmerCellNib.xib; sourceTree = "<group>"; };
+		7780A2431C79D7B700F904EA /* SwimmerNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwimmerNib.xib; sourceTree = "<group>"; };
+		7780A2451C79DA8200F904EA /* SwimmerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwimmerController.swift; sourceTree = "<group>"; };
+		77C5A48F1B12570E005F7426 /* SwimmerTimerNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwimmerTimerNib.xib; sourceTree = "<group>"; };
+		77D032B71C7894E700A8D3DD /* SwimmersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwimmersViewController.swift; sourceTree = "<group>"; };
+		77D032B91C78975B00A8D3DD /* SwimmerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwimmerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,19 +101,10 @@
 		77298F1A1B0FBC4C00ED5D4F /* SwimTimer */ = {
 			isa = PBXGroup;
 			children = (
-				77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */,
-				7732670A1B15C9C4003BD052 /* TimerManager.swift */,
-				773267081B144B71003BD052 /* TabBarController.swift */,
-				77298F1F1B0FBC4C00ED5D4F /* ResultsViewController.swift */,
-				77298F211B0FBC4C00ED5D4F /* TimerViewController.swift */,
-				772907521B11DB320091BE9C /* SwimmerCellController.swift */,
-				774251331B20287100B8BE02 /* LaneHeaderController.swift */,
-				7732670C1B17A74E003BD052 /* AddSwimmerController.swift */,
-				77298F231B0FBC4C00ED5D4F /* Main.storyboard */,
-				77C5A48F1B12570E005F7426 /* SwimmerCellNib.xib */,
-				774251311B2027BA00B8BE02 /* LaneHeadingNib.xib */,
-				77298F261B0FBC4C00ED5D4F /* Images.xcassets */,
-				77298F281B0FBC4C00ED5D4F /* LaunchScreen.xib */,
+				7780A2491C79E66100F904EA /* Main */,
+				7780A2481C79E62F00F904EA /* Timer */,
+				7780A2471C79E61300F904EA /* Swimmers */,
+				7780A24A1C79E67A00F904EA /* Results */,
 				77298F1B1B0FBC4C00ED5D4F /* Supporting Files */,
 			);
 			path = SwimTimer;
@@ -134,6 +133,51 @@
 				77298F341B0FBC4C00ED5D4F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7780A2471C79E61300F904EA /* Swimmers */ = {
+			isa = PBXGroup;
+			children = (
+				7732670C1B17A74E003BD052 /* AddSwimmerController.swift */,
+				7780A2451C79DA8200F904EA /* SwimmerController.swift */,
+				77D032B91C78975B00A8D3DD /* SwimmerManager.swift */,
+				77D032B71C7894E700A8D3DD /* SwimmersViewController.swift */,
+				7780A2431C79D7B700F904EA /* SwimmerNib.xib */,
+			);
+			name = Swimmers;
+			sourceTree = "<group>";
+		};
+		7780A2481C79E62F00F904EA /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				7732670A1B15C9C4003BD052 /* TimerManager.swift */,
+				77298F211B0FBC4C00ED5D4F /* TimerViewController.swift */,
+				772907521B11DB320091BE9C /* SwimmerTimerController.swift */,
+				774251331B20287100B8BE02 /* LaneHeaderController.swift */,
+				77C5A48F1B12570E005F7426 /* SwimmerTimerNib.xib */,
+				774251311B2027BA00B8BE02 /* LaneHeadingNib.xib */,
+			);
+			name = Timer;
+			sourceTree = "<group>";
+		};
+		7780A2491C79E66100F904EA /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */,
+				773267081B144B71003BD052 /* TabBarController.swift */,
+				77298F231B0FBC4C00ED5D4F /* Main.storyboard */,
+				77298F261B0FBC4C00ED5D4F /* Images.xcassets */,
+				77298F281B0FBC4C00ED5D4F /* LaunchScreen.xib */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		7780A24A1C79E67A00F904EA /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				77298F1F1B0FBC4C00ED5D4F /* ResultsViewController.swift */,
+			);
+			name = Results;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,8 +264,9 @@
 			files = (
 				774251321B2027BA00B8BE02 /* LaneHeadingNib.xib in Resources */,
 				77298F251B0FBC4C00ED5D4F /* Main.storyboard in Resources */,
+				7780A2441C79D7B700F904EA /* SwimmerNib.xib in Resources */,
 				77298F2A1B0FBC4C00ED5D4F /* LaunchScreen.xib in Resources */,
-				77C5A4901B12570E005F7426 /* SwimmerCellNib.xib in Resources */,
+				77C5A4901B12570E005F7426 /* SwimmerTimerNib.xib in Resources */,
 				77298F271B0FBC4C00ED5D4F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,10 +286,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7732670D1B17A74E003BD052 /* AddSwimmerController.swift in Sources */,
-				772907531B11DB320091BE9C /* SwimmerCellController.swift in Sources */,
+				772907531B11DB320091BE9C /* SwimmerTimerController.swift in Sources */,
+				7780A2461C79DA8200F904EA /* SwimmerController.swift in Sources */,
 				774251341B20287100B8BE02 /* LaneHeaderController.swift in Sources */,
 				77298F221B0FBC4C00ED5D4F /* TimerViewController.swift in Sources */,
+				77D032BA1C78975B00A8D3DD /* SwimmerManager.swift in Sources */,
 				77298F1E1B0FBC4C00ED5D4F /* AppDelegate.swift in Sources */,
+				77D032B81C7894E700A8D3DD /* SwimmersViewController.swift in Sources */,
 				7732670B1B15C9C4003BD052 /* TimerManager.swift in Sources */,
 				773267091B144B71003BD052 /* TabBarController.swift in Sources */,
 				77298F201B0FBC4C00ED5D4F /* ResultsViewController.swift in Sources */,

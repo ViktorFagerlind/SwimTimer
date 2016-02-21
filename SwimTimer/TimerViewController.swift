@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SwimmerCellDelegate, LaneHeaderDelegate
+class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SwimmerTimerDelegate, LaneHeaderDelegate
 {
   var timerManager : TimerManager = TimerManager ()
   var timer = NSTimer()
@@ -30,8 +30,8 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let headerNib = UINib(nibName: "LaneHeadingNib", bundle: nil)
     self.tableView.registerNib (headerNib, forCellReuseIdentifier: "header_cell")
     
-    let cellNib = UINib(nibName: "SwimmerCellNib", bundle: nil)
-    self.tableView.registerNib (cellNib, forCellReuseIdentifier: "swimmer_cell_id")
+    let cellNib = UINib(nibName: "SwimmerTimerNib", bundle: nil)
+    self.tableView.registerNib (cellNib, forCellReuseIdentifier: "swimmer_timer_id")
     
     timerManager.addLane ()
     timerManager.addSwimmer (0, name: "Tomas")
@@ -124,11 +124,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     redraw ()
   }
   
-  @IBAction func cancelToTimerView (segue:UIStoryboardSegue)
-  {
-  }
-  
-  
+
   @IBAction func addLane(sender: AnyObject)
   {
     timerManager.addLane ()
@@ -161,8 +157,8 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       return headerCell
     }
     
-    var cell : SwimmerCellController =
-      self.tableView.dequeueReusableCellWithIdentifier("swimmer_cell_id") as! SwimmerCellController
+    var cell : SwimmerTimerController =
+      self.tableView.dequeueReusableCellWithIdentifier("swimmer_timer_id") as! SwimmerTimerController
     
     cell.delegate = self
     
