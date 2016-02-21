@@ -107,7 +107,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   {
     if tableView.editing
     {
-      tableView.setEditing(false, animated: false);
+      tableView.setEditing (false, animated: false);
       editButton.style      = UIBarButtonItemStyle.Plain;
       editButton.title      = "Edit";
       startButton.enabled   = true
@@ -115,9 +115,9 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     else
     {
-      tableView.setEditing(true, animated: true);
-      editButton.title = "Done";
-      editButton.style =  UIBarButtonItemStyle.Done;
+      tableView.setEditing (true, animated: true);
+      editButton.title      = "Done";
+      editButton.style      =  UIBarButtonItemStyle.Done;
       startButton.enabled   = false
       stopAllButton.enabled = false
     }
@@ -131,13 +131,20 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     redraw ()
   }
-  
-  @IBAction func addSwimmerDone (segue:UIStoryboardSegue)
+
+  @IBAction func chooseSwimmerCancel (segue:UIStoryboardSegue)
   {
-    let addSwimmerController = segue.sourceViewController as! AddSwimmerController
+  }
+  
+  @IBAction func chooseSwimmerDone (segue:UIStoryboardSegue)
+  {
+    let chooseSwimmerController = segue.sourceViewController as! ChooseSwimmerController
     
     // Add swimmer to the last lane
-    timerManager.addSwimmer (timerManager.nofLanes-1, name: addSwimmerController.name)
+    if (chooseSwimmerController.selectedSwimmer != nil)
+    {
+      timerManager.addSwimmer (timerManager.nofLanes-1, name: chooseSwimmerController.selectedSwimmer!.name)
+    }
     
     redraw ()
   }

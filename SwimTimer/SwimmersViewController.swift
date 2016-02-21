@@ -10,8 +10,6 @@ import UIKit
 
 class SwimmersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-  var swimmerManager : SwimmerManager = SwimmerManager ()
-  
   @IBOutlet var addSwimmerButton  : UIButton!
   @IBOutlet var editButton        : UIBarButtonItem!
   @IBOutlet var tableView         : UITableView!
@@ -52,7 +50,7 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
     {
       let swimmerController : SwimmerController = swimmerCell as! SwimmerController
       
-      let swimmer : Swimmer = swimmerManager.getSwimmer (i)
+      let swimmer : Swimmer = SwimmerManager.singleton.getSwimmer (i)
       
       if (swimmerController.nameField.text != nil)
       {
@@ -92,7 +90,7 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
     redraw ()
   }
   
-  @IBAction func cancelFromAddSwimmer (segue:UIStoryboardSegue)
+  @IBAction func addSwimmerCancel (segue:UIStoryboardSegue)
   {
   }
   
@@ -102,7 +100,7 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
     let addSwimmerController = segue.sourceViewController as! AddSwimmerController
     
     // Add swimmer to the last lane
-    swimmerManager.addSwimmer (addSwimmerController.name, group: addSwimmerController.group)
+    SwimmerManager.singleton.addSwimmer (addSwimmerController.name, group: addSwimmerController.group)
     
     redraw ()
   }
@@ -112,7 +110,7 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
     let cell : SwimmerController =
       self.tableView.dequeueReusableCellWithIdentifier("swimmer_id") as! SwimmerController
     
-    let swimmer : Swimmer = swimmerManager.getSwimmer (indexPath.row)
+    let swimmer : Swimmer = SwimmerManager.singleton.getSwimmer (indexPath.row)
     cell.nameField.text   = swimmer.name
     cell.groupField.text  = swimmer.group
     
@@ -121,7 +119,7 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
   
   func tableView (tableView: UITableView, numberOfRowsInSection section: Int) -> Int
   {
-    return swimmerManager.nofSwimmers
+    return SwimmerManager.singleton.nofSwimmers
   }
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -146,7 +144,7 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
   
   func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath)
   {
-    swimmerManager.moveSwimmer (fromIndexPath.row, toIndex: toIndexPath.row)
+    SwimmerManager.singleton.moveSwimmer (fromIndexPath.row, toIndex: toIndexPath.row)
 
     redraw ()
   }
@@ -155,7 +153,7 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
   {
     if editingStyle == UITableViewCellEditingStyle.Delete
     {
-      swimmerManager.deleteSwimmer (indexPath.row)
+      SwimmerManager.singleton.deleteSwimmer (indexPath.row)
       tableView.deleteRowsAtIndexPaths ([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
       
       redraw ()

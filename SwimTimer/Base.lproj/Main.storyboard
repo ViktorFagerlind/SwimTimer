@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Settings-->
@@ -22,7 +24,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQ7-R8-rES" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="-655"/>
+            <point key="canvasLocation" x="0.0" y="-320"/>
         </scene>
         <!--Results-->
         <scene sceneID="hNz-n2-bh7">
@@ -112,6 +114,9 @@
                                                         <state key="normal">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <segue destination="gRC-Th-ugx" kind="presentation" id="R7s-Sm-ZmA"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTo-Sp-Qil">
                                                         <rect key="frame" x="0.0" y="2" width="73" height="30"/>
@@ -182,10 +187,10 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLR-NA-dlq">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="74"/>
                                 <items>
-                                    <navigationItem title="Add Swimmer" prompt="Enter new swimmer's name" id="GlU-2h-jO2">
+                                    <navigationItem title="Add Swimmer" prompt="Enter new swimmer's name and group" id="GlU-2h-jO2">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="aHy-cV-DtJ">
                                             <connections>
-                                                <segue destination="LC9-SW-qrV" kind="unwind" unwindAction="cancelFromAddSwimmer:" id="JcB-zb-FIZ"/>
+                                                <segue destination="LC9-SW-qrV" kind="unwind" unwindAction="addSwimmerCancel:" id="k0h-X4-dUJ"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="Mzx-0Q-psD">
@@ -256,7 +261,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXa-4a-3nX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="LC9-SW-qrV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="750" y="984"/>
+            <point key="canvasLocation" x="750" y="979"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -277,7 +282,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="0.0" y="332"/>
         </scene>
         <!--Swimmers-->
         <scene sceneID="y1x-yz-d5A">
@@ -353,6 +358,81 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="liI-hU-XSq" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="979"/>
+        </scene>
+        <!--Choose Swimmer Controller-->
+        <scene sceneID="2Yf-eK-s0y">
+            <objects>
+                <viewController id="gRC-Th-ugx" customClass="ChooseSwimmerController" customModule="SwimTimer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ofi-U0-3IR"/>
+                        <viewControllerLayoutGuide type="bottom" id="qjT-6U-d9D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kbH-cW-I7k">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKC-80-nvz">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="74"/>
+                                <items>
+                                    <navigationItem title="Choose swimmer" prompt="Choose among the added swimmers" id="fId-US-9UY">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="2vN-oF-qw0">
+                                            <connections>
+                                                <segue destination="7Jp-hR-EDH" kind="unwind" unwindAction="chooseSwimmerCancel:" id="QE2-mJ-1n8"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="mkR-j5-7kD">
+                                            <connections>
+                                                <segue destination="7Jp-hR-EDH" kind="unwind" unwindAction="chooseSwimmerDone:" id="V2o-T8-YPH"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqZ-BI-QMb">
+                                <rect key="frame" x="0.0" y="-216" width="320" height="216"/>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bqZ-BI-QMb" firstAttribute="centerY" secondItem="kbH-cW-I7k" secondAttribute="centerY" id="Hsc-dL-6Sc"/>
+                            <constraint firstItem="yKC-80-nvz" firstAttribute="top" secondItem="kbH-cW-I7k" secondAttribute="top" id="HxN-Gx-KCL"/>
+                            <constraint firstItem="yKC-80-nvz" firstAttribute="leading" secondItem="kbH-cW-I7k" secondAttribute="leading" id="K4g-1W-1xW"/>
+                            <constraint firstItem="bqZ-BI-QMb" firstAttribute="centerX" secondItem="kbH-cW-I7k" secondAttribute="centerX" id="OaG-rZ-cQ3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bqZ-BI-QMb" secondAttribute="trailing" id="Ob5-Ac-eY9"/>
+                            <constraint firstItem="bqZ-BI-QMb" firstAttribute="leading" secondItem="kbH-cW-I7k" secondAttribute="leadingMargin" id="Zu3-4D-yRm"/>
+                            <constraint firstAttribute="trailing" secondItem="yKC-80-nvz" secondAttribute="trailing" id="uUv-KP-cuN"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="bqZ-BI-QMb"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Hsc-dL-6Sc"/>
+                                <exclude reference="OaG-rZ-cQ3"/>
+                                <exclude reference="Ob5-Ac-eY9"/>
+                                <exclude reference="Zu3-4D-yRm"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="bqZ-BI-QMb"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Hsc-dL-6Sc"/>
+                                <include reference="OaG-rZ-cQ3"/>
+                                <include reference="Ob5-Ac-eY9"/>
+                                <include reference="Zu3-4D-yRm"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="swimmerPicker" destination="bqZ-BI-QMb" id="B6F-1F-RDN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZNp-fD-z2F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7Jp-hR-EDH" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1473" y="332"/>
         </scene>
     </scenes>
     <resources>

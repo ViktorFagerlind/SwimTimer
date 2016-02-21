@@ -26,7 +26,9 @@
                     <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Group" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mMz-GB-qZt">
                         <rect key="frame" x="472" y="23" width="64" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="64" id="3DU-sQ-3Wr"/>
+                            <constraint firstAttribute="width" constant="64" id="3DU-sQ-3Wr">
+                                <variation key="heightClass=regular-widthClass=compact" constant="107"/>
+                            </constraint>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>

@@ -265,7 +265,7 @@ class SwimmerTimer
   
   func fillCells (inout cell : SwimmerTimerController)
   {
-    // Don't show negatuve times
+    // Don't show negative times
     var time : NSTimeInterval = runningTime
     time = time < 0.0 ? 0.0 : time
     cell.timeLabel.text   = TimerManager.timeToString (time)
@@ -312,12 +312,12 @@ class SwimmerTimer
   
   func stop ()
   {
-    state = .Idle
-    
     if (state != .Running)
     {
       return
     }
+    
+    state = .Idle
     
     resultTime        = runningTime
     lapTime           = 0.0

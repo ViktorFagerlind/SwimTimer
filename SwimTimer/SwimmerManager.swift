@@ -10,9 +10,11 @@ import UIKit
 
 class SwimmerManager
 {
+  static let singleton = SwimmerManager ()
+  
   var swimmers : [Swimmer] = [Swimmer]()
   
-  init ()
+  private init ()
   {
     addSwimmer ("Tomas",  group: "Race")
     addSwimmer ("Emma",   group: "Race")
