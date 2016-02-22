@@ -37,14 +37,14 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     self.tableView.registerNib (cellNib, forCellReuseIdentifier: "swimmer_timer_id")
     
     timerManager.addLane ()
-    timerManager.addSwimmer (0, name: "Tomas")
-    timerManager.addSwimmer (0, name: "Emma")
-    timerManager.addSwimmer (0, name: "Julia")
-    timerManager.addSwimmer (0, name: "John Doe")
-    timerManager.addSwimmer (1, name: "Johan")
-    timerManager.addSwimmer (1, name: "Viktor")
-    timerManager.addSwimmer (1, name: "Anna")
-    timerManager.addSwimmer (1, name: "Jane Doe")
+    timerManager.addSwimmer (0, name: SwimmerManager.singleton.getSwimmer (0).name)
+    timerManager.addSwimmer (0, name: SwimmerManager.singleton.getSwimmer (1).name)
+    timerManager.addSwimmer (0, name: SwimmerManager.singleton.getSwimmer (2).name)
+    timerManager.addSwimmer (0, name: SwimmerManager.singleton.getSwimmer (3).name)
+    timerManager.addSwimmer (1, name: SwimmerManager.singleton.getSwimmer (4).name)
+    timerManager.addSwimmer (1, name: SwimmerManager.singleton.getSwimmer (5).name)
+    timerManager.addSwimmer (1, name: SwimmerManager.singleton.getSwimmer (6).name)
+    timerManager.addSwimmer (1, name: SwimmerManager.singleton.getSwimmer (7).name)
     
     redraw ()
   }
