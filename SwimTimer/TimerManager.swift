@@ -13,7 +13,6 @@ class TimerManager
   static var globalStartTime : NSTimeInterval = NSTimeInterval ()
   
   static var startTime  : NSTimeInterval?
-  static let deltaTime  : NSTimeInterval = 3
   static let countTime  : NSTimeInterval = 0.7
 
   var swimmerTimers : [[SwimmerTimer]] = [[SwimmerTimer]]()
@@ -131,7 +130,7 @@ class TimerManager
     {
       for (i, timer) in lane.enumerate ()
       {
-        timer.globalStart (NSTimeInterval (i) * TimerManager.deltaTime)
+        timer.globalStart (NSTimeInterval (i) * Double (SettingsManager.singleton.timeBetweenSwimmers))
       }
     }
   }

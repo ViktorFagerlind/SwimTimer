@@ -13,15 +13,18 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   var timerManager : TimerManager = TimerManager ()
   var timer = NSTimer()
   var isRunning : Bool = false
+  var inSession : Bool = false
+
+  @IBOutlet var addSwimmerButton        : UIButton!
+  @IBOutlet var addLaneButton           : UIButton!
+  @IBOutlet var editButton              : UIBarButtonItem!
   
-  @IBOutlet var addSwimmerButton  : UIButton!
-  @IBOutlet var addLaneButton     : UIButton!
-  @IBOutlet var editButton        : UIBarButtonItem!
+  @IBOutlet var startStopSessionButton  : UIBarButtonItem!
   
-  @IBOutlet var startButton       : UIBarButtonItem!
-  @IBOutlet var stopAllButton     : UIBarButtonItem!
+  @IBOutlet var startButton             : UIBarButtonItem!
+  @IBOutlet var stopAllButton           : UIBarButtonItem!
   
-  @IBOutlet var tableView         : UITableView!
+  @IBOutlet var tableView               : UITableView!
   
   override func viewDidLoad()
   {
@@ -42,14 +45,16 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     timerManager.addSwimmer (1, name: "Viktor")
     timerManager.addSwimmer (1, name: "Anna")
     timerManager.addSwimmer (1, name: "Jane Doe")
+    
+    redraw ()
   }
-  
+
   override func didReceiveMemoryWarning()
   {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
+
   func redraw ()
   {
     if (timerManager.allStopped)
@@ -58,9 +63,13 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       timer.invalidate ()
     }
     
-    editButton.enabled       = !isRunning
-    addLaneButton.enabled    = !isRunning
-    addSwimmerButton.enabled = !isRunning
+    editButton.enabled              = !inSession
+    addLaneButton.enabled           = !inSession && !tableView.editing
+    addSwimmerButton.enabled        = !inSession && !tableView.editing
+    
+    startStopSessionButton.enabled  = !isRunning && !tableView.editing
+    startButton.enabled             = inSession && !isRunning && !tableView.editing
+    stopAllButton.enabled           = inSession && isRunning && !tableView.editing
     
     tableView.reloadData ()
   }
@@ -68,12 +77,6 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   func updateTimers ()
   {
     timerManager.update ()
-    redraw ()
-  }
-  
-  @IBAction func StopAllButtonPressed (sender : AnyObject)
-  {
-    timerManager.stopAll ()
     redraw ()
   }
   
@@ -105,6 +108,33 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     redraw ()
   }
   
+  @IBAction func StopAllButtonPressed (sender : AnyObject)
+  {
+    timerManager.stopAll ()
+    redraw ()
+  }
+  
+  @IBAction func StartStopSessionPressed (sender : AnyObject)
+  {
+    inSession = !inSession
+    
+    startStopSessionButton.title = inSession ? "End Session" : "Start Session"
+    
+    if !inSession
+    {
+      let saveAlert = UIAlertController(title: "Save Session", message: "Do you want to save the session", preferredStyle: UIAlertControllerStyle.Alert)
+    
+      saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler:
+        { (action: UIAlertAction!) in print("Handle Ok logic here") }))
+    
+      saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
+    
+      presentViewController (saveAlert, animated: true, completion: nil)
+    }
+    
+    redraw ()
+  }
+  
   @IBAction func EditPressed(sender: AnyObject)
   {
     if tableView.editing
@@ -112,16 +142,16 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       tableView.setEditing (false, animated: false);
       editButton.style      = UIBarButtonItemStyle.Plain;
       editButton.title      = "Edit";
-      startButton.enabled   = true
-      stopAllButton.enabled = true
+      //startButton.enabled   = true
+      //stopAllButton.enabled = true
     }
     else
     {
       tableView.setEditing (true, animated: true);
       editButton.title      = "Done";
       editButton.style      =  UIBarButtonItemStyle.Done;
-      startButton.enabled   = false
-      stopAllButton.enabled = false
+      //startButton.enabled   = false
+      //stopAllButton.enabled = false
     }
     redraw ()
   }

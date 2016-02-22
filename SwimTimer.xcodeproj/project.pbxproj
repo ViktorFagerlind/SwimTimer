@@ -26,6 +26,10 @@
 		77C5A4901B12570E005F7426 /* SwimmerTimerNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C5A48F1B12570E005F7426 /* SwimmerTimerNib.xib */; };
 		77D032B81C7894E700A8D3DD /* SwimmersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D032B71C7894E700A8D3DD /* SwimmersViewController.swift */; };
 		77D032BA1C78975B00A8D3DD /* SwimmerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D032B91C78975B00A8D3DD /* SwimmerManager.swift */; };
+		77F27AD71C7B053E00A19EFE /* TODO.md in Sources */ = {isa = PBXBuildFile; fileRef = 77F27AD61C7B053E00A19EFE /* TODO.md */; };
+		77F27AD91C7B099300A19EFE /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F27AD81C7B099300A19EFE /* SettingsManager.swift */; };
+		77F27ADB1C7B0AF900A19EFE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F27ADA1C7B0AF900A19EFE /* SettingsViewController.swift */; };
+		77F27ADD1C7B31F300A19EFE /* SessionCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F27ADC1C7B31F300A19EFE /* SessionCellController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,10 @@
 		77C5A48F1B12570E005F7426 /* SwimmerTimerNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwimmerTimerNib.xib; sourceTree = "<group>"; };
 		77D032B71C7894E700A8D3DD /* SwimmersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwimmersViewController.swift; sourceTree = "<group>"; };
 		77D032B91C78975B00A8D3DD /* SwimmerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwimmerManager.swift; sourceTree = "<group>"; };
+		77F27AD61C7B053E00A19EFE /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = SOURCE_ROOT; };
+		77F27AD81C7B099300A19EFE /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		77F27ADA1C7B0AF900A19EFE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		77F27ADC1C7B31F300A19EFE /* SessionCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionCellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +174,9 @@
 		7780A2491C79E66100F904EA /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				77F27ADA1C7B0AF900A19EFE /* SettingsViewController.swift */,
+				77F27AD81C7B099300A19EFE /* SettingsManager.swift */,
+				77F27AD61C7B053E00A19EFE /* TODO.md */,
 				77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */,
 				773267081B144B71003BD052 /* TabBarController.swift */,
 				77298F231B0FBC4C00ED5D4F /* Main.storyboard */,
@@ -179,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				77298F1F1B0FBC4C00ED5D4F /* ResultsViewController.swift */,
+				77F27ADC1C7B31F300A19EFE /* SessionCellController.swift */,
 			);
 			name = Results;
 			sourceTree = "<group>";
@@ -288,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77F27AD71C7B053E00A19EFE /* TODO.md in Sources */,
 				7732670D1B17A74E003BD052 /* AddSwimmerController.swift in Sources */,
 				772907531B11DB320091BE9C /* SwimmerTimerController.swift in Sources */,
 				7780A2461C79DA8200F904EA /* SwimmerController.swift in Sources */,
@@ -295,10 +308,13 @@
 				77298F221B0FBC4C00ED5D4F /* TimerViewController.swift in Sources */,
 				7780A24C1C7A03F300F904EA /* ChooseSwimmerController.swift in Sources */,
 				77D032BA1C78975B00A8D3DD /* SwimmerManager.swift in Sources */,
+				77F27ADB1C7B0AF900A19EFE /* SettingsViewController.swift in Sources */,
 				77298F1E1B0FBC4C00ED5D4F /* AppDelegate.swift in Sources */,
 				77D032B81C7894E700A8D3DD /* SwimmersViewController.swift in Sources */,
+				77F27AD91C7B099300A19EFE /* SettingsManager.swift in Sources */,
 				7732670B1B15C9C4003BD052 /* TimerManager.swift in Sources */,
 				773267091B144B71003BD052 /* TabBarController.swift in Sources */,
+				77F27ADD1C7B31F300A19EFE /* SessionCellController.swift in Sources */,
 				77298F201B0FBC4C00ED5D4F /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
