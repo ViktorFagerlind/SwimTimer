@@ -10,5 +10,7 @@ import UIKit
 
 class SessionCellController: UITableViewCell
 {
-
+  @IBOutlet var nameLabel: UILabel!
+  
+  @IBOutlet var timeLabel: UILabel!
 }

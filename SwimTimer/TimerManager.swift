@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Viktor Fägerlind. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class TimerManager
 {

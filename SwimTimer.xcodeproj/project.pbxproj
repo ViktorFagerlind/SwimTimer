@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		772907531B11DB320091BE9C /* SwimmerTimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772907521B11DB320091BE9C /* SwimmerTimerController.swift */; };
 		77298F1E1B0FBC4C00ED5D4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */; };
-		77298F201B0FBC4C00ED5D4F /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F1F1B0FBC4C00ED5D4F /* ResultsViewController.swift */; };
 		77298F221B0FBC4C00ED5D4F /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F211B0FBC4C00ED5D4F /* TimerViewController.swift */; };
 		77298F251B0FBC4C00ED5D4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77298F231B0FBC4C00ED5D4F /* Main.storyboard */; };
 		77298F271B0FBC4C00ED5D4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77298F261B0FBC4C00ED5D4F /* Images.xcassets */; };
@@ -30,6 +29,10 @@
 		77F27AD91C7B099300A19EFE /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F27AD81C7B099300A19EFE /* SettingsManager.swift */; };
 		77F27ADB1C7B0AF900A19EFE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F27ADA1C7B0AF900A19EFE /* SettingsViewController.swift */; };
 		77F27ADD1C7B31F300A19EFE /* SessionCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F27ADC1C7B31F300A19EFE /* SessionCellController.swift */; };
+		77F27ADF1C7C57D500A19EFE /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F27ADE1C7C57D500A19EFE /* ResultsViewController.swift */; };
+		77F27AE11C7C63E000A19EFE /* SwimsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F27AE01C7C63E000A19EFE /* SwimsTableViewController.swift */; };
+		77F27AE31C7C645B00A19EFE /* SwimsCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F27AE21C7C645B00A19EFE /* SwimsCellController.swift */; };
+		77F27AE51C7C747200A19EFE /* ResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F27AE41C7C747200A19EFE /* ResultsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +50,6 @@
 		77298F181B0FBC4C00ED5D4F /* SwimTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwimTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77298F1C1B0FBC4C00ED5D4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		77298F1F1B0FBC4C00ED5D4F /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		77298F211B0FBC4C00ED5D4F /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		77298F241B0FBC4C00ED5D4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77298F261B0FBC4C00ED5D4F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -70,6 +72,10 @@
 		77F27AD81C7B099300A19EFE /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		77F27ADA1C7B0AF900A19EFE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		77F27ADC1C7B31F300A19EFE /* SessionCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionCellController.swift; sourceTree = "<group>"; };
+		77F27ADE1C7C57D500A19EFE /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultsViewController.swift; path = ../ResultsViewController.swift; sourceTree = "<group>"; };
+		77F27AE01C7C63E000A19EFE /* SwimsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwimsTableViewController.swift; sourceTree = "<group>"; };
+		77F27AE21C7C645B00A19EFE /* SwimsCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwimsCellController.swift; sourceTree = "<group>"; };
+		77F27AE41C7C747200A19EFE /* ResultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,8 +195,11 @@
 		7780A24A1C79E67A00F904EA /* Results */ = {
 			isa = PBXGroup;
 			children = (
-				77298F1F1B0FBC4C00ED5D4F /* ResultsViewController.swift */,
+				77F27AE01C7C63E000A19EFE /* SwimsTableViewController.swift */,
+				77F27ADE1C7C57D500A19EFE /* ResultsViewController.swift */,
 				77F27ADC1C7B31F300A19EFE /* SessionCellController.swift */,
+				77F27AE21C7C645B00A19EFE /* SwimsCellController.swift */,
+				77F27AE41C7C747200A19EFE /* ResultsManager.swift */,
 			);
 			name = Results;
 			sourceTree = "<group>";
@@ -305,17 +314,20 @@
 				772907531B11DB320091BE9C /* SwimmerTimerController.swift in Sources */,
 				7780A2461C79DA8200F904EA /* SwimmerController.swift in Sources */,
 				774251341B20287100B8BE02 /* LaneHeaderController.swift in Sources */,
+				77F27AE31C7C645B00A19EFE /* SwimsCellController.swift in Sources */,
 				77298F221B0FBC4C00ED5D4F /* TimerViewController.swift in Sources */,
 				7780A24C1C7A03F300F904EA /* ChooseSwimmerController.swift in Sources */,
+				77F27ADF1C7C57D500A19EFE /* ResultsViewController.swift in Sources */,
 				77D032BA1C78975B00A8D3DD /* SwimmerManager.swift in Sources */,
 				77F27ADB1C7B0AF900A19EFE /* SettingsViewController.swift in Sources */,
+				77F27AE11C7C63E000A19EFE /* SwimsTableViewController.swift in Sources */,
 				77298F1E1B0FBC4C00ED5D4F /* AppDelegate.swift in Sources */,
 				77D032B81C7894E700A8D3DD /* SwimmersViewController.swift in Sources */,
 				77F27AD91C7B099300A19EFE /* SettingsManager.swift in Sources */,
 				7732670B1B15C9C4003BD052 /* TimerManager.swift in Sources */,
+				77F27AE51C7C747200A19EFE /* ResultsManager.swift in Sources */,
 				773267091B144B71003BD052 /* TabBarController.swift in Sources */,
 				77F27ADD1C7B31F300A19EFE /* SessionCellController.swift in Sources */,
-				77298F201B0FBC4C00ED5D4F /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -96,15 +96,15 @@
                                 <exclude reference="b1k-T3-ARD"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="PBs-fN-yxk"/>
-                                <exclude reference="Wtg-A1-u0K"/>
-                                <exclude reference="qTt-bf-vha"/>
-                                <exclude reference="Tjo-Qy-415"/>
                                 <exclude reference="XQF-Vd-All"/>
                                 <exclude reference="buz-d0-Jpp"/>
                                 <exclude reference="qAR-sL-niT"/>
                                 <exclude reference="7Vw-fx-KeO"/>
                                 <exclude reference="cPV-op-9KQ"/>
+                                <exclude reference="Tjo-Qy-415"/>
+                                <exclude reference="PBs-fN-yxk"/>
+                                <exclude reference="Wtg-A1-u0K"/>
+                                <exclude reference="qTt-bf-vha"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -115,15 +115,15 @@
                                 <include reference="b1k-T3-ARD"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="PBs-fN-yxk"/>
-                                <include reference="Wtg-A1-u0K"/>
-                                <include reference="qTt-bf-vha"/>
-                                <include reference="Tjo-Qy-415"/>
                                 <include reference="XQF-Vd-All"/>
                                 <include reference="buz-d0-Jpp"/>
                                 <include reference="qAR-sL-niT"/>
                                 <include reference="7Vw-fx-KeO"/>
                                 <include reference="cPV-op-9KQ"/>
+                                <include reference="Tjo-Qy-415"/>
+                                <include reference="PBs-fN-yxk"/>
+                                <include reference="Wtg-A1-u0K"/>
+                                <include reference="qTt-bf-vha"/>
                             </mask>
                         </variation>
                     </view>
@@ -138,35 +138,19 @@
             <point key="canvasLocation" x="0.0" y="-320.25"/>
         </scene>
         <!--Results-->
-        <scene sceneID="hNz-n2-bh7">
-            <objects>
-                <viewController title="Results" id="9pv-A4-QxB" customClass="ResultsViewController" customModule="SwimTimer" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
-                        <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Results" image="Results icon" id="acW-dT-cKf"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="750" y="-320"/>
-        </scene>
-        <!--Table View Controller-->
         <scene sceneID="Q3D-sz-EbT">
             <objects>
-                <tableViewController id="ZHP-IR-wAz" sceneMemberID="viewController">
+                <tableViewController id="ZHP-IR-wAz" customClass="ResultsViewController" customModule="SwimTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="RGP-bl-Udb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Sessions" id="rtB-aj-6Xp" customClass="SessionCellController" customModule="SwimTimer" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="session_cell_id" id="rtB-aj-6Xp" customClass="SessionCellController" customModule="SwimTimer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rtB-aj-6Xp" id="CJI-du-S56">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="My9-ui-U7E">
@@ -174,22 +158,50 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="25" y="11" width="115" height="21"/>
-                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-10-23 06:43" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9n-TN-KVm">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="My9-ui-U7E" firstAttribute="leading" secondItem="CJI-du-S56" secondAttribute="leadingMargin" constant="17" id="Za3-qp-hXf"/>
+                                        <constraint firstItem="My9-ui-U7E" firstAttribute="centerY" secondItem="CJI-du-S56" secondAttribute="centerY" id="ahP-WG-YxK"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="M9n-TN-KVm" secondAttribute="trailing" id="pwh-jo-AtC"/>
+                                        <constraint firstItem="M9n-TN-KVm" firstAttribute="centerY" secondItem="CJI-du-S56" secondAttribute="centerY" id="xkL-SZ-btc"/>
+                                    </constraints>
                                     <variation key="default">
                                         <mask key="subviews">
                                             <exclude reference="My9-ui-U7E"/>
+                                            <exclude reference="M9n-TN-KVm"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="pwh-jo-AtC"/>
+                                            <exclude reference="xkL-SZ-btc"/>
+                                            <exclude reference="Za3-qp-hXf"/>
+                                            <exclude reference="ahP-WG-YxK"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="subviews">
                                             <include reference="My9-ui-U7E"/>
+                                            <include reference="M9n-TN-KVm"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="pwh-jo-AtC"/>
+                                            <include reference="xkL-SZ-btc"/>
+                                            <include reference="Za3-qp-hXf"/>
+                                            <include reference="ahP-WG-YxK"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="My9-ui-U7E" id="dF1-jf-fAF"/>
+                                    <outlet property="timeLabel" destination="M9n-TN-KVm" id="ffe-qC-W0z"/>
+                                    <segue destination="A9F-5l-eHw" kind="show" identifier="show_swims_seque_id" id="ahc-jX-CyC"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -197,10 +209,11 @@
                             <outlet property="delegate" destination="ZHP-IR-wAz" id="0fc-yb-eHQ"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Results" image="Results icon" id="WYP-d1-u9o"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rWx-He-97s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1372.5" y="-320.25"/>
+            <point key="canvasLocation" x="750" y="-320.25"/>
         </scene>
         <!--Timer-->
         <scene sceneID="wg7-f3-ORb">
@@ -312,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="332"/>
+            <point key="canvasLocation" x="750" y="331.5"/>
         </scene>
         <!--Add Swimmer Controller-->
         <scene sceneID="yi5-yt-H26">
@@ -418,8 +431,8 @@
                     <connections>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="fv0-R0-87a" kind="relationship" relationship="viewControllers" id="ZiC-iv-eNE"/>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="UrL-BW-kFe" kind="relationship" relationship="viewControllers" id="D5q-8I-kV4"/>
+                        <segue destination="ZHP-IR-wAz" kind="relationship" relationship="viewControllers" id="bc7-Sg-zBA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -574,7 +587,90 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZNp-fD-z2F" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="7Jp-hR-EDH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1473" y="332"/>
+            <point key="canvasLocation" x="1461" y="331.5"/>
+        </scene>
+        <!--Swims-->
+        <scene sceneID="2ac-h7-KtT">
+            <objects>
+                <tableViewController id="Ijv-tr-8Df" customClass="SwimsTableViewController" customModule="SwimTimer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aHU-t8-ygS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="swim_cell_id" id="41t-7c-ADj" customClass="SwimsTableViewCell" customModule="SwimTimer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="41t-7c-ADj" id="Ukn-XM-XPo">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="400m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0y-UG-hVq">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="X0y-UG-hVq" firstAttribute="leading" secondItem="Ukn-XM-XPo" secondAttribute="leadingMargin" constant="17" id="42a-9g-XBk"/>
+                                        <constraint firstItem="X0y-UG-hVq" firstAttribute="centerY" secondItem="Ukn-XM-XPo" secondAttribute="centerY" id="goH-H6-7VI"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="X0y-UG-hVq"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="42a-9g-XBk"/>
+                                            <exclude reference="goH-H6-7VI"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="X0y-UG-hVq"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="42a-9g-XBk"/>
+                                            <include reference="goH-H6-7VI"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ijv-tr-8Df" id="0gO-eU-HaQ"/>
+                            <outlet property="delegate" destination="Ijv-tr-8Df" id="DNk-3X-JTA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Swims" id="0np-3X-aGH">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="h77-dz-ln8">
+                            <connections>
+                                <action selector="BackToSessions:" destination="Ijv-tr-8Df" id="4VT-b1-URN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="047-Av-YRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2379" y="-320.25"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VVE-Dg-hHV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A9F-5l-eHw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yh8-hc-QTL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ijv-tr-8Df" kind="relationship" relationship="rootViewController" id="mRD-jg-7D1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t9F-D1-rB8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1461" y="-320.25"/>
         </scene>
     </scenes>
     <resources>
