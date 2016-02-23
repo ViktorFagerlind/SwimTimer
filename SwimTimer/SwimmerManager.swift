@@ -22,8 +22,8 @@ class SwimmerManager
     addSwimmer ("Johan",    group: "Race")
     addSwimmer ("Viktor",   group: "Race")
     addSwimmer ("Anna",     group: "Race")
-    addSwimmer ("John Doe", group: "Beginner")
-    addSwimmer ("Jane Doe", group: "Beginner")
+    addSwimmer ("John D", group: "Beginner")
+    addSwimmer ("Jane D", group: "Beginner")
   }
   
   var nofSwimmers: Int
