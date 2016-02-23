@@ -38,20 +38,55 @@ class ResultsManager
 
 class Session
 {
-  var name      : String!
-  var dateTime  : String!
-  var swims     : [Swim]!
+  private(set) var name      : String!
+  private(set) var dateTime  : String!
+  private(set) var swims     : [Swim]!
+  
+  init (name n : String, dateTime d : String)
+  {
+    name      = n
+    dateTime  = d
+    swims     = [Swim]()
+  }
+  
+  func appendSwim (swim : Swim) -> Void
+  {
+    swims.append (swim)
+  }
 }
 
 class Swim
 {
-  var length          : String!
-  var individualSwims : [IndividualSwim]!
+  private(set) var length          : String!
+  private(set) var individualSwims : [IndividualSwim]!
+  
+  init (length l : String)
+  {
+    length          = l
+    individualSwims = [IndividualSwim]()
+  }
+  
+  func appendIndividualSwim (individualSwim : IndividualSwim) -> Void
+  {
+    individualSwims.append (individualSwim)
+  }
 }
 
 class IndividualSwim
 {
-  var swimmerName     : String!
-  var time            : String!
-  var lapTimes        : [String]!
+  private(set) var swimmerName     : String!
+  private(set) var time            : String!
+  private(set) var lapTimes        : [NSTimeInterval]!
+  
+  init (swimmerName n : String, time t : String)
+  {
+    swimmerName = n
+    time        = t
+    lapTimes    = [NSTimeInterval]()
+  }
+  
+  func appendSwim (lapTime : NSTimeInterval) -> Void
+  {
+    lapTimes.append (lapTime)
+  }
 }
