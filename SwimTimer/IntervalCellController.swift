@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SwimsCellController: UITableViewCell
+class IntervalCellController: UITableViewCell
 {
   @IBOutlet var nameLabel: UILabel!
 }

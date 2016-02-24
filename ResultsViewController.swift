@@ -45,33 +45,33 @@ class ResultsViewController: UITableViewController
         
         while totalLength < rndTotalLenth
         {
-          let swim = Swim ()
+          let interval = Interval ()
           
           let nofLengths : Int = Int (rand () % 8) + 1
           for i in 0...(SwimmerManager.singleton.nofSwimmers-1)
           {
-            let individualSwim = IndividualSwim (swimmerName : SwimmerManager.singleton.getSwimmer(i).name)
+            let individualInterval = IndividualInterval (swimmerName : SwimmerManager.singleton.getSwimmer(i).name)
             
             for _ in 0...nofLengths
             {
-              individualSwim.appendLapTime (NSTimeInterval ((Double (arc4random ()) /  Double (UINT32_MAX)) * 0.55 + 0.45))
+              individualInterval.appendLapTime (NSTimeInterval ((Double (arc4random ()) /  Double (UINT32_MAX)) * 0.55 + 0.45))
             }
             
-            swim.appendIndividualSwim (individualSwim)
-            swim.setLength (length: individualSwim.length)
+            interval.appendIndividualSwim (individualInterval)
+            interval.setLength (length: individualInterval.length)
             
           }
-          totalLength += swim.length
+          totalLength += interval.length
           
-          session.appendSwim (swim)
+          session.appendSwim (interval)
         }
         ResultsManager.singleton.addSession (session)
-        
       }
-      let manager = ResultsManager.singleton
-      
     }
   
+  @IBAction func backFromSessionSegue (segue:UIStoryboardSegue)
+  {
+  }
 
     override func didReceiveMemoryWarning()
     {
@@ -116,13 +116,15 @@ class ResultsViewController: UITableViewController
     {
       if segue.identifier == "show_swims_seque_id"
       {
-        let swimsCellController = segue.destinationViewController as! SwimsTableViewController
+        let swimsViewController = segue.destinationViewController as! SessionViewController
         
         // Get the cell that generated this segue.
         if let selectedSessionCell = sender as? SessionCellController
         {
           let indexPath = tableView.indexPathForCell (selectedSessionCell)!
-          swimsCellController.currentSession = getSessionFromIndexPath (indexPath)
+          let session = getSessionFromIndexPath (indexPath)
+          
+          swimsViewController.currentSession = session
         }
       }
     }

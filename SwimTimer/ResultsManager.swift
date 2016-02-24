@@ -44,30 +44,30 @@ class Session
 {
   private(set) var name      : String!
   private(set) var dateTime  : String!
-  private(set) var swims     : [Swim]!
+  private(set) var intervals : [Interval]!
   
   init (name n : String, dateTime d : String)
   {
     name      = n
     dateTime  = d
-    swims     = [Swim]()
+    intervals = [Interval]()
   }
   
-  func appendSwim (swim : Swim) -> Void
+  func appendSwim (swim : Interval) -> Void
   {
-    swims.append (swim)
+    intervals.append (swim)
   }
 }
 
-class Swim
+class Interval
 {
-  private(set) var length          : Int!
-  private(set) var individualSwims : [IndividualSwim]!
+  private(set) var length               : Int!
+  private(set) var individualIntervals  : [IndividualInterval]!
   
   init ()
   {
-    length          = 0
-    individualSwims = [IndividualSwim]()
+    length              = 0
+    individualIntervals = [IndividualInterval]()
   }
   
   func setLength (length l : Int) -> Void
@@ -75,13 +75,13 @@ class Swim
     length = l
   }
   
-  func appendIndividualSwim (individualSwim : IndividualSwim) -> Void
+  func appendIndividualSwim (individualSwim : IndividualInterval) -> Void
   {
-    individualSwims.append (individualSwim)
+    individualIntervals.append (individualSwim)
   }
 }
 
-class IndividualSwim
+class IndividualInterval
 {
   private(set) var swimmerName     : String!
   private(set) var time            : NSTimeInterval!

@@ -8,50 +8,66 @@
 
 import UIKit
 
-class SwimsTableViewController: UITableViewController
+class SessionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
+  @IBOutlet var tableView : UITableView!
+  
+  @IBOutlet var navigationBar: UINavigationBar!
   var currentSession : Session?
 
   override func viewDidLoad()
   {
     super.viewDidLoad()
 
-    self.clearsSelectionOnViewWillAppear = false
+    //tableView.clearsSelectionOnViewWillAppear = false
   }
 
+  override func viewDidAppear(animated: Bool)
+  {
+    super.viewDidAppear(animated)
+    
+    navigationBar.topItem!.title = currentSession!.name + " - " + currentSession!.dateTime
+  }
+  
   override func didReceiveMemoryWarning()
   {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
+
+  /*
   @IBAction func BackToSessions(sender: AnyObject)
   {
     dismissViewControllerAnimated(true, completion: nil)
   }
+*/
+  
+    @IBAction func backFromIntervalSegue (segue:UIStoryboardSegue)
+    {
+    }
   
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
       if (currentSession == nil)
       {
         return 0
       }
       
-      return currentSession!.swims.count
+      return currentSession!.intervals.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-      let cell = tableView.dequeueReusableCellWithIdentifier ("swim_cell_id", forIndexPath: indexPath) as! SwimsCellController
+      let cell = tableView.dequeueReusableCellWithIdentifier ("interval_cell_id", forIndexPath: indexPath) as! IntervalCellController
       
-      cell.nameLabel.text = String (currentSession!.swims[indexPath.row].length) + " meter"
+      cell.nameLabel.text = String (currentSession!.intervals[indexPath.row].length) + " meter"
 
       return cell
     }
