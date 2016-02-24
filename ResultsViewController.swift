@@ -19,9 +19,59 @@ class ResultsViewController: UITableViewController
 
       tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
       
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+      initRandomResults ()
+      
+      // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+      // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+  
+    func initRandomResults ()
+    {
+      
+      for day in 0...14
+      {
+        let dateTime = NSCalendar.currentCalendar().dateByAddingUnit(
+          .Day,
+          value: day,
+          toDate: NSDate (),
+          options: NSCalendarOptions(rawValue: 0))
+        
+        let timestamp = NSDateFormatter.localizedStringFromDate (dateTime!, dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+        
+        let session = Session (name: "Pass", dateTime: timestamp)
+        
+        let rndTotalLenth = Int (rand()) % (2000/50) + 1500
+        var totalLength : Int = 0
+        
+        while totalLength < rndTotalLenth
+        {
+          let swim = Swim ()
+          
+          let nofLengths : Int = Int (rand () % 8) + 1
+          for i in 0...(SwimmerManager.singleton.nofSwimmers-1)
+          {
+            let individualSwim = IndividualSwim (swimmerName : SwimmerManager.singleton.getSwimmer(i).name)
+            
+            for _ in 0...nofLengths
+            {
+              individualSwim.appendLapTime (NSTimeInterval ((Double (arc4random ()) /  Double (UINT32_MAX)) * 0.55 + 0.45))
+            }
+            
+            swim.appendIndividualSwim (individualSwim)
+            swim.setLength (length: individualSwim.length)
+            
+          }
+          totalLength += swim.length
+          
+          session.appendSwim (swim)
+        }
+        ResultsManager.singleton.addSession (session)
+        
+      }
+      let manager = ResultsManager.singleton
+      
+    }
+  
 
     override func didReceiveMemoryWarning()
     {
@@ -38,13 +88,23 @@ class ResultsViewController: UITableViewController
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-      return 10
+      return ResultsManager.singleton.nofSessions
     }
 
+    func getSessionFromIndexPath (indexPath : NSIndexPath) -> Session
+    {
+      return ResultsManager.singleton.getSession (ResultsManager.singleton.nofSessions - indexPath.row - 1)
+    }
+  
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-      let cell = tableView.dequeueReusableCellWithIdentifier ("session_cell_id", forIndexPath: indexPath)
+      let cell = tableView.dequeueReusableCellWithIdentifier ("session_cell_id", forIndexPath: indexPath)  as! SessionCellController
 
+      let session = getSessionFromIndexPath (indexPath)
+      
+      cell.nameLabel.text = session.name
+      cell.timeLabel.text = session.dateTime
+      
       return cell
     }
 
@@ -52,9 +112,19 @@ class ResultsViewController: UITableViewController
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+      if segue.identifier == "show_swims_seque_id"
+      {
+        let swimsCellController = segue.destinationViewController as! SwimsTableViewController
+        
+        // Get the cell that generated this segue.
+        if let selectedSessionCell = sender as? SessionCellController
+        {
+          let indexPath = tableView.indexPathForCell (selectedSessionCell)!
+          swimsCellController.currentSession = getSessionFromIndexPath (indexPath)
+        }
+      }
     }
   
 

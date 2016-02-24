@@ -15,20 +15,24 @@ class ResultsManager
   
   private var sessions : [Session]!
   
+  var nofSessions : Int
+  {
+    get
+    {
+      return sessions.count
+    }
+  }
+  
   private init ()
   {
-
+    sessions = [Session]()
   }
   
   func addSession (session : Session) -> Void
   {
     sessions.append (session)
   }
-  
-  func nofSessions () -> Int
-  {
-    return sessions.count
-  }
+
   
   func getSession (index : Int) -> Session
   {
@@ -57,13 +61,18 @@ class Session
 
 class Swim
 {
-  private(set) var length          : String!
+  private(set) var length          : Int!
   private(set) var individualSwims : [IndividualSwim]!
   
-  init (length l : String)
+  init ()
   {
-    length          = l
+    length          = 0
     individualSwims = [IndividualSwim]()
+  }
+  
+  func setLength (length l : Int) -> Void
+  {
+    length = l
   }
   
   func appendIndividualSwim (individualSwim : IndividualSwim) -> Void
@@ -75,18 +84,23 @@ class Swim
 class IndividualSwim
 {
   private(set) var swimmerName     : String!
-  private(set) var time            : String!
+  private(set) var time            : NSTimeInterval!
   private(set) var lapTimes        : [NSTimeInterval]!
+  private(set) var length          : Int!
   
-  init (swimmerName n : String, time t : String)
+  init (swimmerName n : String)
   {
     swimmerName = n
-    time        = t
+    time        = 0
     lapTimes    = [NSTimeInterval]()
+    length      = 0
   }
   
-  func appendSwim (lapTime : NSTimeInterval) -> Void
+  func appendLapTime (lapTime : NSTimeInterval) -> Void
   {
     lapTimes.append (lapTime)
+    
+    time    = time + lapTime
+    length  = length + SettingsManager.singleton.poolLength
   }
 }

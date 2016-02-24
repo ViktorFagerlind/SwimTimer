@@ -8,7 +8,9 @@
 
 import UIKit
 
-class SwimsTableViewController: UITableViewController {
+class SwimsTableViewController: UITableViewController
+{
+  var currentSession : Session?
 
   override func viewDidLoad()
   {
@@ -30,20 +32,28 @@ class SwimsTableViewController: UITableViewController {
   
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+      if (currentSession == nil)
+      {
+        return 0
+      }
+      
+      return currentSession!.swims.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier ("swim_cell_id", forIndexPath: indexPath)
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+      let cell = tableView.dequeueReusableCellWithIdentifier ("swim_cell_id", forIndexPath: indexPath) as! SwimsCellController
+      
+      cell.nameLabel.text = String (currentSession!.swims[indexPath.row].length) + " meter"
 
-        // Configure the cell...
-
-        return cell
+      return cell
     }
   
     /*
