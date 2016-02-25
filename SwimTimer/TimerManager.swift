@@ -17,8 +17,14 @@ class TimerManager
 
   var swimmerTimers : [[SwimmerTimer]] = [[SwimmerTimer]]()
   
+  var ongoingInterval : Interval?
+  var ongoingSession  : Session?
+  
   init ()
   {
+    ongoingInterval = nil
+    ongoingSession  = nil
+    
     // Create an initial lane
     addLane ()
   }
@@ -37,7 +43,7 @@ class TimerManager
     }
   }
   
-  var allStopped: Bool
+  var isRunning: Bool
     {
     get
     {
@@ -47,14 +53,39 @@ class TimerManager
         {
           if (timer.state != SwimmerTimer.State_E.Idle)
           {
-            return false
+            return true
           }
         }
       }
-      return true
+      return false
     }
   }
   
+  func startSession (name : String, dateTime : String) -> Void
+  {
+    ongoingSession = Session (name: name, dateTime: dateTime)
+    
+    ResultsManager.singleton.addSession (ongoingSession!)
+  }
+  
+  func stopSession (save : Bool) -> Void
+  {
+    if !save && ongoingSession != nil
+    {
+      ResultsManager.singleton.removeLastSession ()
+    }
+    
+    ongoingSession = nil
+  }
+  
+  var isInSession: Bool
+  {
+    get
+    {
+      return ongoingSession != nil
+    }
+  }
+
   var nofLanes: Int
   {
     get
@@ -93,18 +124,6 @@ class TimerManager
     swimmerTimers.removeAtIndex(lane)
   }
   
-  func stopSwimmer (name : String)
-  {
-    let timer : SwimmerTimer? = findTimer (name)
-    
-    if (timer == nil)
-    {
-      return
-    }
-    
-    timer!.stop ()
-  }
-  
   func lapSwimmer (name : String)
   {
     let timer : SwimmerTimer? = findTimer (name)
@@ -126,12 +145,33 @@ class TimerManager
   {
     TimerManager.startTime = NSDate.timeIntervalSinceReferenceDate ()
     
+    ongoingInterval = Interval ()
+    
     for lane in swimmerTimers
     {
       for (i, timer) in lane.enumerate ()
       {
-        timer.globalStart (NSTimeInterval (i) * Double (SettingsManager.singleton.timeBetweenSwimmers))
+        timer.globalStart (NSTimeInterval (i) * Double (SettingsManager.singleton.timeBetweenSwimmers), ongoingInterval: ongoingInterval)
       }
+    }
+    
+    ongoingInterval = Interval ()
+  }
+  
+  func stopSwimmer (name : String)
+  {
+    let timer : SwimmerTimer? = findTimer (name)
+    
+    if (timer == nil)
+    {
+      return
+    }
+    
+    timer!.stop ()
+    
+    if !isRunning
+    {
+      onAllStopped ()
     }
   }
   
@@ -144,6 +184,17 @@ class TimerManager
         timer.stop ()
       }
     }
+    onAllStopped ()
+  }
+  
+  func onAllStopped ()
+  {
+    if (ongoingInterval != nil)
+    {
+      ongoingSession?.appendSwim (ongoingInterval!)
+    }
+    
+    ongoingInterval = nil
   }
   
   func stopNext (lane : Int)
@@ -227,12 +278,17 @@ class SwimmerTimer
   var lapTime           : NSTimeInterval
   var lastLapOccurance  : NSTimeInterval
   
+  var ongoingInterval             : Interval?
+  var ongoingIndividualInterval   : IndividualInterval?
+  
   init (swimmerName : String)
   {
-    name              = swimmerName
-    resultTime        = 0.0
-    lapTime           = 0.0
-    lastLapOccurance  = 0.0
+    name                      = swimmerName
+    resultTime                = 0.0
+    lapTime                   = 0.0
+    lastLapOccurance          = 0.0
+    ongoingInterval           = nil
+    ongoingIndividualInterval = nil
   }
   
   func stateToString (state : State_E) -> String
@@ -285,13 +341,15 @@ class SwimmerTimer
     }
   }
   
-  func globalStart (swimmerDeltaTime : NSTimeInterval)
+  func globalStart (swimmerDeltaTime : NSTimeInterval, ongoingInterval oi : Interval?)
   {
     deltaTime = swimmerDeltaTime
     state = .Waiting
     
     lapTime           = 0.0
     lastLapOccurance  = 0.0
+    
+    ongoingInterval   = oi
   }
   
   func update ()
@@ -304,7 +362,13 @@ class SwimmerTimer
     if (runningTime > 0.0)
     {
       state = .Running
+      onStarted ()
     }
+  }
+  
+  func onStarted () -> Void
+  {
+    ongoingIndividualInterval = IndividualInterval (swimmerName: name, lapLength: SettingsManager.singleton.poolLength)
   }
   
   func stop ()
@@ -315,8 +379,19 @@ class SwimmerTimer
     }
     
     state = .Idle
+    onStopped ()
     
     resultTime  = max (0.0, runningTime)
+  }
+  
+  func onStopped () ->Void
+  {
+    if ongoingIndividualInterval != nil
+    {
+      ongoingInterval?.appendIndividualInterval (ongoingIndividualInterval!)
+    }
+    
+    ongoingIndividualInterval   = nil
   }
   
   func lap ()

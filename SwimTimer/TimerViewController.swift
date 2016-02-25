@@ -12,8 +12,6 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
 {
   var timerManager : TimerManager = TimerManager ()
   var timer = NSTimer()
-  var isRunning : Bool = false
-  var inSession : Bool = false
 
   @IBOutlet var addSwimmerButton        : UIButton!
   @IBOutlet var addLaneButton           : UIButton!
@@ -57,19 +55,18 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
   func redraw ()
   {
-    if (timerManager.allStopped)
+    if (!timerManager.isRunning)
     {
-      isRunning = false
       timer.invalidate ()
     }
     
-    editButton.enabled              = !inSession
-    addLaneButton.enabled           = !inSession && !tableView.editing
-    addSwimmerButton.enabled        = !inSession && !tableView.editing
+    editButton.enabled              = !timerManager.isInSession
+    addLaneButton.enabled           = !timerManager.isInSession && !tableView.editing
+    addSwimmerButton.enabled        = !timerManager.isInSession && !tableView.editing
     
-    startStopSessionButton.enabled  = !isRunning && !tableView.editing
-    startButton.enabled             = inSession && !isRunning && !tableView.editing
-    stopAllButton.enabled           = inSession && isRunning && !tableView.editing
+    startStopSessionButton.enabled  = !timerManager.isRunning   && !tableView.editing
+    startButton.enabled             = timerManager.isInSession  && !timerManager.isRunning && !tableView.editing
+    stopAllButton.enabled           = timerManager.isInSession  && timerManager.isRunning && !tableView.editing
     
     tableView.reloadData ()
   }
@@ -100,7 +97,6 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   
   @IBAction func StartButtonPressed (sender : AnyObject)
   {
-    isRunning = true
     timerManager.start ()
     
     timer = NSTimer.scheduledTimerWithTimeInterval (0.03, target: self, selector: "updateTimers", userInfo: nil, repeats: true)
@@ -113,26 +109,27 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     timerManager.stopAll ()
     redraw ()
   }
-  
+
   @IBAction func StartStopSessionPressed (sender : AnyObject)
   {
-    inSession = !inSession
-    
-    startStopSessionButton.title = inSession ? "End Session" : "Start Session"
-    
-    if !inSession
+    if !timerManager.isInSession
     {
-      let saveAlert = UIAlertController(title: "Save Session", message: "Do you want to save the session", preferredStyle: UIAlertControllerStyle.Alert)
-    
-      saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler:
-        { (action: UIAlertAction!) in print("Handle Ok logic here") }))
-    
-      saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
-    
+      timerManager.startSession ("Pass", dateTime: NSDateFormatter.localizedStringFromDate (NSDate (), dateStyle: .MediumStyle, timeStyle: .ShortStyle))
+      
+      startStopSessionButton.title = "End Session"
+      
+      redraw ()
+    }
+    else
+    {
+      let saveAlert = UIAlertController (title: "Save Session", message: "Do you want to save the session", preferredStyle: UIAlertControllerStyle.Alert)
+      saveAlert.addAction (UIAlertAction (title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in self.timerManager.stopSession (true);  self.redraw () }))
+      saveAlert.addAction (UIAlertAction (title: "No",  style: .Default, handler: { (action: UIAlertAction!) in self.timerManager.stopSession (false); self.redraw () }))
       presentViewController (saveAlert, animated: true, completion: nil)
+      
+      startStopSessionButton.title = "Start Session"
     }
     
-    redraw ()
   }
   
   @IBAction func EditPressed(sender: AnyObject)
@@ -191,7 +188,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       headerCell.delegate = self
       
       headerCell.title.text = "Lane \(indexPath.section)"
-      headerCell.stopNextButton.enabled = isRunning
+      headerCell.stopNextButton.enabled = timerManager.isRunning
       
       return headerCell
     }

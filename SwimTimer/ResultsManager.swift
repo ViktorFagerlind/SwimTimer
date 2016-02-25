@@ -33,6 +33,11 @@ class ResultsManager
     sessions.append (session)
   }
 
+  func removeLastSession () -> Void
+  {
+    sessions.removeLast ()
+  }
+  
   
   func getSession (index : Int) -> Session
   {

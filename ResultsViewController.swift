@@ -25,6 +25,14 @@ class ResultsViewController: UITableViewController
       // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
   
+    // Redraw table if sessions have been added
+    override func viewDidAppear (animated: Bool)
+    {
+      super.viewDidAppear(animated)
+    
+      tableView.reloadData ()
+    }
+  
     func initRandomResults ()
     {
       for day in 0...14
