@@ -67,19 +67,28 @@ class SessionViewController: UIViewController, UITableViewDelegate, UITableViewD
     {
       let cell = tableView.dequeueReusableCellWithIdentifier ("interval_cell_id", forIndexPath: indexPath) as! IntervalCellController
       
-      cell.nameLabel.text = String (currentSession!.intervals[indexPath.row].length) + " meter"
+      let interval = currentSession!.intervals[indexPath.row]
+      cell.nameLabel.text = String (interval.length) + " meter (" + TimerManager.timeToString (interval.bestResult) + ")"
 
       return cell
     }
   
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+  // MARK: - Navigation
+  
+  // In a storyboard-based application, you will often want to do a little preparation before navigation
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+  {
+    if segue.identifier == "show_interval_seque_id"
+    {
+      let intervalViewController = segue.destinationViewController as! IntervalViewController
+      
+      // Get the cell that generated this segue.
+      if let selectedInterval = sender as? IntervalCellController
+      {
+        let indexPath = tableView.indexPathForCell (selectedInterval)!
+        intervalViewController.currentInterval = currentSession!.intervals[indexPath.row]
+      }
     }
-    */
+  }
 
 }

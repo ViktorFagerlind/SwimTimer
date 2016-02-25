@@ -13,7 +13,7 @@ class IntervalViewController: UIViewController, UITableViewDelegate, UITableView
   @IBOutlet var tableView : UITableView!
   
   @IBOutlet var navigationBar: UINavigationBar!
-  var currentSession : Session?
+  var currentInterval : Interval?
 
   override func viewDidLoad()
   {
@@ -26,7 +26,7 @@ class IntervalViewController: UIViewController, UITableViewDelegate, UITableView
   {
     super.viewDidAppear(animated)
     
-    navigationBar.topItem!.title = currentSession!.name + " - " + currentSession!.dateTime
+    navigationBar.topItem!.title = String (currentInterval!.length) + " meters"
   }
   
   override func didReceiveMemoryWarning()
@@ -39,36 +39,41 @@ class IntervalViewController: UIViewController, UITableViewDelegate, UITableView
 
   func numberOfSectionsInTableView(tableView: UITableView) -> Int
   {
-      return 1
-  }
-
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-  {
-    if (currentSession == nil)
+    if (currentInterval == nil)
     {
       return 0
     }
     
-    return currentSession!.intervals.count
+    return currentInterval!.individualIntervals.count
+  }
+
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+  {
+    if (currentInterval == nil)
+    {
+      return 0
+    }
+    
+    return currentInterval!.individualIntervals[section].lapTimes.count + 1 // Add one for the section header
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
   {
-    let cell = tableView.dequeueReusableCellWithIdentifier ("interval_cell_id", forIndexPath: indexPath) as! IntervalCellController
+    if (indexPath.row == 0)
+    {
+      let cell = tableView.dequeueReusableCellWithIdentifier ("swimmer_name_cell_id", forIndexPath: indexPath) as! SwimmerResultCellController
+      
+      cell.nameLabel.text = String (currentInterval!.individualIntervals[indexPath.section].swimmerName)
+      cell.timeLabel.text = TimerManager.timeToString (currentInterval!.individualIntervals[indexPath.section].time)
+      
+      return cell
+    }
     
-    cell.nameLabel.text = String (currentSession!.intervals[indexPath.row].length) + " meter"
+    let cell = tableView.dequeueReusableCellWithIdentifier ("lap_cell_id", forIndexPath: indexPath) as! LapCellController
+    
+    cell.lengthLabel.text = String (currentInterval!.individualIntervals[indexPath.section].lapLength) + "m"
+    cell.timeLabel.text   = TimerManager.timeToString (currentInterval!.individualIntervals[indexPath.section].lapTimes[indexPath.row-1])
 
     return cell
   }
-
-  /*
-  // MARK: - Navigation
-
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      // Get the new view controller using segue.destinationViewController.
-      // Pass the selected object to the new view controller.
-  }
-  */
-
 }

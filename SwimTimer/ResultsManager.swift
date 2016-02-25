@@ -45,17 +45,20 @@ class Session
   private(set) var name      : String!
   private(set) var dateTime  : String!
   private(set) var intervals : [Interval]!
+  private(set) var length    : Int!
   
   init (name n : String, dateTime d : String)
   {
     name      = n
     dateTime  = d
     intervals = [Interval]()
+    length    = 0
   }
   
-  func appendSwim (swim : Interval) -> Void
+  func appendSwim (interval : Interval) -> Void
   {
-    intervals.append (swim)
+    intervals.append (interval)
+    length = length + interval.length
   }
 }
 
@@ -70,14 +73,38 @@ class Interval
     individualIntervals = [IndividualInterval]()
   }
   
-  func setLength (length l : Int) -> Void
+  var bestResult : NSTimeInterval
   {
-    length = l
+    get
+    {
+      if individualIntervals.count == 0
+      {
+        return NSTimeInterval (0)
+      }
+      
+      var bestTime = NSTimeInterval.infinity
+      for ii in individualIntervals
+      {
+        let time = ii.time
+        
+        if bestTime > time
+        {
+          bestTime = time
+        }
+      }
+      
+      return bestTime
+    }
   }
   
-  func appendIndividualSwim (individualSwim : IndividualInterval) -> Void
+  func appendIndividualInterval (individualInterval : IndividualInterval) -> Void
   {
-    individualIntervals.append (individualSwim)
+    if (individualIntervals.count == 0)
+    {
+      length = individualInterval.length
+    }
+    
+    individualIntervals.append (individualInterval)
   }
 }
 
@@ -86,21 +113,27 @@ class IndividualInterval
   private(set) var swimmerName     : String!
   private(set) var time            : NSTimeInterval!
   private(set) var lapTimes        : [NSTimeInterval]!
-  private(set) var length          : Int!
+  private(set) var lapLength       : Int!
   
-  init (swimmerName n : String)
+  var length : Int
+  {
+    get
+    {
+      return lapTimes.count * lapLength
+    }
+  }
+  
+  init (swimmerName n : String, lapLength l : Int)
   {
     swimmerName = n
     time        = 0
     lapTimes    = [NSTimeInterval]()
-    length      = 0
+    lapLength   = l
   }
   
   func appendLapTime (lapTime : NSTimeInterval) -> Void
   {
     lapTimes.append (lapTime)
-    
     time    = time + lapTime
-    length  = length + SettingsManager.singleton.poolLength
   }
 }

@@ -22,6 +22,8 @@
 		7780A2441C79D7B700F904EA /* SwimmerNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7780A2431C79D7B700F904EA /* SwimmerNib.xib */; };
 		7780A2461C79DA8200F904EA /* SwimmerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7780A2451C79DA8200F904EA /* SwimmerController.swift */; };
 		7780A24C1C7A03F300F904EA /* ChooseSwimmerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7780A24B1C7A03F300F904EA /* ChooseSwimmerController.swift */; };
+		77C2C8151C7EFF55007B018B /* SwimmerResultCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C8141C7EFF55007B018B /* SwimmerResultCellController.swift */; };
+		77C2C8171C7EFF93007B018B /* LapCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2C8161C7EFF93007B018B /* LapCellController.swift */; };
 		77C5A4901B12570E005F7426 /* SwimmerTimerNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C5A48F1B12570E005F7426 /* SwimmerTimerNib.xib */; };
 		77D032B81C7894E700A8D3DD /* SwimmersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D032B71C7894E700A8D3DD /* SwimmersViewController.swift */; };
 		77D032BA1C78975B00A8D3DD /* SwimmerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D032B91C78975B00A8D3DD /* SwimmerManager.swift */; };
@@ -66,6 +68,8 @@
 		7780A2431C79D7B700F904EA /* SwimmerNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwimmerNib.xib; sourceTree = "<group>"; };
 		7780A2451C79DA8200F904EA /* SwimmerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwimmerController.swift; sourceTree = "<group>"; };
 		7780A24B1C7A03F300F904EA /* ChooseSwimmerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSwimmerController.swift; sourceTree = "<group>"; };
+		77C2C8141C7EFF55007B018B /* SwimmerResultCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwimmerResultCellController.swift; sourceTree = "<group>"; };
+		77C2C8161C7EFF93007B018B /* LapCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LapCellController.swift; sourceTree = "<group>"; };
 		77C5A48F1B12570E005F7426 /* SwimmerTimerNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwimmerTimerNib.xib; sourceTree = "<group>"; };
 		77D032B71C7894E700A8D3DD /* SwimmersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwimmersViewController.swift; sourceTree = "<group>"; };
 		77D032B91C78975B00A8D3DD /* SwimmerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwimmerManager.swift; sourceTree = "<group>"; };
@@ -197,6 +201,8 @@
 		7780A24A1C79E67A00F904EA /* Results */ = {
 			isa = PBXGroup;
 			children = (
+				77C2C8161C7EFF93007B018B /* LapCellController.swift */,
+				77C2C8141C7EFF55007B018B /* SwimmerResultCellController.swift */,
 				77F27AE61C7DD53400A19EFE /* IntervalViewController.swift */,
 				77F27AE01C7C63E000A19EFE /* SessionViewController.swift */,
 				77F27ADE1C7C57D500A19EFE /* ResultsViewController.swift */,
@@ -317,6 +323,7 @@
 				772907531B11DB320091BE9C /* SwimmerTimerController.swift in Sources */,
 				7780A2461C79DA8200F904EA /* SwimmerController.swift in Sources */,
 				774251341B20287100B8BE02 /* LaneHeaderController.swift in Sources */,
+				77C2C8171C7EFF93007B018B /* LapCellController.swift in Sources */,
 				77F27AE31C7C645B00A19EFE /* IntervalCellController.swift in Sources */,
 				77298F221B0FBC4C00ED5D4F /* TimerViewController.swift in Sources */,
 				7780A24C1C7A03F300F904EA /* ChooseSwimmerController.swift in Sources */,
@@ -325,6 +332,7 @@
 				77F27ADB1C7B0AF900A19EFE /* SettingsViewController.swift in Sources */,
 				77F27AE71C7DD53400A19EFE /* IntervalViewController.swift in Sources */,
 				77F27AE11C7C63E000A19EFE /* SessionViewController.swift in Sources */,
+				77C2C8151C7EFF55007B018B /* SwimmerResultCellController.swift in Sources */,
 				77298F1E1B0FBC4C00ED5D4F /* AppDelegate.swift in Sources */,
 				77D032B81C7894E700A8D3DD /* SwimmersViewController.swift in Sources */,
 				77F27AD91C7B099300A19EFE /* SettingsManager.swift in Sources */,

@@ -17,7 +17,7 @@ class ResultsViewController: UITableViewController
 
       clearsSelectionOnViewWillAppear = false
 
-      tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+      tableView.contentInset = UIEdgeInsetsMake (50, 0, 0, 0);
       
       initRandomResults ()
       
@@ -27,20 +27,19 @@ class ResultsViewController: UITableViewController
   
     func initRandomResults ()
     {
-      
       for day in 0...14
       {
         let dateTime = NSCalendar.currentCalendar().dateByAddingUnit(
           .Day,
-          value: day,
-          toDate: NSDate (),
-          options: NSCalendarOptions(rawValue: 0))
+          value:    15 - day,
+          toDate:   NSDate (),
+          options:  NSCalendarOptions(rawValue: 0))
         
         let timestamp = NSDateFormatter.localizedStringFromDate (dateTime!, dateStyle: .MediumStyle, timeStyle: .ShortStyle)
         
         let session = Session (name: "Pass", dateTime: timestamp)
         
-        let rndTotalLenth = Int (rand()) % (2000/50) + 1500
+        let rndTotalLenth = (Int (rand()) % (40) + 30)*50
         var totalLength : Int = 0
         
         while totalLength < rndTotalLenth
@@ -50,16 +49,14 @@ class ResultsViewController: UITableViewController
           let nofLengths : Int = Int (rand () % 8) + 1
           for i in 0...(SwimmerManager.singleton.nofSwimmers-1)
           {
-            let individualInterval = IndividualInterval (swimmerName : SwimmerManager.singleton.getSwimmer(i).name)
+            let individualInterval = IndividualInterval (swimmerName : SwimmerManager.singleton.getSwimmer(i).name, lapLength: SettingsManager.singleton.poolLength)
             
-            for _ in 0...nofLengths
+            for _ in 0...(nofLengths-1)
             {
-              individualInterval.appendLapTime (NSTimeInterval ((Double (arc4random ()) /  Double (UINT32_MAX)) * 0.55 + 0.45))
+              individualInterval.appendLapTime (NSTimeInterval ((Double (arc4random ()) /  Double (UINT32_MAX)) * 25.0 + 35.0))
             }
             
-            interval.appendIndividualSwim (individualInterval)
-            interval.setLength (length: individualInterval.length)
-            
+            interval.appendIndividualInterval (individualInterval)
           }
           totalLength += interval.length
           
@@ -102,7 +99,7 @@ class ResultsViewController: UITableViewController
 
       let session = getSessionFromIndexPath (indexPath)
       
-      cell.nameLabel.text = session.name
+      cell.nameLabel.text = session.name + " (" + String (session.length) + "m)"
       cell.timeLabel.text = session.dateTime
       
       return cell
@@ -114,7 +111,7 @@ class ResultsViewController: UITableViewController
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-      if segue.identifier == "show_swims_seque_id"
+      if segue.identifier == "show_session_seque_id"
       {
         let swimsViewController = segue.destinationViewController as! SessionViewController
         
