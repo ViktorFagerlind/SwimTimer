@@ -18,6 +18,6 @@ class SettingsManager
   private init ()
   {
     poolLength          = 50
-    timeBetweenSwimmers = 5
+    timeBetweenSwimmers = 3
   }
 }

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class SessionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class SessionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate
 {
   @IBOutlet var tableView : UITableView!
   
@@ -89,6 +90,25 @@ class SessionViewController: UIViewController, UITableViewDelegate, UITableViewD
         intervalViewController.currentInterval = currentSession!.intervals[indexPath.row]
       }
     }
+  }
+  
+  // MFMailComposeViewControllerDelegate
+  
+  func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?)
+  {
+    dismissViewControllerAnimated (true, completion: nil)
+  }
+  
+  @IBAction func MailButtonPressed (sender : AnyObject)
+  {
+    let picker = MFMailComposeViewController()
+    picker.mailComposeDelegate = self
+    
+    picker.setToRecipients (["viktor_fagerlind@hotmail.com"])
+    picker.setSubject ("Simingsresultat " + currentSession!.dateTime)
+    picker.setMessageBody (currentSession!.toHtml (), isHTML: true)
+    
+    presentViewController(picker, animated: true, completion: nil)
   }
 
 }

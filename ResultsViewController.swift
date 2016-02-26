@@ -47,7 +47,7 @@ class ResultsViewController: UITableViewController
         
         let session = Session (name: "Pass", dateTime: timestamp)
         
-        let rndTotalLenth = (Int (rand()) % (40) + 30)*50
+        let rndTotalLenth = (Int (rand()) % (20) + 15)*100
         var totalLength : Int = 0
         
         while totalLength < rndTotalLenth

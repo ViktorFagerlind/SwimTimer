@@ -65,17 +65,38 @@ class Session
     intervals.append (interval)
     length = length + interval.length
   }
+  
+  func toHtml () -> String
+  {
+    var html : String =  "<h2>" + name + " (" + String (length) + "m)</h2>\n" +
+                         "<h4>" + dateTime + "</h4>\n"
+    
+    html = html + "<hr>\n"
+    
+    for i in intervals
+    {
+      html += i.toHtml ()
+    }
+    
+    return html
+  }
 }
 
 class Interval
 {
-  private(set) var length               : Int!
   private(set) var individualIntervals  : [IndividualInterval]!
   
   init ()
   {
-    length              = 0
     individualIntervals = [IndividualInterval]()
+  }
+  
+  var length : Int
+  {
+    get
+    {
+      return individualIntervals.count == 0 ? 0 : individualIntervals[0].length
+    }
   }
   
   var bestResult : NSTimeInterval
@@ -102,14 +123,53 @@ class Interval
     }
   }
   
-  func appendIndividualInterval (individualInterval : IndividualInterval) -> Void
+  func fixMissingLaps () -> Void
   {
-    if (individualIntervals.count == 0)
+    var nofMostCommonCount  : Int = 0
+    var mostCommonCount     : Int = 0
+    
+    for ii1 in individualIntervals
     {
-      length = individualInterval.length
+      let currentCount = ii1.lapTimes.count
+      var nofSameCount : Int = 0
+      
+      for ii2 in individualIntervals
+      {
+        if ii2.lapTimes.count == currentCount
+        {
+          nofSameCount++
+        }
+      }
+      if nofSameCount > nofMostCommonCount
+      {
+        nofMostCommonCount = nofSameCount
+        mostCommonCount    = currentCount
+      }
     }
     
+    for ii in individualIntervals
+    {
+      ii.setNofLaps (mostCommonCount)
+    }
+    
+  }
+  
+  func appendIndividualInterval (individualInterval : IndividualInterval) -> Void
+  {
     individualIntervals.append (individualInterval)
+  }
+  
+  func toHtml () -> String
+  {
+    var html : String = "<h4>" + String (length) + "m</h4>\n"
+    
+    for ii in individualIntervals
+    {
+      html = html + ii.toHtml ()
+    }
+    html = html + "<hr>\n"
+    
+    return html
   }
 }
 
@@ -140,5 +200,36 @@ class IndividualInterval
   {
     lapTimes.append (lapTime)
     time    = time + lapTime
+  }
+  
+  func setTotalTime (totalTime : NSTimeInterval) -> Void
+  {
+    time = totalTime
+  }
+  
+  func setNofLaps (nofLaps : Int) -> Void
+  {
+    for var i = lapTimes.count; i < nofLaps; i++
+    {
+      appendLapTime (NSTimeInterval (-1.0))
+    }
+    
+    while lapTimes.count > nofLaps
+    {
+      lapTimes.removeLast ()
+    }
+  }
+
+  func toHtml () -> String
+  {
+    var html : String = "<b>" + swimmerName + " " + TimerManager.timeToString(time) + "</b><br>\n"
+    
+    for lt in lapTimes
+    {
+      html = html + TimerManager.timeToString(lt) + "<br>\n"
+    }
+    html = html + "<br>\n"
+    
+    return html
   }
 }

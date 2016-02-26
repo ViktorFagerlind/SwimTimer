@@ -17,6 +17,9 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swimmer name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzV-QM-b6j">
                         <rect key="frame" x="65" y="23" width="106" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="QEe-OD-yaH"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -45,6 +48,9 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTN-iw-EDM">
                         <rect key="frame" x="529" y="17" width="32" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="E0H-rM-fHF"/>
+                        </constraints>
                         <state key="normal" title="Stop"/>
                         <connections>
                             <action selector="StopButtonPressed:" destination="ESn-Ju-X20" eventType="touchDown" id="zhS-ZF-O6g"/>
@@ -52,18 +58,21 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4WR-pn-Brk">
                         <rect key="frame" x="484" y="17" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="l8T-oS-uWb"/>
+                        </constraints>
                         <state key="normal" title="Lap"/>
                         <connections>
                             <action selector="LapButtonPressed:" destination="ESn-Ju-X20" eventType="touchUpInside" id="hEm-Gk-zXN"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F43-HU-QZX">
-                        <rect key="frame" x="260" y="23" width="65" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F43-HU-QZX">
+                        <rect key="frame" x="285" y="23" width="70" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="65" id="lrF-eO-P6F"/>
+                            <constraint firstAttribute="width" constant="70" id="lrF-eO-P6F"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -78,7 +87,8 @@
                     <constraint firstItem="4WR-pn-Brk" firstAttribute="centerY" secondItem="8pO-If-baj" secondAttribute="centerY" id="Xaj-PJ-cCv"/>
                     <constraint firstAttribute="centerY" secondItem="CTN-iw-EDM" secondAttribute="centerY" id="ZAl-VJ-y34"/>
                     <constraint firstItem="F43-HU-QZX" firstAttribute="centerY" secondItem="8pO-If-baj" secondAttribute="centerY" id="iUR-jj-Je6"/>
-                    <constraint firstItem="WTg-zi-tA7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="F43-HU-QZX" secondAttribute="trailing" constant="10" id="km4-GM-uf9"/>
+                    <constraint firstItem="WTg-zi-tA7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="F43-HU-QZX" secondAttribute="trailing" constant="10" id="jcA-g0-CXr"/>
+                    <constraint firstItem="WTg-zi-tA7" firstAttribute="leading" secondItem="F43-HU-QZX" secondAttribute="trailing" priority="750" constant="50" id="km4-GM-uf9"/>
                     <constraint firstAttribute="centerY" secondItem="CAe-eN-MCF" secondAttribute="centerY" id="m88-9t-WD8"/>
                     <constraint firstItem="qzV-QM-b6j" firstAttribute="leading" secondItem="8pO-If-baj" secondAttribute="leadingMargin" constant="57" id="ukq-XC-lFa"/>
                 </constraints>
