@@ -25,7 +25,7 @@ class ResultsManager
   
   private init ()
   {
-    sessions = [Session]()
+    sessions = [Session] ()
   }
   
   func addSession (session : Session) -> Void
@@ -52,15 +52,24 @@ class Session
   private(set) var intervals : [Interval]!
   private(set) var length    : Int!
   
+  private(set) var swimmers : [Swimmer]!
+  
+  
   init (name n : String, dateTime d : String)
   {
     name      = n
     dateTime  = d
     intervals = [Interval]()
     length    = 0
+    swimmers = [Swimmer] ()
   }
   
-  func appendSwim (interval : Interval) -> Void
+  func addSwimmer (swimmer: Swimmer)
+  {
+    swimmers.append (swimmer)
+  }
+  
+  func addInterval (interval : Interval) -> Void
   {
     intervals.append (interval)
     length = length + interval.length

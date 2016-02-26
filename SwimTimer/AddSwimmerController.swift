@@ -12,8 +12,10 @@ class AddSwimmerController: UIViewController
 {
   @IBOutlet var nameField   : UITextField!
   @IBOutlet var groupField  : UITextField!
+  @IBOutlet var mailField   : UITextField!
   
   var name  : String!
+  var mail  : String!
   var group : String!
   
   override func viewDidLoad()
@@ -33,9 +35,11 @@ class AddSwimmerController: UIViewController
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)
   {
     name  = nameField.text
+    mail  = mailField.text
     group = groupField.text
     
-    nameField.text = ""
+    nameField.text  = ""
+    mailField.text  = ""
     groupField.text = ""
   }
 

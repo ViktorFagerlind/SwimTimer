@@ -65,6 +65,14 @@ class TimerManager
   {
     ongoingSession = Session (name: name, dateTime: dateTime)
     
+    for lane in swimmerTimers
+    {
+      for st in lane
+      {
+        ongoingSession!.addSwimmer (st.swimmer)
+      }
+    }
+    
     ResultsManager.singleton.addSession (ongoingSession!)
   }
   
@@ -99,11 +107,11 @@ class TimerManager
     return swimmerTimers[lane].count
   }
   
-  func addSwimmer (lane : Int, name : String)
+  func addSwimmer (lane : Int, swimmer : Swimmer)
   {
-    let swimmerTimer = SwimmerTimer (swimmerName: name)
+    let swimmerTimer = SwimmerTimer (swimmer: swimmer)
     
-    swimmerTimers[lane].append(swimmerTimer)
+    swimmerTimers[lane].append (swimmerTimer)
   }
   
   func addLane ()
@@ -190,7 +198,7 @@ class TimerManager
     if (ongoingInterval != nil)
     {
       ongoingInterval?.fixMissingLaps ()
-      ongoingSession?.appendSwim (ongoingInterval!)
+      ongoingSession?.addInterval (ongoingInterval!)
     }
     
     ongoingInterval = nil
@@ -225,7 +233,7 @@ class TimerManager
     {
       for timer in lane.element
       {
-        if (timer.name == name)
+        if (timer.swimmer.name == name)
         {
           return timer
         }
@@ -276,7 +284,7 @@ class SwimmerTimer
 {
   enum State_E {case Idle, Waiting, Running}
   
-  var name              : String
+  var swimmer           : Swimmer
   var state             : State_E = .Idle
   var deltaTime         : NSTimeInterval!
   var resultTime        : NSTimeInterval
@@ -286,9 +294,9 @@ class SwimmerTimer
   var ongoingInterval             : Interval?
   var ongoingIndividualInterval   : IndividualInterval?
   
-  init (swimmerName : String)
+  init (swimmer s : Swimmer)
   {
-    name                      = swimmerName
+    swimmer                   = s
     resultTime                = 0.0
     lapTime                   = 0.0
     lastLapOccurance          = 0.0
@@ -344,7 +352,7 @@ class SwimmerTimer
       }
     }
     
-    cell.nameLabel.text   = name
+    cell.nameLabel.text   = swimmer.name
     cell.stateLabel.text  = stateToString (state)
     
     cell.stopButton.enabled = state == .Running
@@ -368,7 +376,7 @@ class SwimmerTimer
     lastLapOccurance  = 0.0
     
     ongoingInterval           = oi
-    ongoingIndividualInterval = IndividualInterval (swimmerName: name, lapLength: SettingsManager.singleton.poolLength)
+    ongoingIndividualInterval = IndividualInterval (swimmerName: swimmer.name, lapLength: SettingsManager.singleton.poolLength)
   }
   
   func update ()

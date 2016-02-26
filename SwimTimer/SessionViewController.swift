@@ -104,7 +104,16 @@ class SessionViewController: UIViewController, UITableViewDelegate, UITableViewD
     let picker = MFMailComposeViewController()
     picker.mailComposeDelegate = self
     
-    picker.setToRecipients (["viktor_fagerlind@hotmail.com"])
+    var recipients : [String] = [String] ()
+    for s in currentSession!.swimmers
+    {
+      if s.mail.characters.count >= 5
+      {
+        recipients.append (s.mail)
+      }
+    }
+    
+    picker.setToRecipients (recipients)
     picker.setSubject ("Simingsresultat " + currentSession!.dateTime)
     picker.setMessageBody (currentSession!.toHtml (), isHTML: true)
     

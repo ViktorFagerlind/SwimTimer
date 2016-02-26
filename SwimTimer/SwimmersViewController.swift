@@ -100,7 +100,7 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
     let addSwimmerController = segue.sourceViewController as! AddSwimmerController
     
     // Add swimmer to the last lane
-    SwimmerManager.singleton.addSwimmer (addSwimmerController.name, group: addSwimmerController.group)
+    SwimmerManager.singleton.addSwimmer (addSwimmerController.name, mail: addSwimmerController.mail, group: addSwimmerController.group)
     
     redraw ()
   }
@@ -112,6 +112,7 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
     
     let swimmer : Swimmer = SwimmerManager.singleton.getSwimmer (indexPath.row)
     cell.nameField.text   = swimmer.name
+    cell.mailField.text   = swimmer.mail
     cell.groupField.text  = swimmer.group
     
     return cell

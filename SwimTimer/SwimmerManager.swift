@@ -16,14 +16,14 @@ class SwimmerManager
   
   private init ()
   {
-    addSwimmer ("Tomas",    group: "Race")
-    addSwimmer ("Emma",     group: "Race")
-    addSwimmer ("Julia",    group: "Race")
-    addSwimmer ("Johan",    group: "Race")
-    addSwimmer ("Viktor",   group: "Race")
-    addSwimmer ("Anna",     group: "Race")
-    addSwimmer ("John D", group: "Beginner")
-    addSwimmer ("Jane D", group: "Beginner")
+    addSwimmer ("Tomas",    mail: "", group: "Race")
+    addSwimmer ("Emma",     mail: "", group: "Race")
+    addSwimmer ("Julia",    mail: "", group: "Race")
+    addSwimmer ("Johan",    mail: "", group: "Race")
+    addSwimmer ("Viktor",   mail: "viktor_fagerlind@hotmail.com", group: "Race")
+    addSwimmer ("Anna",     mail: "", group: "Race")
+    addSwimmer ("John D",   mail: "", group: "Beginner")
+    addSwimmer ("Jane D",   mail: "", group: "Beginner")
   }
   
   var nofSwimmers: Int
@@ -39,9 +39,9 @@ class SwimmerManager
     return swimmers[index]
   }
   
-  func addSwimmer (name : String, group : String)
+  func addSwimmer (name : String, mail m : String, group : String)
   {
-    swimmers.append (Swimmer (name: name, group: group))
+    swimmers.append (Swimmer (name: name, mail: m, group: group))
   }
   
   func deleteSwimmer (index : Int)
@@ -59,13 +59,15 @@ class SwimmerManager
 
 class Swimmer
 {
-  init (name n : String, group g : String)
+  init (name n : String, mail m : String, group g : String)
   {
     name   = n
+    mail   = m
     group  = g
   }
   
   var name  : String!
+  var mail  : String!
   var group : String!
 }
 

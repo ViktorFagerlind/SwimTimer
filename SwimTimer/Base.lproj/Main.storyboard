@@ -274,7 +274,7 @@
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="req-ov-ddC">
-                                <rect key="frame" x="150" y="211" width="300" height="30"/>
+                                <rect key="frame" x="150" y="291" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="vit-jL-ObD"/>
                                 </constraints>
@@ -296,7 +296,21 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcl-2L-3ky">
-                                <rect key="frame" x="276" y="185" width="48" height="21"/>
+                                <rect key="frame" x="276" y="265" width="48" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qvU-qH-dvN">
+                                <rect key="frame" x="150" y="211" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Nmp-92-lTR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpM-S2-QJd">
+                                <rect key="frame" x="284" y="185" width="32" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -309,16 +323,27 @@
                             <constraint firstItem="TLR-NA-dlq" firstAttribute="leading" secondItem="QtA-vl-30K" secondAttribute="leading" id="QuR-VG-rNX"/>
                             <constraint firstItem="gcl-2L-3ky" firstAttribute="centerX" secondItem="QtA-vl-30K" secondAttribute="centerX" id="XXq-Sw-hrF"/>
                             <constraint firstItem="TLR-NA-dlq" firstAttribute="top" secondItem="QtA-vl-30K" secondAttribute="top" id="akf-EG-4eu"/>
-                            <constraint firstItem="req-ov-ddC" firstAttribute="top" secondItem="2DF-54-AGC" secondAttribute="bottom" constant="50" id="dMY-hX-KKL"/>
+                            <constraint firstItem="qvU-qH-dvN" firstAttribute="top" secondItem="2DF-54-AGC" secondAttribute="bottom" constant="50" id="auQ-ks-gLf"/>
+                            <constraint firstItem="req-ov-ddC" firstAttribute="top" secondItem="2DF-54-AGC" secondAttribute="bottom" constant="150" id="dMY-hX-KKL"/>
                             <constraint firstItem="req-ov-ddC" firstAttribute="top" secondItem="gcl-2L-3ky" secondAttribute="bottom" constant="5" id="ddQ-Nn-xLx"/>
                             <constraint firstItem="2DF-54-AGC" firstAttribute="top" secondItem="MYG-Rw-8wT" secondAttribute="bottom" constant="5" id="hxf-n7-iGr"/>
                             <constraint firstAttribute="centerX" secondItem="req-ov-ddC" secondAttribute="centerX" id="qSj-ji-zNL"/>
+                            <constraint firstItem="qvU-qH-dvN" firstAttribute="top" secondItem="dpM-S2-QJd" secondAttribute="bottom" constant="5" id="r3Z-WO-Ire"/>
+                            <constraint firstItem="qvU-qH-dvN" firstAttribute="centerX" secondItem="QtA-vl-30K" secondAttribute="centerX" id="vml-fx-KhH"/>
+                            <constraint firstItem="dpM-S2-QJd" firstAttribute="centerX" secondItem="QtA-vl-30K" secondAttribute="centerX" id="xBR-bv-ci2"/>
+                            <constraint firstItem="req-ov-ddC" firstAttribute="top" secondItem="qvU-qH-dvN" secondAttribute="bottom" constant="50" id="y1i-VD-DDc"/>
                             <constraint firstAttribute="trailing" secondItem="TLR-NA-dlq" secondAttribute="trailing" id="y8Z-eD-y7J"/>
                             <constraint firstItem="2DF-54-AGC" firstAttribute="top" secondItem="eTc-7u-oSq" secondAttribute="bottom" constant="111" id="yeI-Lx-XH0"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="dMY-hX-KKL"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="groupField" destination="req-ov-ddC" id="QVo-cU-tZr"/>
+                        <outlet property="mailField" destination="qvU-qH-dvN" id="0Dc-t3-omq"/>
                         <outlet property="nameField" destination="2DF-54-AGC" id="wVo-lf-MvM"/>
                     </connections>
                 </viewController>

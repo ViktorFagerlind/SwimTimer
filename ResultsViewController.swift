@@ -47,6 +47,11 @@ class ResultsViewController: UITableViewController
         
         let session = Session (name: "Pass", dateTime: timestamp)
         
+        for i in 0...(SwimmerManager.singleton.nofSwimmers-1)
+        {
+          session.addSwimmer (SwimmerManager.singleton.getSwimmer(i))
+        }
+        
         let rndTotalLenth = (Int (rand()) % (20) + 15)*100
         var totalLength : Int = 0
         
@@ -68,7 +73,7 @@ class ResultsViewController: UITableViewController
           }
           totalLength += interval.length
           
-          session.appendSwim (interval)
+          session.addInterval (interval)
         }
         ResultsManager.singleton.addSession (session)
       }

@@ -27,7 +27,17 @@
                         <rect key="frame" x="472" y="23" width="64" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="64" id="3DU-sQ-3Wr">
-                                <variation key="heightClass=regular-widthClass=compact" constant="107"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="70"/>
+                            </constraint>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="john.doe@hotmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NLm-SZ-sfE">
+                        <rect key="frame" x="27" y="23" width="167" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" priority="750" constant="167" id="ojV-Qo-3q0">
+                                <variation key="heightClass=regular-widthClass=compact" constant="150"/>
                             </constraint>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -35,14 +45,44 @@
                     </textField>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="NLm-SZ-sfE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h27-FV-emn" secondAttribute="trailing" constant="105" id="OjC-3b-eWd">
+                        <variation key="heightClass=regular-widthClass=compact" constant="5"/>
+                    </constraint>
                     <constraint firstItem="h27-FV-emn" firstAttribute="centerY" secondItem="q3V-Mi-Y7o" secondAttribute="centerY" id="YaB-Qp-R2z"/>
                     <constraint firstItem="h27-FV-emn" firstAttribute="leading" secondItem="q3V-Mi-Y7o" secondAttribute="leadingMargin" constant="19" id="Z4x-Mt-6Jv"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="mMz-GB-qZt" secondAttribute="trailing" constant="25" id="fQk-CZ-3v1"/>
+                    <constraint firstItem="NLm-SZ-sfE" firstAttribute="centerY" secondItem="q3V-Mi-Y7o" secondAttribute="centerY" id="dU8-yD-V7a"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="mMz-GB-qZt" secondAttribute="trailing" constant="25" id="fQk-CZ-3v1">
+                        <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                    </constraint>
+                    <constraint firstItem="mMz-GB-qZt" firstAttribute="leading" secondItem="NLm-SZ-sfE" secondAttribute="trailing" constant="36" id="ors-P4-1v2">
+                        <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                    </constraint>
                     <constraint firstItem="mMz-GB-qZt" firstAttribute="centerY" secondItem="q3V-Mi-Y7o" secondAttribute="centerY" id="p9c-wB-vPe"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="subviews">
+                        <exclude reference="NLm-SZ-sfE"/>
+                    </mask>
+                    <mask key="constraints">
+                        <exclude reference="OjC-3b-eWd"/>
+                        <exclude reference="dU8-yD-V7a"/>
+                        <exclude reference="ors-P4-1v2"/>
+                    </mask>
+                </variation>
+                <variation key="heightClass=regular-widthClass=compact">
+                    <mask key="subviews">
+                        <include reference="NLm-SZ-sfE"/>
+                    </mask>
+                    <mask key="constraints">
+                        <include reference="OjC-3b-eWd"/>
+                        <include reference="dU8-yD-V7a"/>
+                        <include reference="ors-P4-1v2"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="groupField" destination="mMz-GB-qZt" id="axJ-ZT-cZv"/>
+                <outlet property="mailField" destination="NLm-SZ-sfE" id="tYx-E4-Den"/>
                 <outlet property="nameField" destination="h27-FV-emn" id="CSh-xk-CrG"/>
             </connections>
             <point key="canvasLocation" x="313.5" y="244"/>

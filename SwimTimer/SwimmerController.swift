@@ -12,5 +12,6 @@ class SwimmerController: UITableViewCell
 {
   @IBOutlet var nameField:    UITextField!
   @IBOutlet var groupField:   UITextField!
+  @IBOutlet var mailField:    UITextField!
 }
 
