@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4DD96BC190099215C2E8A294 /* Pods_SwimTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A861509130A6CC3D807BA28 /* Pods_SwimTimer.framework */; };
+		7723001C1C82DCB700A0875A /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723001B1C82DCB700A0875A /* FileManager.swift */; };
 		772907531B11DB320091BE9C /* SwimmerTimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772907521B11DB320091BE9C /* SwimmerTimerController.swift */; };
 		77298F1E1B0FBC4C00ED5D4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */; };
 		77298F221B0FBC4C00ED5D4F /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F211B0FBC4C00ED5D4F /* TimerViewController.swift */; };
@@ -49,6 +51,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A861509130A6CC3D807BA28 /* Pods_SwimTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwimTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		526F9F11EE669FA6EC024BE8 /* Pods-SwimTimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwimTimer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwimTimer/Pods-SwimTimer.debug.xcconfig"; sourceTree = "<group>"; };
+		6837175A45B0831D7892798F /* Pods-SwimTimer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwimTimer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwimTimer/Pods-SwimTimer.release.xcconfig"; sourceTree = "<group>"; };
+		7723001B1C82DCB700A0875A /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		772907521B11DB320091BE9C /* SwimmerTimerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SwimmerTimerController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		77298F181B0FBC4C00ED5D4F /* SwimTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwimTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77298F1C1B0FBC4C00ED5D4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DD96BC190099215C2E8A294 /* Pods_SwimTimer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,12 +109,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22E8CCA493AD0FB89E4EA1F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0A861509130A6CC3D807BA28 /* Pods_SwimTimer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		77298F0F1B0FBC4C00ED5D4F = {
 			isa = PBXGroup;
 			children = (
 				77298F1A1B0FBC4C00ED5D4F /* SwimTimer */,
 				77298F321B0FBC4C00ED5D4F /* SwimTimerTests */,
 				77298F191B0FBC4C00ED5D4F /* Products */,
+				817AAA9E737637DA6BE3F48A /* Pods */,
+				22E8CCA493AD0FB89E4EA1F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,6 +203,7 @@
 		7780A2491C79E66100F904EA /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				7723001B1C82DCB700A0875A /* FileManager.swift */,
 				77F27ADA1C7B0AF900A19EFE /* SettingsViewController.swift */,
 				77F27AD81C7B099300A19EFE /* SettingsManager.swift */,
 				77F27AD61C7B053E00A19EFE /* TODO.md */,
@@ -213,6 +231,15 @@
 			name = Results;
 			sourceTree = "<group>";
 		};
+		817AAA9E737637DA6BE3F48A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				526F9F11EE669FA6EC024BE8 /* Pods-SwimTimer.debug.xcconfig */,
+				6837175A45B0831D7892798F /* Pods-SwimTimer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -220,9 +247,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 77298F391B0FBC4C00ED5D4F /* Build configuration list for PBXNativeTarget "SwimTimer" */;
 			buildPhases = (
+				8BA6A09E8B43ECB8C34E6952 /* Check Pods Manifest.lock */,
 				77298F141B0FBC4C00ED5D4F /* Sources */,
 				77298F151B0FBC4C00ED5D4F /* Frameworks */,
 				77298F161B0FBC4C00ED5D4F /* Resources */,
+				DB23635ED5C365C2E3BB6ABB /* Embed Pods Frameworks */,
+				6B41A6D46A7AEF526DC5C6E9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -313,6 +343,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6B41A6D46A7AEF526DC5C6E9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwimTimer/Pods-SwimTimer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BA6A09E8B43ECB8C34E6952 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DB23635ED5C365C2E3BB6ABB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwimTimer/Pods-SwimTimer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		77298F141B0FBC4C00ED5D4F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -327,6 +405,7 @@
 				77F27AE31C7C645B00A19EFE /* IntervalCellController.swift in Sources */,
 				77298F221B0FBC4C00ED5D4F /* TimerViewController.swift in Sources */,
 				7780A24C1C7A03F300F904EA /* ChooseSwimmerController.swift in Sources */,
+				7723001C1C82DCB700A0875A /* FileManager.swift in Sources */,
 				77F27ADF1C7C57D500A19EFE /* ResultsViewController.swift in Sources */,
 				77D032BA1C78975B00A8D3DD /* SwimmerManager.swift in Sources */,
 				77F27ADB1C7B0AF900A19EFE /* SettingsViewController.swift in Sources */,
@@ -467,6 +546,7 @@
 		};
 		77298F3A1B0FBC4C00ED5D4F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 526F9F11EE669FA6EC024BE8 /* Pods-SwimTimer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-swimmer";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -479,6 +559,7 @@
 		};
 		77298F3B1B0FBC4C00ED5D4F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6837175A45B0831D7892798F /* Pods-SwimTimer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-swimmer";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

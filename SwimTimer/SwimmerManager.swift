@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import YamlSwift
 
 class SwimmerManager
 {
@@ -14,16 +15,15 @@ class SwimmerManager
   
   var swimmers : [Swimmer] = [Swimmer]()
   
+  let filename = "Swimmers.yaml"
+  
   private init ()
   {
-    addSwimmer ("Tomas",    mail: "", group: "Race")
-    addSwimmer ("Emma",     mail: "", group: "Race")
-    addSwimmer ("Julia",    mail: "", group: "Race")
-    addSwimmer ("Johan",    mail: "", group: "Race")
-    addSwimmer ("Viktor",   mail: "viktor_fagerlind@hotmail.com", group: "Race")
-    addSwimmer ("Anna",     mail: "", group: "Race")
-    addSwimmer ("John D",   mail: "", group: "Beginner")
-    addSwimmer ("Jane D",   mail: "", group: "Beginner")
+    if (!loadFromFile())
+    {
+      addSwimmer ("John D",   mail: "", group: "Beginner")
+      addSwimmer ("Jane D",   mail: "", group: "Beginner")
+    }
   }
   
   var nofSwimmers: Int
@@ -39,7 +39,7 @@ class SwimmerManager
     return swimmers[index]
   }
   
-  func addSwimmer (name : String, mail m : String, group : String)
+  func addSwimmer (name : String, mail m : String?, group : String)
   {
     swimmers.append (Swimmer (name: name, mail: m, group: group))
   }
@@ -54,15 +54,47 @@ class SwimmerManager
     let swimmer = swimmers.removeAtIndex (fromIndex)
     swimmers.insert (swimmer, atIndex: toIndex)
   }
-  
+
+  func saveToFile () -> Bool
+  {
+    var fileContents : String = ""
+    
+    for s in swimmers
+    {
+      fileContents += "- name: \(s.name)\n" +
+                      "  mail: \(s.mail)\n" +
+                      "  group: \(s.group)\n\n"
+    }
+    
+    return FileManager.singleton.writeFile (filename, contents: fileContents)
+  }
+
+  func loadFromFile () -> Bool
+  {
+    let fileContents = FileManager.singleton.readFile (filename)
+    
+    if (fileContents == nil)
+    {
+      return false
+    }
+    
+    let yamlContents = Yaml.load (fileContents!).value!
+    
+    for swimmerYaml in yamlContents.array!
+    {
+      addSwimmer (swimmerYaml["name"].string!, mail: swimmerYaml["mail"].string, group: swimmerYaml["group"].string!)
+    }
+    
+    return true
+  }
 }
 
 class Swimmer
 {
-  init (name n : String, mail m : String, group g : String)
+  init (name n : String, mail m : String?, group g : String)
   {
     name   = n
-    mail   = m
+    mail   = m == nil ? "" : m
     group  = g
   }
   

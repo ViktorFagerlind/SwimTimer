@@ -21,6 +21,11 @@ class SettingsViewController: UIViewController
     timeBetweenSwimmersTextField.text = String (SettingsManager.singleton.timeBetweenSwimmers)
   }
   
+  override func viewWillDisappear(animated: Bool)
+  {
+    SettingsManager.singleton.saveToFile ()
+  }
+  
   override func didReceiveMemoryWarning()
   {
     super.didReceiveMemoryWarning()

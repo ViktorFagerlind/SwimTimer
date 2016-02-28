@@ -22,6 +22,12 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
     self.tableView.registerNib (cellNib, forCellReuseIdentifier: "swimmer_id")
   }
   
+  
+  override func viewWillDisappear(animated: Bool)
+  {
+    SwimmerManager.singleton.saveToFile ()
+  }
+  
   override func didReceiveMemoryWarning()
   {
     super.didReceiveMemoryWarning()
