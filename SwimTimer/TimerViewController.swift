@@ -34,16 +34,6 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let cellNib = UINib(nibName: "SwimmerTimerNib", bundle: nil)
     self.tableView.registerNib (cellNib, forCellReuseIdentifier: "swimmer_timer_id")
     
-    timerManager.addLane ()
-    timerManager.addSwimmer (0, swimmer: SwimmerManager.singleton.getSwimmer (0))
-    timerManager.addSwimmer (0, swimmer: SwimmerManager.singleton.getSwimmer (1))
-    timerManager.addSwimmer (0, swimmer: SwimmerManager.singleton.getSwimmer (2))
-    timerManager.addSwimmer (0, swimmer: SwimmerManager.singleton.getSwimmer (3))
-    timerManager.addSwimmer (1, swimmer: SwimmerManager.singleton.getSwimmer (4))
-    timerManager.addSwimmer (1, swimmer: SwimmerManager.singleton.getSwimmer (5))
-    timerManager.addSwimmer (1, swimmer: SwimmerManager.singleton.getSwimmer (6))
-    timerManager.addSwimmer (1, swimmer: SwimmerManager.singleton.getSwimmer (7))
-    
     redraw ()
   }
 
@@ -141,6 +131,8 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       editButton.title      = "Edit";
       //startButton.enabled   = true
       //stopAllButton.enabled = true
+      
+      timerManager.saveToFile ()
     }
     else
     {

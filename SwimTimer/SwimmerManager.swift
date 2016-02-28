@@ -21,8 +21,24 @@ class SwimmerManager
   {
     if (!loadFromFile())
     {
-      addSwimmer ("John D",   mail: "", group: "Beginner")
-      addSwimmer ("Jane D",   mail: "", group: "Beginner")
+      addSwimmer ("Peter A",      mail: "", group: "Coach")
+      addSwimmer ("Sandra H",     mail: "", group: "Coach")
+      addSwimmer ("Tomas R",      mail: "", group: "Race")
+      addSwimmer ("Viktor F",     mail: "", group: "Race")
+      addSwimmer ("Emma Å",       mail: "", group: "Race")
+      addSwimmer ("Julia P",      mail: "", group: "Race")
+      addSwimmer ("Johan J",      mail: "", group: "Race")
+      addSwimmer ("Anna S",       mail: "", group: "Race")
+      addSwimmer ("Thord L",      mail: "", group: "Race")
+      addSwimmer ("Gabriella N",  mail: "", group: "Race")
+      addSwimmer ("Mirella C",    mail: "", group: "Race")
+      addSwimmer ("Magnus E",     mail: "", group: "Race")
+      addSwimmer ("Birgitta L",   mail: "", group: "Race")
+      addSwimmer ("Mats G",       mail: "", group: "Race")
+      addSwimmer ("Helena N",     mail: "", group: "Race")
+      addSwimmer ("Michael Z",    mail: "", group: "Race")
+      addSwimmer ("John D",       mail: "", group: "Beginner")
+      addSwimmer ("Jane D",       mail: "", group: "Beginner")
     }
   }
   
@@ -42,6 +58,19 @@ class SwimmerManager
   func addSwimmer (name : String, mail m : String?, group : String)
   {
     swimmers.append (Swimmer (name: name, mail: m, group: group))
+  }
+  
+  func findSwimmer (name : String) -> Swimmer?
+  {
+    for s in swimmers
+    {
+      if s.name == name
+      {
+        return s
+      }
+    }
+    
+    return nil
   }
   
   func deleteSwimmer (index : Int)

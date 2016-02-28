@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import YamlSwift
 
 class TimerManager
 {
@@ -20,13 +21,23 @@ class TimerManager
   var ongoingInterval : Interval?
   var ongoingSession  : Session?
   
+  let filename = "timer.yaml"
+  
   init ()
   {
     ongoingInterval = nil
     ongoingSession  = nil
     
-    // Create an initial lane
-    addLane ()
+    if !loadFromFile ()
+    {
+      addLane ()
+      addLane ()
+      
+      for i in 0...7
+      {
+        addSwimmer (i%2, swimmer: SwimmerManager.singleton.getSwimmer (i))
+      }
+    }
   }
   
   var nofSwimmers: Int
@@ -278,6 +289,54 @@ class TimerManager
     return "\(strMinutes):\(strSeconds):\(strFraction)"
   }
   
+  func saveToFile () -> Bool
+  {
+    var fileContents : String = ""
+    
+    for lane in swimmerTimers.enumerate ()
+    {
+      fileContents   += "- lap:\n"
+      for timer in lane.element
+      {
+        fileContents += "  - name: \(timer.swimmer.name)\n"
+      }
+    }
+    
+    return FileManager.singleton.writeFile (filename, contents: fileContents)
+  }
+  
+  func loadFromFile () -> Bool
+  {
+    let fileContents = FileManager.singleton.readFile (filename)
+    
+    if (fileContents == nil)
+    {
+      return false
+    }
+    
+    let yamlContents = Yaml.load (fileContents!).value!
+    
+    //print (yamlContents)
+    print ("\n\n")
+    for (lane,lapYaml) in yamlContents.array!.enumerate ()
+    {
+      print (lapYaml)
+      
+      addLane ()
+      
+      for swimmerYaml in lapYaml["lap"].array!
+      {
+        let swimmer = SwimmerManager.singleton.findSwimmer (swimmerYaml["name"].string!)
+        
+        if swimmer != nil
+        {
+          addSwimmer (lane, swimmer: swimmer!)
+        }
+      }
+    }
+    
+    return true
+  }
 }
 
 class SwimmerTimer
