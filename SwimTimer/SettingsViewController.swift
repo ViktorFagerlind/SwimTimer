@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController
+class SettingsViewController: UIViewController, UITextFieldDelegate
 {
   @IBOutlet var poolLengthTextField           : UITextField!
   @IBOutlet var timeBetweenSwimmersTextField  : UITextField!
@@ -19,6 +19,9 @@ class SettingsViewController: UIViewController
     
     poolLengthTextField.text          = String (SettingsManager.singleton.poolLength)
     timeBetweenSwimmersTextField.text = String (SettingsManager.singleton.timeBetweenSwimmers)
+    
+    poolLengthTextField.delegate          = self
+    timeBetweenSwimmersTextField.delegate = self
   }
   
   override func viewWillDisappear(animated: Bool)
@@ -55,6 +58,14 @@ class SettingsViewController: UIViewController
     {
       timeBetweenSwimmersTextField.text = String (SettingsManager.singleton.timeBetweenSwimmers)
     }
+  }
+  
+  func textFieldShouldReturn(textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
+  {
+    textField.resignFirstResponder()
+    
+    SettingsManager.singleton.saveToFile ()
+    return true;
   }
 }
 

@@ -23,11 +23,6 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
   }
   
   
-  override func viewWillDisappear(animated: Bool)
-  {
-    SwimmerManager.singleton.saveToFile ()
-  }
-  
   override func didReceiveMemoryWarning()
   {
     super.didReceiveMemoryWarning()
@@ -83,6 +78,7 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
       editButton.title      = "Edit"
       
       updateSwimmersAccordingToGui ()
+      SwimmerManager.singleton.saveToFile ()
     }
     else
     {
@@ -109,6 +105,7 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
     SwimmerManager.singleton.addSwimmer (addSwimmerController.name, mail: addSwimmerController.mail, group: addSwimmerController.group)
     
     redraw ()
+    SwimmerManager.singleton.saveToFile ()
   }
   
   func tableView (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell

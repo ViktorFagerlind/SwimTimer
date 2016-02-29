@@ -316,8 +316,7 @@ class TimerManager
     
     let yamlContents = Yaml.load (fileContents!).value!
     
-    //print (yamlContents)
-    print ("\n\n")
+    //
     for (lane,lapYaml) in yamlContents.array!.enumerate ()
     {
       print (lapYaml)
