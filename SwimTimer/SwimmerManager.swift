@@ -109,6 +109,11 @@ class SwimmerManager
     
     let yamlContents = Yaml.load (fileContents!).value!
     
+    if yamlContents.array == nil
+    {
+      return false
+    }
+    
     for swimmerYaml in yamlContents.array!
     {
       addSwimmer (swimmerYaml["name"].string!, mail: swimmerYaml["mail"].string, group: swimmerYaml["group"].string!)

@@ -321,6 +321,11 @@ class TimerManager
     {
       print (lapYaml)
       
+      if lapYaml["lap"].array == nil
+      {
+        continue
+      }
+      
       addLane ()
       
       for swimmerYaml in lapYaml["lap"].array!
@@ -334,7 +339,7 @@ class TimerManager
       }
     }
     
-    return true
+    return swimmerTimers.count != 0
   }
 }
 

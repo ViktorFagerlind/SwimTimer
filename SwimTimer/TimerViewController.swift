@@ -151,6 +151,8 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     timerManager.addLane ()
     
     redraw ()
+    
+    timerManager.saveToFile ()
   }
 
   @IBAction func chooseSwimmerCancel (segue:UIStoryboardSegue)
