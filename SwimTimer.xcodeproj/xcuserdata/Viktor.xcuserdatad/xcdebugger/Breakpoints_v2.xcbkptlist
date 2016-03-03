@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimTimer/SwimmerManager.swift"
-            timestampString = "478512648.559403"
+            timestampString = "478636485.396137"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257">
+            startingLineNumber = "308"
+            endingLineNumber = "308">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimTimer/ResultsManager.swift"
-            timestampString = "478124687.579616"
+            timestampString = "478526417.555777"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "ResultsManager"
             landmarkType = "3">
          </BreakpointContent>
@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimTimer/ResultsManager.swift"
-            timestampString = "478124689.656118"
+            timestampString = "478529975.218159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "addSession(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimTimer/ResultsManager.swift"
-            timestampString = "478124771.529822"
+            timestampString = "478529975.218159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "addSession(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -104,11 +104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimTimer/ResultsManager.swift"
-            timestampString = "478125171.761586"
+            timestampString = "478529975.218159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "removeLastSession()"
             landmarkType = "5">
          </BreakpointContent>
@@ -120,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimTimer/ResultsManager.swift"
-            timestampString = "478181264.675546"
+            timestampString = "478529975.218159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "304"
+            endingLineNumber = "304"
             landmarkName = "appendIndividualInterval(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimTimer/TimerManager.swift"
-            timestampString = "478512648.559403"
+            timestampString = "478645753.248251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "510"
-            endingLineNumber = "510"
+            startingLineNumber = "591"
+            endingLineNumber = "591"
             landmarkName = "lap()"
             landmarkType = "5">
          </BreakpointContent>
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimTimer/ResultsManager.swift"
-            timestampString = "478181264.675546"
+            timestampString = "478529975.218159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "appendLapTime(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimTimer/TimerManager.swift"
-            timestampString = "478512648.559403"
+            timestampString = "478645753.248251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "511"
-            endingLineNumber = "511"
+            startingLineNumber = "592"
+            endingLineNumber = "592"
             landmarkName = "lap()"
             landmarkType = "5">
          </BreakpointContent>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimTimer/TimerManager.swift"
-            timestampString = "478512648.559403"
+            timestampString = "478645753.248251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "477"
-            endingLineNumber = "477"
+            startingLineNumber = "558"
+            endingLineNumber = "558"
             landmarkName = "stop()"
             landmarkType = "5">
          </BreakpointContent>
@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimTimer/TimerManager.swift"
-            timestampString = "478512648.559403"
+            timestampString = "478645753.248251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "487"
-            endingLineNumber = "487"
+            startingLineNumber = "568"
+            endingLineNumber = "568"
             landmarkName = "onStopped()"
             landmarkType = "5">
          </BreakpointContent>
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimTimer/TimerManager.swift"
-            timestampString = "478512648.559403"
+            timestampString = "478645753.248251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "484"
-            endingLineNumber = "484"
+            startingLineNumber = "565"
+            endingLineNumber = "565"
             landmarkName = "onStopped()"
             landmarkType = "5">
          </BreakpointContent>
@@ -232,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwimTimer/ResultsManager.swift"
-            timestampString = "478181264.675546"
+            timestampString = "478529975.218159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "fixMissingLaps()"
             landmarkType = "5">
          </BreakpointContent>

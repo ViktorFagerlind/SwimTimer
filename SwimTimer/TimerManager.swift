@@ -21,14 +21,14 @@ class TimerManager
   var ongoingInterval : Interval?
   var ongoingSession  : Session?
   
-  let filename = "timer.yaml"
+  let filename = "timer.json"
   
   init ()
   {
     ongoingInterval = nil
     ongoingSession  = nil
     
-    if !loadFromFile ()
+    if !loadFromJson ()
     {
       addLane ()
       addLane ()
@@ -80,7 +80,7 @@ class TimerManager
     {
       for st in lane
       {
-        ongoingSession!.addSwimmer (st.swimmer)
+        ongoingSession!.addMailAddress (st.swimmer.mail)
       }
     }
     
@@ -215,6 +215,27 @@ class TimerManager
     ongoingInterval = nil
   }
   
+  
+  func lapNext (lane : Int)
+  {
+    let timerLane = swimmerTimers[lane]
+    
+    var indexOfSmallestLastLap : Int = 0
+    var smallestLastLap : NSTimeInterval = timerLane[0].lastLapOccurance + timerLane[0].deltaTime
+    
+    for i in 1...(timerLane.count-1)
+    {
+      let timer = timerLane[i]
+      
+      if (timer.state == .Running && (timer.lastLapOccurance + timer.deltaTime) < smallestLastLap)
+      {
+        indexOfSmallestLastLap = i
+        smallestLastLap = timer.lastLapOccurance + timer.deltaTime
+      }
+    }
+    timerLane[indexOfSmallestLastLap].lap ()
+  }
+  
   func stopNext (lane : Int)
   {
     for timer in swimmerTimers[lane]
@@ -289,7 +310,68 @@ class TimerManager
     return "\(strMinutes):\(strSeconds):\(strFraction)"
   }
   
-  func saveToFile () -> Bool
+  
+  func saveToJson () -> Bool
+  {
+    var fileContents : String = "{\n  \"laps\" :\n  ["
+    
+    for (i,lane) in swimmerTimers.enumerate ()
+    {
+      fileContents   += "{"
+      for (j,timer) in lane.enumerate ()
+      {
+        fileContents += "\"name\": \"\(timer.swimmer.name)\""
+        if j != (lane.count - 1)
+        {
+          fileContents += ","
+        }
+      }
+      fileContents   += "}"
+      
+      if i != (lane.count - 1)
+      {
+        fileContents += ","
+      }
+    }
+    
+    fileContents += "\n  ]\n}\n"
+    
+    return FileManager.singleton.writeFile (filename, contents: fileContents)
+  }
+  
+  func loadFromJson () -> Bool
+  {
+    /*let fileContents = FileManager.singleton.readFile (filename)
+    
+    if (fileContents == nil)
+    {
+      return false
+    }
+    
+    do
+    {
+      let json = try NSJSONSerialization.JSONObjectWithData (fileContents!, options: .AllowFragments)
+      
+      if let swimmersJson = json["swimmers"] as? [[String: String]]
+      {
+        for swimmerJson in swimmersJson
+        {
+          addSwimmer (swimmerJson["name"]!, mail: swimmerJson["mail"], group: swimmerJson["group"]!)
+        }
+      }
+      
+    }
+    catch
+    {
+      print("error deserializing JSON: \(error)")
+      return false
+    }
+    
+    return true*/
+    return false
+  }
+  
+  func saveToYaml () -> Bool
   {
     var fileContents : String = ""
     
@@ -305,9 +387,9 @@ class TimerManager
     return FileManager.singleton.writeFile (filename, contents: fileContents)
   }
   
-  func loadFromFile () -> Bool
+  func loadFromYaml () -> Bool
   {
-    let fileContents = FileManager.singleton.readFile (filename)
+    let fileContents = FileManager.singleton.readFileAsString (filename)
     
     if (fileContents == nil)
     {
@@ -365,6 +447,7 @@ class SwimmerTimer
     lastLapOccurance          = 0.0
     ongoingInterval           = nil
     ongoingIndividualInterval = nil
+    deltaTime                 = 0.0
   }
   
   func stateToString (state : State_E) -> String
@@ -400,7 +483,7 @@ class SwimmerTimer
     let time = state == .Idle ? resultTime : (state == .Waiting ? 0.0 : runningTime)
     
     cell.timeLabel.text   = TimerManager.timeToString (time)
-    cell.lapLabel.text    = TimerManager.timeToString (lapTime)
+    cell.lapLabel.text    = TimerManager.timeToString (lastLapOccurance+deltaTime)
     
     if state == .Running
     {

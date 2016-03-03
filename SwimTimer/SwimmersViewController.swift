@@ -78,7 +78,7 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
       editButton.title      = "Edit"
       
       updateSwimmersAccordingToGui ()
-      SwimmerManager.singleton.saveToFile ()
+      SwimmerManager.singleton.saveToJson ()
     }
     else
     {
@@ -105,7 +105,7 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
     SwimmerManager.singleton.addSwimmer (addSwimmerController.name, mail: addSwimmerController.mail, group: addSwimmerController.group)
     
     redraw ()
-    SwimmerManager.singleton.saveToFile ()
+    SwimmerManager.singleton.saveToJson ()
   }
   
   func tableView (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell

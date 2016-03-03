@@ -15,11 +15,11 @@ class SwimmerManager
   
   var swimmers : [Swimmer] = [Swimmer]()
   
-  let filename = "Swimmers.yaml"
+  let filename = "swimmers.json"
   
   private init ()
   {
-    if (!loadFromFile())
+    if !loadFromJson()
     {
       addSwimmer ("Peter A",      mail: "", group: "Coach")
       addSwimmer ("Sandra H",     mail: "", group: "Coach")
@@ -84,7 +84,58 @@ class SwimmerManager
     swimmers.insert (swimmer, atIndex: toIndex)
   }
 
-  func saveToFile () -> Bool
+  
+  func saveToJson () -> Bool
+  {
+    var fileContents : String = "{\n  \"swimmers\" :\n  ["
+    
+    for (i,s) in swimmers.enumerate ()
+    {
+      fileContents += "\n   {\"name\": \"\(s.name)\", \"mail\": \"\(s.mail)\", \"group\": \"\(s.group)\"}"
+      
+      if i != (swimmers.count - 1)
+      {
+        fileContents += ","
+      }
+    }
+    
+    fileContents += "\n  ]\n}\n"
+    
+    return FileManager.singleton.writeFile (filename, contents: fileContents)
+  }
+  
+  func loadFromJson () -> Bool
+  {
+    let fileContents = FileManager.singleton.readFile (filename)
+    
+    if (fileContents == nil)
+    {
+      return false
+    }
+    
+    do
+    {
+      let json = try NSJSONSerialization.JSONObjectWithData (fileContents!, options: .AllowFragments)
+      
+      if let swimmersJson = json["swimmers"] as? [[String: String]]
+      {
+        for swimmerJson in swimmersJson
+        {
+          addSwimmer (swimmerJson["name"]!, mail: swimmerJson["mail"], group: swimmerJson["group"]!)
+        }
+      }
+      
+    }
+    catch
+    {
+      print("error deserializing JSON: \(error)")
+      return false
+    }
+    
+    return true
+  }
+  
+  func saveToYaml() -> Bool
   {
     var fileContents : String = ""
     
@@ -98,9 +149,9 @@ class SwimmerManager
     return FileManager.singleton.writeFile (filename, contents: fileContents)
   }
 
-  func loadFromFile () -> Bool
+  func loadFromYaml () -> Bool
   {
-    let fileContents = FileManager.singleton.readFile (filename)
+    let fileContents = FileManager.singleton.readFileAsString (filename)
     
     if (fileContents == nil)
     {

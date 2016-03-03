@@ -105,11 +105,11 @@ class SessionViewController: UIViewController, UITableViewDelegate, UITableViewD
     picker.mailComposeDelegate = self
     
     var recipients : [String] = [String] ()
-    for s in currentSession!.swimmers
+    for m in currentSession!.mailAddresses
     {
-      if s.mail.characters.count >= 5
+      if m.characters.count >= 5
       {
-        recipients.append (s.mail)
+        recipients.append (m)
       }
     }
     

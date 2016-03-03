@@ -10,6 +10,7 @@ import UIKit
 
 protocol LaneHeaderDelegate
 {
+  func LapNext (lane : Int)
   func StopNext (lane : Int)
 }
 
@@ -18,11 +19,19 @@ class LaneHeaderController: UITableViewCell
   enum State_E {case Idle, Waiting, Running}
   
   @IBOutlet var title:          UILabel!
+  @IBOutlet var lapNextButton:  UIButton!
   @IBOutlet var stopNextButton: UIButton!
   
   var lane      : Int?
   var delegate  : LaneHeaderDelegate?
 
+  @IBAction func LapNextButtonPressed (sender : AnyObject)
+  {
+    if (delegate != nil && lane != nil)
+    {
+      delegate!.LapNext (lane!)
+    }
+  }
   
   @IBAction func StopNextButtonPressed (sender : AnyObject)
   {

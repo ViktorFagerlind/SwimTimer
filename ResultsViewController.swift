@@ -19,8 +19,6 @@ class ResultsViewController: UITableViewController
 
       tableView.contentInset = UIEdgeInsetsMake (50, 0, 0, 0);
       
-      initRandomResults ()
-      
       // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
       // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
@@ -31,52 +29,6 @@ class ResultsViewController: UITableViewController
       super.viewDidAppear(animated)
     
       tableView.reloadData ()
-    }
-  
-    func initRandomResults ()
-    {
-      for day in 0...14
-      {
-        let dateTime = NSCalendar.currentCalendar().dateByAddingUnit(
-          .Day,
-          value:    15 - day,
-          toDate:   NSDate (),
-          options:  NSCalendarOptions(rawValue: 0))
-        
-        let timestamp = NSDateFormatter.localizedStringFromDate (dateTime!, dateStyle: .MediumStyle, timeStyle: .ShortStyle)
-        
-        let session = Session (name: "Pass", dateTime: timestamp)
-        
-        for i in 0...(SwimmerManager.singleton.nofSwimmers-1)
-        {
-          session.addSwimmer (SwimmerManager.singleton.getSwimmer(i))
-        }
-        
-        let rndTotalLenth = (Int (rand()) % (20) + 15)*100
-        var totalLength : Int = 0
-        
-        while totalLength < rndTotalLenth
-        {
-          let interval = Interval ()
-          
-          let nofLengths : Int = Int (rand () % 8) + 1
-          for i in 0...(SwimmerManager.singleton.nofSwimmers-1)
-          {
-            let individualInterval = IndividualInterval (swimmerName : SwimmerManager.singleton.getSwimmer(i).name, lapLength: SettingsManager.singleton.poolLength)
-            
-            for _ in 0...(nofLengths-1)
-            {
-              individualInterval.appendLapTime (NSTimeInterval ((Double (arc4random ()) /  Double (UINT32_MAX)) * 25.0 + 35.0))
-            }
-            
-            interval.appendIndividualInterval (individualInterval)
-          }
-          totalLength += interval.length
-          
-          session.addInterval (interval)
-        }
-        ResultsManager.singleton.addSession (session)
-      }
     }
   
   @IBAction func backFromSessionSegue (segue:UIStoryboardSegue)

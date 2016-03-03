@@ -23,11 +23,16 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTN-iw-EDM">
                         <rect key="frame" x="495" y="17" width="66" height="30"/>
-                        <state key="normal" title="Stop next">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
+                        <state key="normal" title="Stop next"/>
                         <connections>
                             <action selector="StopNextButtonPressed:" destination="ESn-Ju-X20" eventType="touchDown" id="iSR-14-qaM"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOh-ZQ-LaB">
+                        <rect key="frame" x="421" y="17" width="59" height="30"/>
+                        <state key="normal" title="Lap next"/>
+                        <connections>
+                            <action selector="LapNextButtonPressed:" destination="ESn-Ju-X20" eventType="touchUpInside" id="fn8-zT-k0F"/>
                         </connections>
                     </button>
                 </subviews>
@@ -36,9 +41,12 @@
                     <constraint firstAttribute="centerY" secondItem="qzV-QM-b6j" secondAttribute="centerY" id="Euk-DR-apO"/>
                     <constraint firstAttribute="trailingMargin" secondItem="CTN-iw-EDM" secondAttribute="trailing" id="R8p-Kp-iLH"/>
                     <constraint firstAttribute="centerY" secondItem="CTN-iw-EDM" secondAttribute="centerY" id="ZAl-VJ-y34"/>
+                    <constraint firstItem="CTN-iw-EDM" firstAttribute="leading" secondItem="eOh-ZQ-LaB" secondAttribute="trailing" constant="15" id="j87-PD-ywb"/>
+                    <constraint firstItem="eOh-ZQ-LaB" firstAttribute="centerY" secondItem="8pO-If-baj" secondAttribute="centerY" id="lon-ej-MTz"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="lapNextButton" destination="eOh-ZQ-LaB" id="EQU-9j-Fkr"/>
                 <outlet property="stopNextButton" destination="CTN-iw-EDM" id="2wq-Bg-G4R"/>
                 <outlet property="title" destination="qzV-QM-b6j" id="G1N-Hw-IN2"/>
             </connections>

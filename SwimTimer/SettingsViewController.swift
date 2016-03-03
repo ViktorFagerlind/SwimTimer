@@ -26,7 +26,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate
   
   override func viewWillDisappear(animated: Bool)
   {
-    SettingsManager.singleton.saveToFile ()
+    SettingsManager.singleton.saveToJson ()
   }
   
   override func didReceiveMemoryWarning()
@@ -64,7 +64,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate
   {
     textField.resignFirstResponder()
     
-    SettingsManager.singleton.saveToFile ()
+    SettingsManager.singleton.saveToJson ()
     return true;
   }
 }

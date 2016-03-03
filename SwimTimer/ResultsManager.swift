@@ -7,13 +7,15 @@
 //
 
 import Foundation
-
+import YamlSwift
 
 class ResultsManager
 {
   static let singleton = ResultsManager ()
   
   private var sessions : [Session]!
+  
+  let filename = "results.yaml"
   
   var nofSessions : Int
   {
@@ -26,6 +28,62 @@ class ResultsManager
   private init ()
   {
     sessions = [Session] ()
+    
+    initRandomResults ()
+    saveToFile ()
+    loadFromFile ()
+    
+    //if !loadFromFile ()
+    //{
+    //  initRandomResults ()
+    //}
+
+  }
+  
+  func initRandomResults ()
+  {
+    for day in 0...0
+    {
+      let dateTime = NSCalendar.currentCalendar().dateByAddingUnit(
+        .Day,
+        value:    15 - day,
+        toDate:   NSDate (),
+        options:  NSCalendarOptions(rawValue: 0))
+      
+      let timestamp = NSDateFormatter.localizedStringFromDate (dateTime!, dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+      
+      let session = Session (name: "Pass", dateTime: timestamp)
+      
+      for i in 0...(SwimmerManager.singleton.nofSwimmers-1)
+      {
+        session.addMailAddress (SwimmerManager.singleton.getSwimmer(i).mail)
+      }
+      
+      let rndTotalLenth = (Int (rand()) % (20) + 15)*100
+      var totalLength : Int = 0
+      
+      while totalLength < rndTotalLenth
+      {
+        let interval = Interval ()
+        
+        let nofLengths : Int = Int (rand () % 8) + 1
+        for i in 0...(SwimmerManager.singleton.nofSwimmers-1)
+        {
+          let individualInterval = IndividualInterval (swimmerName : SwimmerManager.singleton.getSwimmer(i).name, lapLength: SettingsManager.singleton.poolLength)
+          
+          for _ in 0...(nofLengths-1)
+          {
+            individualInterval.appendLapTime (NSTimeInterval ((Double (arc4random ()) /  Double (UINT32_MAX)) * 25.0 + 35.0))
+          }
+          
+          interval.appendIndividualInterval (individualInterval)
+        }
+        totalLength += interval.length
+        
+        session.addInterval (interval)
+      }
+      addSession (session)
+    }
   }
   
   func addSession (session : Session) -> Void
@@ -38,35 +96,113 @@ class ResultsManager
     sessions.removeLast ()
   }
   
-  
   func getSession (index : Int) -> Session
   {
     return sessions[index]
   }
+  
+  func saveToFile () -> Bool
+  {
+    var fileContents : String = ""
+    
+    for s in sessions
+    {
+      fileContents +=       "- session:\n" +
+                            "  name:   \(s.name)\n" +
+                            "  date:   \(s.dateTime)\n" +
+                            "  length: \(s.length)\n" +
+                            "  mailAddresses:\n"
+      for m in s.mailAddresses
+      {
+        fileContents +=     "    - \(m)\n"
+      }
+      
+      fileContents +=       "  intervals:\n"
+      
+      for i in s.intervals
+      {
+        fileContents +=     "    - interval:\n"
+        
+        for ii in i.individualIntervals
+        {
+          fileContents +=   "      - individualInterval:\n" +
+                            "          swimmerName: \(ii.swimmerName)\n" +
+                            "          time:        " + TimerManager.timeToString (ii.time) + "\n" +
+                            "          lapLength:   \(ii.lapLength)\n" +
+                            "          lapTimes:\n"
+          
+          for lt in ii.lapTimes
+          {
+            fileContents += "            - " + TimerManager.timeToString(lt) + "\n"
+          }
+          
+        }
+      }
+    }
+    
+    return FileManager.singleton.writeFile (filename, contents: fileContents)
+  }
+
+  func loadFromFile () -> Bool
+  {
+    let fileContents = FileManager.singleton.readFileAsString (filename)
+    
+    if (fileContents == nil)
+    {
+      return false
+    }
+    
+    let yamlContents = Yaml.load (fileContents!).value!
+    
+    if yamlContents.array == nil
+    {
+      return false
+    }
+    
+    for sYaml in yamlContents.array!
+    {
+      let session = Session (name: sYaml["name"].string!, dateTime: sYaml["date"].string!)
+      
+      if (sYaml["mailAddresses"].array != nil)
+      {
+        for sMail in sYaml["mailAddresses"].array!
+        {
+          if sMail.string != nil
+          {
+            session.addMailAddress (sMail.string!)
+          }
+        }
+      }
+      
+      addSession (session)
+    }
+    
+    return true
+  }
+
 }
 
 class Session
 {
-  private(set) var name      : String!
-  private(set) var dateTime  : String!
-  private(set) var intervals : [Interval]!
-  private(set) var length    : Int!
-  
-  private(set) var swimmers : [Swimmer]!
+  private(set) var name           : String!
+  private(set) var dateTime       : String!
+  private(set) var length         : Int!
+  private(set) var mailAddresses  : [String]!
+  private(set) var intervals      : [Interval]!
   
   
   init (name n : String, dateTime d : String)
   {
-    name      = n
-    dateTime  = d
-    intervals = [Interval]()
-    length    = 0
-    swimmers = [Swimmer] ()
+    name          = n
+    dateTime      = d
+    intervals     = [Interval]()
+    length        = 0
+    mailAddresses = [String] ()
   }
   
-  func addSwimmer (swimmer: Swimmer)
+  func addMailAddress (mailAddress : String) -> Void
   {
-    swimmers.append (swimmer)
+    mailAddresses.append (mailAddress)
   }
   
   func addInterval (interval : Interval) -> Void
@@ -228,7 +364,7 @@ class IndividualInterval
       lapTimes.removeLast ()
     }
   }
-
+  
   func toHtml () -> String
   {
     var html : String = "<b>" + swimmerName + " " + TimerManager.timeToString(time) + "</b><br>\n"

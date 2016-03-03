@@ -67,6 +67,12 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     redraw ()
   }
   
+  func LapNext (lane : Int)
+  {
+    timerManager.lapNext (lane)
+    redraw ()
+  }
+  
   func StopNext (lane : Int)
   {
     timerManager.stopNext (lane)
@@ -113,7 +119,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     else
     {
       let saveAlert = UIAlertController (title: "Save Session", message: "Do you want to save the session", preferredStyle: UIAlertControllerStyle.Alert)
-      saveAlert.addAction (UIAlertAction (title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in self.timerManager.stopSession (true);  self.redraw () }))
+      saveAlert.addAction (UIAlertAction (title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in self.timerManager.stopSession (true);  self.redraw (); ResultsManager.singleton.saveToFile ()}))
       saveAlert.addAction (UIAlertAction (title: "No",  style: .Default, handler: { (action: UIAlertAction!) in self.timerManager.stopSession (false); self.redraw () }))
       presentViewController (saveAlert, animated: true, completion: nil)
       
@@ -132,7 +138,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       //startButton.enabled   = true
       //stopAllButton.enabled = true
       
-      timerManager.saveToFile ()
+      timerManager.saveToJson ()
     }
     else
     {
@@ -152,7 +158,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     redraw ()
     
-    timerManager.saveToFile ()
+    timerManager.saveToJson ()
   }
 
   @IBAction func chooseSwimmerCancel (segue:UIStoryboardSegue)
@@ -182,6 +188,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       headerCell.delegate = self
       
       headerCell.title.text = "Lane \(indexPath.section)"
+      headerCell.lapNextButton.enabled  = timerManager.isRunning
       headerCell.stopNextButton.enabled = timerManager.isRunning
       
       return headerCell

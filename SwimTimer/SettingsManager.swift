@@ -16,18 +16,54 @@ class SettingsManager
   var poolLength          : Int!
   var timeBetweenSwimmers : Int!
   
-  let filename = "Settings.yaml"
+  let filename = "settings.json"
   
   private init ()
   {
-    if !loadFromFile ()
+    if !loadFromJson ()
     {
       poolLength          = 50
       timeBetweenSwimmers = 3
     }
   }
   
-  func saveToFile () -> Bool
+  
+  func saveToJson () -> Bool
+  {
+    let fileContents : String = "{\n" +
+                                "  \"pool_length\": \(poolLength)," +
+                                "  \"time_between_swimmers\": \(timeBetweenSwimmers)\n" +
+                                "}\n"
+    
+    return FileManager.singleton.writeFile (filename, contents: fileContents)
+  }
+  
+  func loadFromJson () -> Bool
+  {
+    let fileContents = FileManager.singleton.readFile (filename)
+    
+    if (fileContents == nil)
+    {
+      return false
+    }
+    
+    do
+    {
+      let json = try NSJSONSerialization.JSONObjectWithData (fileContents!, options: .AllowFragments)
+      
+      poolLength          = json["pool_length"] as! Int
+      timeBetweenSwimmers = json["time_between_swimmers"] as! Int
+    }
+    catch
+    {
+      print("error deserializing JSON: \(error)")
+      return false
+    }
+    
+    return true
+  }
+  
+  func saveToYaml () -> Bool
   {
     let fileContents : String = "pool_length: \(poolLength)\n" +
                                 "time_between_swimmers: \(timeBetweenSwimmers)"
@@ -35,9 +71,9 @@ class SettingsManager
     return FileManager.singleton.writeFile (filename, contents: fileContents)
   }
   
-  func loadFromFile () -> Bool
+  func loadFromYaml () -> Bool
   {
-    let fileContents = FileManager.singleton.readFile (filename)
+    let fileContents = FileManager.singleton.readFileAsString (filename)
     
     if (fileContents == nil)
     {

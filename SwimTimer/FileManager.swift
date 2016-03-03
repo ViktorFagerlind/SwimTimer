@@ -59,7 +59,19 @@ class FileManager
   }
   
   
-  func readFile (fileName : String) -> String?
+  func readFileAsString (fileName : String) -> String?
+  {
+    let data = readFile (fileName)
+    
+    if data == nil
+    {
+      return nil
+    }
+    
+    return NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
+  }
+  
+  func readFile (fileName : String) -> NSData?
   {
     let fileHandle: NSFileHandle? = NSFileHandle (forReadingAtPath: fileName)
     
@@ -67,13 +79,6 @@ class FileManager
     
     fileHandle?.closeFile ()
 
-    if data == nil
-    {
-      return nil
-    }
-    
-    let contents = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
-    
-    return contents
+    return data
   }
 }
