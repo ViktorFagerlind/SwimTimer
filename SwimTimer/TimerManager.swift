@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import YamlSwift
+//import YamlSwift
 
 class TimerManager
 {
@@ -391,7 +391,7 @@ class TimerManager
     
     return true
   }
-  
+  /*
   func saveToYaml () -> Bool
   {
     var fileContents : String = ""
@@ -444,6 +444,7 @@ class TimerManager
     
     return swimmerTimers.count != 0
   }
+*/
 }
 
 class SwimmerTimer

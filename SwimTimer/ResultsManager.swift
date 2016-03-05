@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import YamlSwift
+//import YamlSwift
 
 class ResultsManager
 {
@@ -238,7 +238,7 @@ class ResultsManager
     
     return true
   }
-  
+  /*
   func saveToYaml () -> Bool
   {
     var fileContents : String = ""
@@ -318,7 +318,7 @@ class ResultsManager
     
     return true
   }
-
+*/
 }
 
 class Session

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import YamlSwift
+//import YamlSwift
 
 class SettingsManager
 {
@@ -62,7 +62,7 @@ class SettingsManager
     
     return true
   }
-  
+  /*
   func saveToYaml () -> Bool
   {
     let fileContents : String = "pool_length: \(poolLength)\n" +
@@ -87,4 +87,5 @@ class SettingsManager
     
     return true
   }
+*/
 }

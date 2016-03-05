@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4DD96BC190099215C2E8A294 /* Pods_SwimTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A861509130A6CC3D807BA28 /* Pods_SwimTimer.framework */; };
 		7723001C1C82DCB700A0875A /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723001B1C82DCB700A0875A /* FileManager.swift */; };
 		772907531B11DB320091BE9C /* SwimmerTimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772907521B11DB320091BE9C /* SwimmerTimerController.swift */; };
 		77298F1E1B0FBC4C00ED5D4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77298F1D1B0FBC4C00ED5D4F /* AppDelegate.swift */; };
@@ -95,7 +94,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DD96BC190099215C2E8A294 /* Pods_SwimTimer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

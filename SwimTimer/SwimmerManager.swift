@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import YamlSwift
+//import YamlSwift
 
 class SwimmerManager
 {
@@ -134,7 +134,7 @@ class SwimmerManager
     
     return true
   }
-  
+  /*
   func saveToYaml() -> Bool
   {
     var fileContents : String = ""
@@ -172,6 +172,7 @@ class SwimmerManager
     
     return true
   }
+*/
 }
 
 class Swimmer
