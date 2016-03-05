@@ -313,35 +313,37 @@ class TimerManager
   
   func saveToJson () -> Bool
   {
-    var fileContents : String = "{\n  \"laps\" :\n  ["
+    var fileContents : String = "{\n  \"lanes\":\n  [\n"
     
     for (i,lane) in swimmerTimers.enumerate ()
     {
-      fileContents   += "{"
+      fileContents   += "    {\"lane\":["
       for (j,timer) in lane.enumerate ()
       {
-        fileContents += "\"name\": \"\(timer.swimmer.name)\""
+        fileContents += "{\"name\": \"\(timer.swimmer.name)\"}"
+        
         if j != (lane.count - 1)
         {
-          fileContents += ","
+          fileContents += ", "
         }
       }
-      fileContents   += "}"
+      fileContents   += "]}"
       
       if i != (lane.count - 1)
       {
         fileContents += ","
       }
+      fileContents   += "\n"
     }
     
-    fileContents += "\n  ]\n}\n"
+    fileContents += "  ]\n}\n"
     
     return FileManager.singleton.writeFile (filename, contents: fileContents)
   }
   
   func loadFromJson () -> Bool
   {
-    /*let fileContents = FileManager.singleton.readFile (filename)
+    let fileContents = FileManager.singleton.readFile (filename)
     
     if (fileContents == nil)
     {
@@ -350,16 +352,28 @@ class TimerManager
     
     do
     {
-      let json = try NSJSONSerialization.JSONObjectWithData (fileContents!, options: .AllowFragments)
+      let json = try NSJSONSerialization.JSONObjectWithData (fileContents!, options: .AllowFragments) as? [String: AnyObject]
       
-      if let swimmersJson = json["swimmers"] as? [[String: String]]
+      if let lanesJson = json!["lanes"] as? [[String: AnyObject]]
       {
-        for swimmerJson in swimmersJson
+        for (lane, laneJson) in lanesJson.enumerate ()
         {
-          addSwimmer (swimmerJson["name"]!, mail: swimmerJson["mail"], group: swimmerJson["group"]!)
+          if let swimmersJson = laneJson["lane"] as? [[String: String]]
+          {
+            addLane ()
+            
+            for swimmerJson in swimmersJson
+            {
+              let swimmer = SwimmerManager.singleton.findSwimmer (swimmerJson["name"]!)
+              
+              if swimmer != nil
+              {
+                addSwimmer (lane, swimmer: swimmer!)
+              }
+            }
+          }
         }
       }
-      
     }
     catch
     {
@@ -367,8 +381,7 @@ class TimerManager
       return false
     }
     
-    return true*/
-    return false
+    return true
   }
   
   func saveToYaml () -> Bool
