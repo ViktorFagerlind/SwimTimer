@@ -15,7 +15,7 @@ class ResultsManager
   
   private var sessions : [Session]!
   
-  let filename = "results.yaml"
+  let filename = "results.json"
   
   var nofSessions : Int
   {
@@ -29,20 +29,16 @@ class ResultsManager
   {
     sessions = [Session] ()
     
-    initRandomResults ()
-    saveToFile ()
-    loadFromFile ()
-    
-    //if !loadFromFile ()
-    //{
-    //  initRandomResults ()
-    //}
+    if !loadFromJson ()
+    {
+      initRandomResults ()
+    }
 
   }
   
   func initRandomResults ()
   {
-    for day in 0...0
+    for day in 0...1
     {
       let dateTime = NSCalendar.currentCalendar().dateByAddingUnit(
         .Day,
@@ -52,7 +48,7 @@ class ResultsManager
       
       let timestamp = NSDateFormatter.localizedStringFromDate (dateTime!, dateStyle: .MediumStyle, timeStyle: .ShortStyle)
       
-      let session = Session (name: "Pass", dateTime: timestamp)
+      let session = Session (name: "Test ", dateTime: timestamp)
       
       for i in 0...(SwimmerManager.singleton.nofSwimmers-1)
       {
@@ -101,7 +97,149 @@ class ResultsManager
     return sessions[index]
   }
   
-  func saveToFile () -> Bool
+  func saveToJson () -> Bool
+  {
+    var fileContents : String = "{\"sessions\":\n"
+    
+    fileContents +=         "  [\n"
+    for (h,s) in sessions.enumerate ()
+    {
+      fileContents +=       "    {\"session\":\n" +
+                            "      {\n" +
+                            "        \"name\":   \"\(s.name)\",\n" +
+                            "        \"date\":   \"\(s.dateTime)\",\n" +
+                            "        \"length\": \(s.length),\n" +
+                            "        \"mailAddresses\":\n" +
+                            "        [\n"
+      for (i,m) in s.mailAddresses.enumerate ()
+      {
+        fileContents +=     "          {\"mail\": \"\(m)\"}"
+        
+        fileContents += i != s.mailAddresses.count - 1 ? ",\n" : "\n"
+      }
+      
+    
+      fileContents +=       "        ],\n" +
+                            "        \"intervals\":\n" +
+                            "        [\n"
+
+    
+      for (i,interval) in s.intervals.enumerate ()
+      {
+        fileContents +=     "          {\"interval\":\n" +
+                            "            [\n"
+        
+        for (j,individualInterval) in interval.individualIntervals.enumerate ()
+        {
+          fileContents +=   "              {\"individualInterval\":\n" +
+                            "                {\n" +
+                            "                  \"swimmerName\": \"\(individualInterval.swimmerName)\",\n"
+          fileContents +=   "                  \"time\":        \"" + TimerManager.timeToString (individualInterval.time) + "\",\n" +
+                            "                  \"lapLength\":   \(individualInterval.lapLength),\n" +
+                            "                  \"lapTimes\": ["
+          
+          for (k,lt) in individualInterval.lapTimes.enumerate ()
+          {
+            fileContents += "{\"time\": \"" + TimerManager.timeToString(lt) + "\"}"
+            fileContents += k != individualInterval.lapTimes.count - 1 ? "," : ""
+          }
+          fileContents +=   "]\n" +
+                            "                }\n" +
+                            "              }"
+          fileContents += j != interval.individualIntervals.count - 1 ? ",\n" : "\n"
+        }
+        
+        fileContents   +=   "            ]\n"
+        fileContents   += i != s.intervals.count - 1 ?
+                            "          },\n" :
+                            "          }\n"
+      }
+    
+      fileContents +=       "        ]\n"
+      fileContents +=       "      }\n"
+    
+      fileContents   += h != sessions.count - 1 ?
+                            "    },\n" :
+                            "    }\n"
+    }
+    
+    fileContents +=         "  ]\n"
+    fileContents +=         "}\n"
+    
+    return FileManager.singleton.writeFile (filename, contents: fileContents)
+  }
+  
+  
+  func loadFromJson () -> Bool
+  {
+    let fileContents = FileManager.singleton.readFile (filename)
+    
+    if (fileContents == nil)
+    {
+      return false
+    }
+    
+    do
+    {
+      let json = try NSJSONSerialization.JSONObjectWithData (fileContents!, options: .AllowFragments) as? [String: AnyObject]
+      
+      let sessionsJson = json!["sessions"] as? [[String: AnyObject]]
+      
+      for sessionsArrayElemJson in sessionsJson!
+      {
+        let sessionJson = sessionsArrayElemJson["session"] as? [String: AnyObject]
+        
+        let session = Session (name: sessionJson!["name"] as! String, dateTime: sessionJson!["date"] as! String)
+        
+        let mailArrayJson = sessionJson!["mailAddresses"] as? [[String:String]]
+        
+        for mailArrayElemJson in mailArrayJson!
+        {
+          session.addMailAddress (mailArrayElemJson["mail"]!)
+        }
+  
+        let intervalsArrayJson = sessionJson!["intervals"] as? [[String:AnyObject]]
+        
+        for intervalsArrayElemJson in intervalsArrayJson!
+        {
+          let interval = Interval ()
+          
+          let intervalJson = intervalsArrayElemJson["interval"] as? [[String: AnyObject]]
+          
+          for individualIntervalElemJson in intervalJson!
+          {
+            let individualIntervalJson = individualIntervalElemJson["individualInterval"] as? [String: AnyObject]
+            
+            
+            let individualInterval = IndividualInterval (swimmerName : individualIntervalJson!["swimmerName"] as! String,
+                                                         lapLength:    individualIntervalJson!["lapLength"] as! Int)
+            
+            let lapTimesJson = individualIntervalJson!["lapTimes"] as? [[String: String]]
+            
+            for lapTimeElemJson in lapTimesJson!
+            {
+              individualInterval.appendLapTime (TimerManager.stringToTime(lapTimeElemJson["time"]!))
+            }
+            
+            interval.appendIndividualInterval(individualInterval)
+          }
+          
+          session.addInterval (interval)
+        }
+        
+        addSession (session)
+      }
+    }
+    catch
+    {
+      print("error deserializing JSON: \(error)")
+      return false
+    }
+    
+    return true
+  }
+  
+  func saveToYaml () -> Bool
   {
     var fileContents : String = ""
     
@@ -117,7 +255,8 @@ class ResultsManager
         fileContents +=     "    - \(m)\n"
       }
       
-      fileContents +=       "  intervals:\n"
+      fileContents +=       "  [\n" +
+                            "  intervals:\n"
       
       for i in s.intervals
       {
@@ -143,7 +282,7 @@ class ResultsManager
     return FileManager.singleton.writeFile (filename, contents: fileContents)
   }
 
-  func loadFromFile () -> Bool
+  func loadFromYaml () -> Bool
   {
     let fileContents = FileManager.singleton.readFileAsString (filename)
     

@@ -34,6 +34,8 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let cellNib = UINib(nibName: "SwimmerTimerNib", bundle: nil)
     self.tableView.registerNib (cellNib, forCellReuseIdentifier: "swimmer_timer_id")
     
+    ResultsManager.singleton // Load results
+    
     redraw ()
   }
 
@@ -119,7 +121,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     else
     {
       let saveAlert = UIAlertController (title: "Save Session", message: "Do you want to save the session", preferredStyle: UIAlertControllerStyle.Alert)
-      saveAlert.addAction (UIAlertAction (title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in self.timerManager.stopSession (true);  self.redraw (); ResultsManager.singleton.saveToFile ()}))
+      saveAlert.addAction (UIAlertAction (title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in self.timerManager.stopSession (true);  self.redraw (); ResultsManager.singleton.saveToJson ()}))
       saveAlert.addAction (UIAlertAction (title: "No",  style: .Default, handler: { (action: UIAlertAction!) in self.timerManager.stopSession (false); self.redraw () }))
       presentViewController (saveAlert, animated: true, completion: nil)
       

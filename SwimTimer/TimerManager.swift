@@ -310,6 +310,14 @@ class TimerManager
     return "\(strMinutes):\(strSeconds):\(strFraction)"
   }
   
+  static func stringToTime (timeString: String) -> NSTimeInterval
+  {
+    let minutes  : String = (timeString.substringWithRange(Range (start: timeString.startIndex,               end: timeString.startIndex.advancedBy(2))))
+    let seconds  : String = (timeString.substringWithRange(Range (start: timeString.startIndex.advancedBy(3), end: timeString.startIndex.advancedBy(5))))
+    let hundreds : String = (timeString.substringWithRange(Range (start: timeString.startIndex.advancedBy(6), end: timeString.startIndex.advancedBy(8))))
+    
+    return 60.0 * NSTimeInterval (minutes)! + NSTimeInterval (seconds)! + NSTimeInterval (hundreds)!/100.0
+  }
   
   func saveToJson () -> Bool
   {
