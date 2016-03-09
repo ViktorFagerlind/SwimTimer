@@ -389,7 +389,7 @@ class Interval
     {
       if individualIntervals.count == 0
       {
-        return NSTimeInterval (0)
+        return NSTimeInterval.invalidTime ()
       }
       
       var bestTime = NSTimeInterval.infinity
