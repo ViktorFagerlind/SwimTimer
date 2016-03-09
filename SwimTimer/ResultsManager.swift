@@ -392,12 +392,12 @@ class Interval
         return NSTimeInterval.invalidTime ()
       }
       
-      var bestTime = NSTimeInterval.infinity
+      var bestTime = NSTimeInterval.invalidTime ()
       for ii in individualIntervals
       {
         let time = ii.time
         
-        if time < bestTime && !time.isInvalid ()
+        if bestTime.isInvalid () || (time < bestTime && !time.isInvalid ())
         {
           bestTime = time
         }
