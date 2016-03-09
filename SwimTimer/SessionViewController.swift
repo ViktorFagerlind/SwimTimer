@@ -69,7 +69,7 @@ class SessionViewController: UIViewController, UITableViewDelegate, UITableViewD
       let cell = tableView.dequeueReusableCellWithIdentifier ("interval_cell_id", forIndexPath: indexPath) as! IntervalCellController
       
       let interval = currentSession!.intervals[indexPath.row]
-      cell.nameLabel.text = String (interval.length) + " meter (" + TimerManager.timeToString (interval.bestResult) + ")"
+      cell.nameLabel.text = String (interval.length) + " meter (" + interval.bestResult.toString () + ")"
 
       return cell
     }

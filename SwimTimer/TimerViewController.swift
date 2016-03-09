@@ -97,7 +97,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   {
     timerManager.start ()
     
-    timer = NSTimer.scheduledTimerWithTimeInterval (0.03, target: self, selector: "updateTimers", userInfo: nil, repeats: true)
+    timer = NSTimer.scheduledTimerWithTimeInterval (0.055, target: self, selector: "updateTimers", userInfo: nil, repeats: true)
     
     redraw ()
   }

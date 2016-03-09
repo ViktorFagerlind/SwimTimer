@@ -64,7 +64,7 @@ class IntervalViewController: UIViewController, UITableViewDelegate, UITableView
       let cell = tableView.dequeueReusableCellWithIdentifier ("swimmer_name_cell_id", forIndexPath: indexPath) as! SwimmerResultCellController
       
       cell.nameLabel.text = String (currentInterval!.individualIntervals[indexPath.section].swimmerName)
-      cell.timeLabel.text = TimerManager.timeToString (currentInterval!.individualIntervals[indexPath.section].time)
+      cell.timeLabel.text = currentInterval!.individualIntervals[indexPath.section].time.toString ()
       
       return cell
     }
@@ -72,7 +72,7 @@ class IntervalViewController: UIViewController, UITableViewDelegate, UITableView
     let cell = tableView.dequeueReusableCellWithIdentifier ("lap_cell_id", forIndexPath: indexPath) as! LapCellController
     
     cell.lengthLabel.text = String (currentInterval!.individualIntervals[indexPath.section].lapLength) + "m"
-    cell.timeLabel.text   = TimerManager.timeToString (currentInterval!.individualIntervals[indexPath.section].lapTimes[indexPath.row-1])
+    cell.timeLabel.text   = currentInterval!.individualIntervals[indexPath.section].lapTimes[indexPath.row-1].toString ()
 
     return cell
   }

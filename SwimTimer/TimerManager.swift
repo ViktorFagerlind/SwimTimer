@@ -9,6 +9,57 @@
 import UIKit
 //import YamlSwift
 
+extension NSTimeInterval
+{
+  func toString () -> String
+  {
+    // Erroneous time?
+    if self.isInvalid ()
+    {
+      return "--:--:--"
+    }
+    
+    //calculate the minutes in elapsed time.
+    let minutes = UInt(self / 60.0)
+    var elapsedTime = self - (NSTimeInterval(minutes) * 60)
+    
+    //calculate the seconds in elapsed time.
+    let seconds = UInt(elapsedTime)
+    elapsedTime -= NSTimeInterval(seconds)
+    
+    //find out the 1/100 seconds to be displayed.
+    let fraction = UInt(elapsedTime * 100)
+    
+    //add the leading zero for minutes, seconds and millseconds and store them as string constants
+    let strMinutes  = minutes  > 9 ? String(minutes): "0" + String(minutes)
+    let strSeconds  = seconds  > 9 ? String(seconds): "0" + String(seconds)
+    let strFraction =
+    fraction <= 9 ? "0" + String(fraction) : String(fraction)
+    
+    //concatenate minuets, seconds and milliseconds as assign it to the UILabel
+    return "\(strMinutes):\(strSeconds):\(strFraction)"
+  }
+  
+  static func fromString (timeString: String) -> NSTimeInterval
+  {
+    let minutes  : String = (timeString.substringWithRange(Range (start: timeString.startIndex,               end: timeString.startIndex.advancedBy(2))))
+    let seconds  : String = (timeString.substringWithRange(Range (start: timeString.startIndex.advancedBy(3), end: timeString.startIndex.advancedBy(5))))
+    let hundreds : String = (timeString.substringWithRange(Range (start: timeString.startIndex.advancedBy(6), end: timeString.startIndex.advancedBy(8))))
+
+    return 60.0 * NSTimeInterval (minutes)! + NSTimeInterval (seconds)! + NSTimeInterval (hundreds)!/100.0
+  }
+  
+  func isInvalid () -> Bool
+  {
+    return self < 0.0
+  }
+  
+  static func invalidTime () -> NSTimeInterval
+  {
+    return -1.0
+  }
+}
+
 class TimerManager
 {
   static var globalStartTime : NSTimeInterval = NSTimeInterval ()
@@ -216,9 +267,14 @@ class TimerManager
   }
   
   
-  func lapNext (lane : Int)
+  func findNextInTurn (lane : Int) -> SwimmerTimer?
   {
     let timerLane = swimmerTimers[lane]
+    
+    if swimmerTimers.count == 0
+    {
+      return nil
+    }
     
     var indexOfSmallestLastLap : Int = 0
     var smallestLastLap : NSTimeInterval = timerLane[0].lastLapOccurance + timerLane[0].deltaTime
@@ -233,18 +289,33 @@ class TimerManager
         smallestLastLap = timer.lastLapOccurance + timer.deltaTime
       }
     }
-    timerLane[indexOfSmallestLastLap].lap ()
+    return timerLane[indexOfSmallestLastLap]
+  }
+  
+  func lapNext (lane : Int)
+  {
+    let nextInTurn = findNextInTurn (lane)
+    
+    if nextInTurn != nil
+    {
+      nextInTurn!.lap ()
+    }
   }
   
   func stopNext (lane : Int)
   {
-    for timer in swimmerTimers[lane]
+    let timer : SwimmerTimer? = findNextInTurn (lane)
+    
+    if (timer == nil)
     {
-      if (timer.state == .Running)
-      {
-        timer.stop ()
-        return
-      }
+      return
+    }
+    
+    timer!.stop ()
+    
+    if !isRunning
+    {
+      onAllStopped ()
     }
   }
   
@@ -280,7 +351,7 @@ class TimerManager
     swimmerTimers[fromLane].removeAtIndex (fromIndex)
     swimmerTimers[toLane].insert (timer, atIndex: toIndex)
   }
-  
+  /*
   static func timeToString (time: NSTimeInterval) -> String
   {
     // Erroneous time?
@@ -318,7 +389,7 @@ class TimerManager
     
     return 60.0 * NSTimeInterval (minutes)! + NSTimeInterval (seconds)! + NSTimeInterval (hundreds)!/100.0
   }
-  
+  */
   func saveToJson () -> Bool
   {
     var fileContents : String = "{\n  \"lanes\":\n  [\n"
@@ -504,8 +575,8 @@ class SwimmerTimer
     // Don't show negative times
     let time = state == .Idle ? resultTime : (state == .Waiting ? 0.0 : runningTime)
     
-    cell.timeLabel.text   = TimerManager.timeToString (time)
-    cell.lapLabel.text    = TimerManager.timeToString (lastLapOccurance+deltaTime)
+    cell.timeLabel.text   = time.toString ()
+    cell.lapLabel.text    = (lastLapOccurance+deltaTime).toString ()
     
     if state == .Running
     {

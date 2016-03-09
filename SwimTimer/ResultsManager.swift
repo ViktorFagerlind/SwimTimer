@@ -134,13 +134,13 @@ class ResultsManager
           fileContents +=   "              {\"individualInterval\":\n" +
                             "                {\n" +
                             "                  \"swimmerName\": \"\(individualInterval.swimmerName)\",\n"
-          fileContents +=   "                  \"time\":        \"" + TimerManager.timeToString (individualInterval.time) + "\",\n" +
+          fileContents +=   "                  \"time\":        \"" + individualInterval.time.toString() + "\",\n" +
                             "                  \"lapLength\":   \(individualInterval.lapLength),\n" +
                             "                  \"lapTimes\": ["
           
           for (k,lt) in individualInterval.lapTimes.enumerate ()
           {
-            fileContents += "{\"time\": \"" + TimerManager.timeToString(lt) + "\"}"
+            fileContents += "{\"time\": \"" + lt.toString() + "\"}"
             fileContents += k != individualInterval.lapTimes.count - 1 ? "," : ""
           }
           fileContents +=   "]\n" +
@@ -218,7 +218,7 @@ class ResultsManager
             
             for lapTimeElemJson in lapTimesJson!
             {
-              individualInterval.appendLapTime (TimerManager.stringToTime(lapTimeElemJson["time"]!))
+              individualInterval.appendLapTime (NSTimeInterval.fromString (lapTimeElemJson["time"]!))
             }
             
             interval.appendIndividualInterval(individualInterval)
@@ -397,7 +397,7 @@ class Interval
       {
         let time = ii.time
         
-        if bestTime > time
+        if time < bestTime && !time.isInvalid ()
         {
           bestTime = time
         }
@@ -475,7 +475,7 @@ class IndividualInterval
   init (swimmerName n : String, lapLength l : Int)
   {
     swimmerName = n
-    time        = 0
+    time        = NSTimeInterval.invalidTime ()
     lapTimes    = [NSTimeInterval]()
     lapLength   = l
   }
@@ -495,7 +495,7 @@ class IndividualInterval
   {
     for var i = lapTimes.count; i < nofLaps; i++
     {
-      appendLapTime (NSTimeInterval (-1.0))
+      appendLapTime (NSTimeInterval.invalidTime())
     }
     
     while lapTimes.count > nofLaps
@@ -506,11 +506,11 @@ class IndividualInterval
   
   func toHtml () -> String
   {
-    var html : String = "<b>" + swimmerName + " " + TimerManager.timeToString(time) + "</b><br>\n"
+    var html : String = "<b>" + swimmerName + " " + time.toString () + "</b><br>\n"
     
     for lt in lapTimes
     {
-      html = html + TimerManager.timeToString(lt) + "<br>\n"
+      html = html + lt.toString () + "<br>\n"
     }
     html = html + "<br>\n"
     
