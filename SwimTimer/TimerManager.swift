@@ -576,7 +576,7 @@ class SwimmerTimer
     let time = state == .Idle ? resultTime : (state == .Waiting ? 0.0 : runningTime)
     
     cell.timeLabel.text   = time.toString ()
-    cell.lapLabel.text    = (lastLapOccurance+deltaTime).toString ()
+    cell.lapLabel.text    = lastLapOccurance.toString ()
     
     if state == .Running
     {
