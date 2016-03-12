@@ -34,6 +34,18 @@ class SettingsViewController: UIViewController, UITextFieldDelegate
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+  
+  @IBAction func aboutPressed (sender: AnyObject)
+  {
+    let aboutAlert = UIAlertController (
+      title: "About",
+      message: "App created by Viktor Fägerlind\n" +
+               "All icons (except App icon) by icons8 (https://icons8.com)\n",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    
+    aboutAlert.addAction (UIAlertAction (title: "Ok", style: .Default, handler: nil))
+    
+    presentViewController (aboutAlert, animated: true, completion: nil)  }
 
   @IBAction func textFieldChanged (sender: AnyObject)
   {

@@ -52,9 +52,21 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOq-jf-PH0">
+                                <rect key="frame" x="0.0" y="507" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="About" id="hKF-lQ-NbN">
+                                        <connections>
+                                            <action selector="aboutPressed:" destination="UrL-BW-kFe" id="fLw-gE-iXB"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="XOq-jf-PH0" firstAttribute="width" secondItem="kCW-kI-SIF" secondAttribute="width" id="3ZA-4G-dF7"/>
+                            <constraint firstItem="weG-fj-szV" firstAttribute="top" secondItem="XOq-jf-PH0" secondAttribute="bottom" id="EIU-xe-6YO"/>
                             <constraint firstAttribute="leadingMargin" secondItem="iCC-jc-PWg" secondAttribute="leading" id="PBs-fN-yxk"/>
                             <constraint firstItem="Ix4-Kg-uCo" firstAttribute="top" secondItem="iCC-jc-PWg" secondAttribute="bottom" constant="34" id="Tjo-Qy-415"/>
                             <constraint firstItem="iCC-jc-PWg" firstAttribute="top" secondItem="xcB-uG-xxi" secondAttribute="bottom" constant="50" id="Wtg-A1-u0K"/>
@@ -62,6 +74,7 @@
                             <constraint firstItem="BaR-8I-7GN" firstAttribute="leading" secondItem="b1k-T3-ARD" secondAttribute="leading" id="buz-d0-Jpp"/>
                             <constraint firstItem="b1k-T3-ARD" firstAttribute="top" secondItem="BaR-8I-7GN" secondAttribute="bottom" constant="25" id="cPV-op-9KQ"/>
                             <constraint firstAttribute="leadingMargin" secondItem="iCC-jc-PWg" secondAttribute="leading" id="cbM-WJ-Rkj"/>
+                            <constraint firstItem="XOq-jf-PH0" firstAttribute="centerX" secondItem="kCW-kI-SIF" secondAttribute="centerX" id="ciO-4e-8Rg"/>
                             <constraint firstItem="BaR-8I-7GN" firstAttribute="centerY" secondItem="iCC-jc-PWg" secondAttribute="centerY" id="qAR-sL-niT"/>
                             <constraint firstItem="iCC-jc-PWg" firstAttribute="leading" secondItem="Ix4-Kg-uCo" secondAttribute="leading" id="qTt-bf-vha"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BaR-8I-7GN" secondAttribute="trailing" constant="45" id="s94-SD-xHn"/>
@@ -242,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="331.49999999999989"/>
+            <point key="canvasLocation" x="750" y="331.49999999999983"/>
         </scene>
         <!--Add Swimmer Controller-->
         <scene sceneID="yi5-yt-H26">
@@ -324,7 +337,6 @@
                             <constraint firstItem="gcl-2L-3ky" firstAttribute="centerX" secondItem="QtA-vl-30K" secondAttribute="centerX" id="XXq-Sw-hrF"/>
                             <constraint firstItem="TLR-NA-dlq" firstAttribute="top" secondItem="QtA-vl-30K" secondAttribute="top" id="akf-EG-4eu"/>
                             <constraint firstItem="qvU-qH-dvN" firstAttribute="top" secondItem="2DF-54-AGC" secondAttribute="bottom" constant="50" id="auQ-ks-gLf"/>
-                            <constraint firstItem="req-ov-ddC" firstAttribute="top" secondItem="2DF-54-AGC" secondAttribute="bottom" constant="150" id="dMY-hX-KKL"/>
                             <constraint firstItem="req-ov-ddC" firstAttribute="top" secondItem="gcl-2L-3ky" secondAttribute="bottom" constant="5" id="ddQ-Nn-xLx"/>
                             <constraint firstItem="2DF-54-AGC" firstAttribute="top" secondItem="MYG-Rw-8wT" secondAttribute="bottom" constant="5" id="hxf-n7-iGr"/>
                             <constraint firstAttribute="centerX" secondItem="req-ov-ddC" secondAttribute="centerX" id="qSj-ji-zNL"/>
@@ -335,11 +347,6 @@
                             <constraint firstAttribute="trailing" secondItem="TLR-NA-dlq" secondAttribute="trailing" id="y8Z-eD-y7J"/>
                             <constraint firstItem="2DF-54-AGC" firstAttribute="top" secondItem="eTc-7u-oSq" secondAttribute="bottom" constant="111" id="yeI-Lx-XH0"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="dMY-hX-KKL"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="groupField" destination="req-ov-ddC" id="QVo-cU-tZr"/>
@@ -350,7 +357,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXa-4a-3nX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="LC9-SW-qrV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="750" y="978.99999999999977"/>
+            <point key="canvasLocation" x="750" y="978.99999999999966"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -446,7 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="liI-hU-XSq" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="978.99999999999977"/>
+            <point key="canvasLocation" x="0.0" y="978.99999999999966"/>
         </scene>
         <!--Choose Swimmer Controller-->
         <scene sceneID="2Yf-eK-s0y">
@@ -499,7 +506,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZNp-fD-z2F" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="7Jp-hR-EDH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1461" y="331.49999999999989"/>
+            <point key="canvasLocation" x="1461" y="331.49999999999983"/>
         </scene>
         <!--Session-->
         <scene sceneID="ZQu-pm-rX7">
