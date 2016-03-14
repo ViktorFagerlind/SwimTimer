@@ -19,26 +19,12 @@ class SwimmerManager
   
   private init ()
   {
-    if !loadFromJson()
+    if !loadFromJson ()
     {
-      addSwimmer ("Peter A",      mail: "", group: "Coach")
-      addSwimmer ("Sandra H",     mail: "", group: "Coach")
-      addSwimmer ("Tomas R",      mail: "", group: "Race")
-      addSwimmer ("Viktor F",     mail: "", group: "Race")
-      addSwimmer ("Emma Å",       mail: "", group: "Race")
-      addSwimmer ("Julia P",      mail: "", group: "Race")
-      addSwimmer ("Johan J",      mail: "", group: "Race")
-      addSwimmer ("Anna S",       mail: "", group: "Race")
-      addSwimmer ("Thord L",      mail: "", group: "Race")
-      addSwimmer ("Gabriella N",  mail: "", group: "Race")
-      addSwimmer ("Mirella C",    mail: "", group: "Race")
-      addSwimmer ("Magnus E",     mail: "", group: "Race")
-      addSwimmer ("Birgitta L",   mail: "", group: "Race")
-      addSwimmer ("Mats G",       mail: "", group: "Race")
-      addSwimmer ("Helena N",     mail: "", group: "Race")
-      addSwimmer ("Michael Z",    mail: "", group: "Race")
-      addSwimmer ("John D",       mail: "", group: "Beginner")
-      addSwimmer ("Jane D",       mail: "", group: "Beginner")
+      addSwimmer ("John",      mail: "john.doe@fake.com", group: "Race")
+      addSwimmer ("Jane",      mail: "jane.doe@fake.com", group: "Advanced")
+      addSwimmer ("Kalle",     mail: "kalle@fake.com",    group: "Beginner")
+      addSwimmer ("Ada",       mail: "ada@fake.com",      group: "Beginner")
     }
   }
   

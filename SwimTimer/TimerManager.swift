@@ -84,7 +84,7 @@ class TimerManager
       addLane ()
       addLane ()
       
-      for i in 0...7
+      for i in 0...(SwimmerManager.singleton.nofSwimmers - 1)
       {
         addSwimmer (i%2, swimmer: SwimmerManager.singleton.getSwimmer (i))
       }

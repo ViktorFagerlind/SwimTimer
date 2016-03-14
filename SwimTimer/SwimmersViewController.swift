@@ -40,8 +40,14 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
     {
       let swimmerController : SwimmerController = swimmerCell as! SwimmerController
       
-      swimmerController.nameField.userInteractionEnabled    = enabled
-      swimmerController.groupField.userInteractionEnabled   = enabled
+      swimmerController.nameField.userInteractionEnabled   = enabled
+      swimmerController.nameField.borderStyle = enabled ? UITextBorderStyle.RoundedRect : UITextBorderStyle.None
+      
+      swimmerController.groupField.userInteractionEnabled  = enabled
+      swimmerController.groupField.borderStyle = enabled ? UITextBorderStyle.RoundedRect : UITextBorderStyle.None
+
+      swimmerController.mailField.userInteractionEnabled   = enabled
+      swimmerController.mailField.borderStyle = enabled ? UITextBorderStyle.RoundedRect : UITextBorderStyle.None
     }
   }
   
@@ -65,6 +71,15 @@ class SwimmersViewController: UIViewController, UITableViewDelegate, UITableView
       else
       {
         swimmer.group = ""
+      }
+      
+      if (swimmerController.mailField.text != nil)
+      {
+        swimmer.mail = swimmerController.mailField.text
+      }
+      else
+      {
+        swimmer.mail = ""
       }
     }
   }
