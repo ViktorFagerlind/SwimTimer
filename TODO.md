@@ -8,6 +8,7 @@
 - [x] Add support for publishing an event
 - [x] Save timers after add (bug)
 - [x] Prepare for app store
+- [x] Submit to app store
 - [ ] Give an error when multiple swimmers are added with the same name
 - [ ] Give an error when the same swimmer is added to the timer view more than once
 - [ ] Change "Stop all" to "Abort" or similar and invalidate the still running times.
