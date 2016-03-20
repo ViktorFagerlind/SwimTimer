@@ -31,7 +31,7 @@ class ResultsManager
     
     if !loadFromJson ()
     {
-      initRandomResults ()
+      //initRandomResults ()
     }
 
   }

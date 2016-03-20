@@ -82,12 +82,15 @@ class TimerManager
     if !loadFromJson ()
     {
       addLane ()
+      
+      /*
       addLane ()
       
       for i in 0...(SwimmerManager.singleton.nofSwimmers - 1)
       {
         addSwimmer (i%2, swimmer: SwimmerManager.singleton.getSwimmer (i))
       }
+      */  
     }
   }
   
@@ -590,6 +593,13 @@ class SwimmerTimer
         cell.lapLabel.font = UIFont.systemFontOfSize (15.0)
       }
     }
+    
+    /*
+    if state == .Idle || (state == .Running && runningTime > 5)
+    {
+      cell.nameLabel.frame = CGRect ()
+    }
+    */
     
     cell.nameLabel.text   = swimmer.name
     cell.stateLabel.text  = stateToString (state)

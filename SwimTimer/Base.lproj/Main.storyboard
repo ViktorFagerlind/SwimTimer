@@ -199,7 +199,7 @@
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="gRC-Th-ugx" kind="presentation" id="R7s-Sm-ZmA"/>
+                                                            <segue destination="gRC-Th-ugx" kind="presentation" identifier="add_swimmer_segue" id="R7s-Sm-ZmA"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTo-Sp-Qil">
@@ -413,7 +413,7 @@
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="lfF-Ap-gbL" kind="presentation" id="HsN-aA-uda"/>
+                                                            <segue destination="lfF-Ap-gbL" kind="presentation" identifier="" id="HsN-aA-uda"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

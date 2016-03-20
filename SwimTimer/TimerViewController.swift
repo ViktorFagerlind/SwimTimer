@@ -112,11 +112,20 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   {
     if !timerManager.isInSession
     {
-      timerManager.startSession ("Pass", dateTime: NSDateFormatter.localizedStringFromDate (NSDate (), dateStyle: .MediumStyle, timeStyle: .ShortStyle))
-      
-      startStopSessionButton.title = "End Session"
-      
-      redraw ()
+      if timerManager.nofSwimmers > 0
+      {
+        timerManager.startSession ("Pass", dateTime: NSDateFormatter.localizedStringFromDate (NSDate (), dateStyle: .MediumStyle, timeStyle: .ShortStyle))
+        
+        startStopSessionButton.title = "End Session"
+        
+        redraw ()
+      }
+      else
+      {
+        let saveAlert = UIAlertController (title: "No Swimmers", message: "Cannot start session without any swimmers!\nPress '+' to choose swimmers for the lanes.", preferredStyle: UIAlertControllerStyle.Alert)
+        saveAlert.addAction (UIAlertAction (title: "OK", style: .Default, handler: nil))
+        presentViewController (saveAlert, animated: true, completion: nil)
+      }
     }
     else
     {
@@ -178,6 +187,8 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     redraw ()
+    
+    timerManager.saveToJson ()
   }
   
   func tableView (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -262,6 +273,21 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       
       redraw ()
     }
+  }
+  
+  override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool
+  {
+    if identifier == "add_swimmer_segue" && SwimmerManager.singleton.nofSwimmers == 0
+    {
+      let saveAlert = UIAlertController (title: "No Swimmers", message: "There are no swimmers to choose from.\nPlease add swimmers to the 'Swimmers' tab.", preferredStyle: UIAlertControllerStyle.Alert)
+      saveAlert.addAction (UIAlertAction (title: "OK", style: .Default, handler: nil))
+      presentViewController (saveAlert, animated: true, completion: nil)
+      
+      return false
+    }
+    
+    // by default, transition
+    return true
   }
 }
 

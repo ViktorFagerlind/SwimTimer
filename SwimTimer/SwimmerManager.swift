@@ -21,10 +21,12 @@ class SwimmerManager
   {
     if !loadFromJson ()
     {
+      /*
       addSwimmer ("John",      mail: "john.doe@fake.com", group: "Race")
       addSwimmer ("Jane",      mail: "jane.doe@fake.com", group: "Advanced")
       addSwimmer ("Kalle",     mail: "kalle@fake.com",    group: "Beginner")
       addSwimmer ("Ada",       mail: "ada@fake.com",      group: "Beginner")
+      */
     }
   }
   
