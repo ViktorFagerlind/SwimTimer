@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -199,7 +199,7 @@
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="gRC-Th-ugx" kind="presentation" identifier="add_swimmer_segue" id="R7s-Sm-ZmA"/>
+                                                            <segue destination="gRC-Th-ugx" kind="presentation" identifier="choose_swimmer_segue" id="R7s-Sm-ZmA"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTo-Sp-Qil">
@@ -473,12 +473,12 @@
                                     <navigationItem title="Choose swimmer" prompt="Choose among the added swimmers" id="fId-US-9UY">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="2vN-oF-qw0">
                                             <connections>
-                                                <segue destination="7Jp-hR-EDH" kind="unwind" unwindAction="chooseSwimmerCancel:" id="QE2-mJ-1n8"/>
+                                                <action selector="cancelPressed:" destination="gRC-Th-ugx" id="cG9-Sl-xNb"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="mkR-j5-7kD">
                                             <connections>
-                                                <segue destination="7Jp-hR-EDH" kind="unwind" unwindAction="chooseSwimmerDone:" id="V2o-T8-YPH"/>
+                                                <action selector="donePressed:" destination="gRC-Th-ugx" id="dr9-RR-KMe"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -501,6 +501,8 @@
                     </view>
                     <connections>
                         <outlet property="swimmerPicker" destination="bqZ-BI-QMb" id="B6F-1F-RDN"/>
+                        <segue destination="7Jp-hR-EDH" kind="unwind" identifier="choose_swimmer_done_segue" unwindAction="chooseSwimmerDone:" id="gUE-46-L5g"/>
+                        <segue destination="7Jp-hR-EDH" kind="unwind" identifier="choose_swimmer_cancel_segue" unwindAction="chooseSwimmerCancel:" id="y6F-7G-AQf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZNp-fD-z2F" userLabel="First Responder" sceneMemberID="firstResponder"/>

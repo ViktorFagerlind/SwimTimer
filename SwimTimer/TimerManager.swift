@@ -42,9 +42,9 @@ extension NSTimeInterval
   
   static func fromString (timeString: String) -> NSTimeInterval
   {
-    let minutes  : String = (timeString.substringWithRange(Range (start: timeString.startIndex,               end: timeString.startIndex.advancedBy(2))))
-    let seconds  : String = (timeString.substringWithRange(Range (start: timeString.startIndex.advancedBy(3), end: timeString.startIndex.advancedBy(5))))
-    let hundreds : String = (timeString.substringWithRange(Range (start: timeString.startIndex.advancedBy(6), end: timeString.startIndex.advancedBy(8))))
+    let minutes  : String = (timeString.substringWithRange(Range (timeString.startIndex ..< timeString.startIndex.advancedBy(2))))
+    let seconds  : String = (timeString.substringWithRange(Range (timeString.startIndex.advancedBy(3) ..< timeString.startIndex.advancedBy(5))))
+    let hundreds : String = (timeString.substringWithRange(Range (timeString.startIndex.advancedBy(6) ..< timeString.startIndex.advancedBy(8))))
 
     return 60.0 * NSTimeInterval (minutes)! + NSTimeInterval (seconds)! + NSTimeInterval (hundreds)!/100.0
   }
@@ -172,11 +172,29 @@ class TimerManager
     return swimmerTimers[lane].count
   }
   
-  func addSwimmer (lane : Int, swimmer : Swimmer)
+  func addSwimmer (laneIndex : Int, swimmer : Swimmer) -> Void
   {
+    if isSwimmerPresent(swimmer)
+    {
+      return
+    }
+    
     let swimmerTimer = SwimmerTimer (swimmer: swimmer)
     
-    swimmerTimers[lane].append (swimmerTimer)
+    swimmerTimers[laneIndex].append (swimmerTimer)
+  }
+  
+  func isSwimmerPresent (swimmer : Swimmer) -> Bool
+  {
+    for lane in swimmerTimers
+    {
+      if lane.filter ({$0.swimmer.name == swimmer.name}).count != 0
+      {
+        return true
+      }
+    }
+    
+    return false
   }
   
   func addLane ()
@@ -282,7 +300,7 @@ class TimerManager
     var indexOfSmallestLastLap : Int = 0
     var smallestLastLap : NSTimeInterval = timerLane[0].lastLapOccurance + timerLane[0].deltaTime
     
-    for i in 1...(timerLane.count-1)
+    for i in 1..<timerLane.count
     {
       let timer = timerLane[i]
       
@@ -411,7 +429,7 @@ class TimerManager
       }
       fileContents   += "]}"
       
-      if i != (lane.count - 1)
+      if i != (swimmerTimers.count - 1)
       {
         fileContents += ","
       }
@@ -656,11 +674,11 @@ class SwimmerTimer
     lap () // Add the last "lap"
     
     state = .Idle
-    onStopped ()
     
     resultTime  = max (0.0, runningTime)
-    
     ongoingIndividualInterval?.setTotalTime (resultTime)
+    
+    onStopped ()
   }
   
   func onStopped () ->Void

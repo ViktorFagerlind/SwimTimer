@@ -50,7 +50,7 @@ class ResultsManager
       
       let session = Session (name: "Test ", dateTime: timestamp)
       
-      for i in 0...(SwimmerManager.singleton.nofSwimmers-1)
+      for i in 0 ..< SwimmerManager.singleton.nofSwimmers
       {
         session.addMailAddress (SwimmerManager.singleton.getSwimmer(i).mail)
       }
@@ -63,11 +63,11 @@ class ResultsManager
         let interval = Interval ()
         
         let nofLengths : Int = Int (rand () % 8) + 1
-        for i in 0...(SwimmerManager.singleton.nofSwimmers-1)
+        for i in 0 ..< SwimmerManager.singleton.nofSwimmers
         {
           let individualInterval = IndividualInterval (swimmerName : SwimmerManager.singleton.getSwimmer(i).name, lapLength: SettingsManager.singleton.poolLength)
           
-          for _ in 0...(nofLengths-1)
+          for _ in 0 ..< nofLengths
           {
             individualInterval.appendLapTime (NSTimeInterval ((Double (arc4random ()) /  Double (UINT32_MAX)) * 25.0 + 35.0))
           }
@@ -421,7 +421,7 @@ class Interval
       {
         if ii2.lapTimes.count == currentCount
         {
-          nofSameCount++
+          nofSameCount += 1
         }
       }
       if nofSameCount > nofMostCommonCount
@@ -483,7 +483,6 @@ class IndividualInterval
   func appendLapTime (lapTime : NSTimeInterval) -> Void
   {
     lapTimes.append (lapTime)
-    time    = time + lapTime
   }
   
   func setTotalTime (totalTime : NSTimeInterval) -> Void
@@ -493,7 +492,7 @@ class IndividualInterval
   
   func setNofLaps (nofLaps : Int) -> Void
   {
-    for var i = lapTimes.count; i < nofLaps; i++
+    for _ in lapTimes.count ..< nofLaps
     {
       appendLapTime (NSTimeInterval.invalidTime())
     }

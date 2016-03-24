@@ -13,6 +13,7 @@ class ChooseSwimmerController: UIViewController, UIPickerViewDataSource,UIPicker
   @IBOutlet var swimmerPicker: UIPickerView!
   
   var selectedSwimmer : Swimmer?
+  var timerManager : TimerManager?
   
   override func viewDidLoad()
   {
@@ -29,9 +30,25 @@ class ChooseSwimmerController: UIViewController, UIPickerViewDataSource,UIPicker
     super.didReceiveMemoryWarning()
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)
+  @IBAction func donePressed(sender: AnyObject)
   {
     selectedSwimmer = SwimmerManager.singleton.getSwimmer (swimmerPicker.selectedRowInComponent (0))
+    
+    if timerManager!.isSwimmerPresent (selectedSwimmer!)
+    {
+      let duplicateAlert = UIAlertController (title: "Swimmer Duplicate", message: "You cannot add a swimmer that is already present on any lane", preferredStyle: UIAlertControllerStyle.Alert)
+      duplicateAlert.addAction (UIAlertAction (title: "OK", style: .Default, handler: nil))
+      presentViewController (duplicateAlert, animated: true, completion: nil)
+    }
+    else
+    {
+      performSegueWithIdentifier ("choose_swimmer_done_segue", sender: self)
+    }
+  }
+  
+  @IBAction func cancelPressed(sender: AnyObject)
+  {
+    performSegueWithIdentifier ("choose_swimmer_cancel_segue", sender: self)
   }
   
   func numberOfComponentsInPickerView (pickerView: UIPickerView) -> Int

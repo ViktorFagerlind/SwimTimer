@@ -97,7 +97,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   {
     timerManager.start ()
     
-    timer = NSTimer.scheduledTimerWithTimeInterval (0.055, target: self, selector: "updateTimers", userInfo: nil, repeats: true)
+    timer = NSTimer.scheduledTimerWithTimeInterval (0.055, target: self, selector: #selector(TimerViewController.updateTimers), userInfo: nil, repeats: true)
     
     redraw ()
   }
@@ -171,7 +171,17 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     timerManager.saveToJson ()
   }
-
+  
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)
+  {
+    if segue.identifier == "choose_swimmer_segue"
+    {
+      let chooseSwimmerController = segue.destinationViewController as! ChooseSwimmerController
+      chooseSwimmerController.timerManager = timerManager
+    }
+  }
+  
   @IBAction func chooseSwimmerCancel (segue:UIStoryboardSegue)
   {
   }
@@ -184,11 +194,10 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     if (chooseSwimmerController.selectedSwimmer != nil)
     {
       timerManager.addSwimmer (timerManager.nofLanes-1, swimmer: chooseSwimmerController.selectedSwimmer!)
+      
+      redraw ()
+      timerManager.saveToJson ()
     }
-    
-    redraw ()
-    
-    timerManager.saveToJson ()
   }
   
   func tableView (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
