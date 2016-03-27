@@ -52,7 +52,8 @@ class FileManager
     }
     else
     {
-      result = fileManager.createFileAtPath (fileName, contents: data, attributes: nil)
+      // ./ is a fix needed due to ios8 bug... 
+      result = fileManager.createFileAtPath ("./" + fileName, contents: data, attributes: nil)
     }
     
     return result
