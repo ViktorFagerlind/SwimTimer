@@ -61,6 +61,11 @@ class SwimmerManager
     return nil
   }
   
+  func isSwimmerPresent (name : String) -> Bool
+  {
+    return findSwimmer (name) != nil
+  }
+  
   func deleteSwimmer (index : Int)
   {
     swimmers.removeAtIndex (index)

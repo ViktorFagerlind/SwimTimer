@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -275,12 +275,12 @@
                                     <navigationItem title="Add Swimmer" prompt="Enter new swimmer's name and group" id="GlU-2h-jO2">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="aHy-cV-DtJ">
                                             <connections>
-                                                <segue destination="LC9-SW-qrV" kind="unwind" unwindAction="addSwimmerCancel:" id="k0h-X4-dUJ"/>
+                                                <action selector="cancel:" destination="lfF-Ap-gbL" id="Xgg-XN-7io"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="Mzx-0Q-psD">
                                             <connections>
-                                                <segue destination="LC9-SW-qrV" kind="unwind" unwindAction="addSwimmerDone:" id="HbV-Vv-YWI"/>
+                                                <action selector="done:" destination="lfF-Ap-gbL" id="Y2z-kn-P1Q"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -352,6 +352,8 @@
                         <outlet property="groupField" destination="req-ov-ddC" id="QVo-cU-tZr"/>
                         <outlet property="mailField" destination="qvU-qH-dvN" id="0Dc-t3-omq"/>
                         <outlet property="nameField" destination="2DF-54-AGC" id="wVo-lf-MvM"/>
+                        <segue destination="LC9-SW-qrV" kind="unwind" identifier="add_swimmer_cancel_segue_id" unwindAction="addSwimmerCancel:" id="9rw-lx-mel"/>
+                        <segue destination="LC9-SW-qrV" kind="unwind" identifier="add_swimmer_done_segue_id" unwindAction="addSwimmerDone:" id="Rol-NU-KQX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXa-4a-3nX" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -31,6 +31,30 @@ class AddSwimmerController: UIViewController
     // Dispose of any resources that can be recreated.
   }
 
+  @IBAction func done(sender: AnyObject)
+  {
+    if nameField.text == nil || nameField.text == ""
+    {
+      let duplicateAlert = UIAlertController (title: "No Name", message: "You cannot add a swimmer without name!", preferredStyle: UIAlertControllerStyle.Alert)
+      duplicateAlert.addAction (UIAlertAction (title: "OK", style: .Default, handler: nil))
+      presentViewController (duplicateAlert, animated: true, completion: nil)
+    }
+    else if SwimmerManager.singleton.isSwimmerPresent (nameField.text!)
+    {
+      let duplicateAlert = UIAlertController (title: "Duplicate Name", message: "You cannot add a swimmer with the same name as an existing swimmer!", preferredStyle: UIAlertControllerStyle.Alert)
+      duplicateAlert.addAction (UIAlertAction (title: "OK", style: .Default, handler: nil))
+      presentViewController (duplicateAlert, animated: true, completion: nil)
+    }
+    else
+    {
+      performSegueWithIdentifier ("add_swimmer_done_segue_id", sender: self)
+    }
+  }
+  
+  @IBAction func cancel(sender: AnyObject)
+  {
+    performSegueWithIdentifier ("add_swimmer_cancel_segue_id", sender: self)
+  }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)
   {
