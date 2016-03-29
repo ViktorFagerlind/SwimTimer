@@ -20,7 +20,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   @IBOutlet var startStopSessionButton  : UIBarButtonItem!
   
   @IBOutlet var startButton             : UIBarButtonItem!
-  @IBOutlet var stopAllButton           : UIBarButtonItem!
+  @IBOutlet var abortRestButton           : UIBarButtonItem!
   
   @IBOutlet var tableView               : UITableView!
   
@@ -58,7 +58,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     startStopSessionButton.enabled  = !timerManager.isRunning   && !tableView.editing
     startButton.enabled             = timerManager.isInSession  && !timerManager.isRunning && !tableView.editing
-    stopAllButton.enabled           = timerManager.isInSession  && timerManager.isRunning && !tableView.editing
+    abortRestButton.enabled         = timerManager.isInSession  && timerManager.isRunning && !tableView.editing
     
     tableView.reloadData ()
   }
@@ -102,9 +102,9 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     redraw ()
   }
   
-  @IBAction func StopAllButtonPressed (sender : AnyObject)
+  @IBAction func AbortRestButtonPressed (sender : AnyObject)
   {
-    timerManager.stopAll ()
+    timerManager.abortRest ()
     redraw ()
   }
 
@@ -147,7 +147,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       editButton.style      = UIBarButtonItemStyle.Plain;
       editButton.title      = "Edit";
       //startButton.enabled   = true
-      //stopAllButton.enabled = true
+      //abortRestButton.enabled = true
       
       timerManager.saveToJson ()
     }
@@ -157,7 +157,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       editButton.title      = "Done";
       editButton.style      =  UIBarButtonItemStyle.Done;
       //startButton.enabled   = false
-      //stopAllButton.enabled = false
+      //abortRestButton.enabled = false
     }
     redraw ()
   }

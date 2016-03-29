@@ -165,9 +165,9 @@
                                             <action selector="StartButtonPressed:" destination="8rJ-Kc-sve" id="nB6-7w-i6p"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Stop All" id="Q0V-QU-WXh">
+                                    <barButtonItem title="Abort rest" id="Q0V-QU-WXh">
                                         <connections>
-                                            <action selector="StopAllButtonPressed:" destination="8rJ-Kc-sve" id="JGN-qA-5ey"/>
+                                            <action selector="AbortRestButtonPressed:" destination="8rJ-Kc-sve" id="Y3W-83-lfA"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="CGZ-fp-Tg6"/>
@@ -244,12 +244,12 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Timer" image="Timer icon" id="cPa-gy-q4n"/>
                     <connections>
+                        <outlet property="abortRestButton" destination="Q0V-QU-WXh" id="8ln-aQ-Z6n"/>
                         <outlet property="addLaneButton" destination="CTo-Sp-Qil" id="zua-6z-a1R"/>
                         <outlet property="addSwimmerButton" destination="FxT-0w-FGe" id="QEC-k6-bxb"/>
                         <outlet property="editButton" destination="ySB-ZT-G6v" id="KBP-hG-BRg"/>
                         <outlet property="startButton" destination="DTI-80-puL" id="66u-be-bEy"/>
                         <outlet property="startStopSessionButton" destination="786-bC-eJG" id="fzk-5R-lDx"/>
-                        <outlet property="stopAllButton" destination="Q0V-QU-WXh" id="6zn-ej-BMz"/>
                         <outlet property="tableView" destination="2RQ-9R-MKw" id="1Xp-xN-EBJ"/>
                     </connections>
                 </viewController>

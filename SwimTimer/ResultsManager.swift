@@ -492,14 +492,15 @@ class IndividualInterval
   
   func setNofLaps (nofLaps : Int) -> Void
   {
-    for _ in lapTimes.count ..< nofLaps
-    {
-      appendLapTime (NSTimeInterval.invalidTime())
-    }
-    
+    // This loop must be first to ensure that ..< range is not invalid
     while lapTimes.count > nofLaps
     {
       lapTimes.removeLast ()
+    }
+    
+    for _ in lapTimes.count ..< nofLaps
+    {
+      appendLapTime (NSTimeInterval.invalidTime())
     }
   }
   

@@ -264,13 +264,13 @@ class TimerManager
     }
   }
   
-  func stopAll ()
+  func abortRest ()
   {
     for lane in swimmerTimers.enumerate ()
     {
       for timer in lane.element
       {
-        timer.stop ()
+        timer.abort ()
       }
     }
     onAllStopped ()
@@ -300,7 +300,7 @@ class TimerManager
     var indexOfSmallestLastLap : Int = 0
     var smallestLastLap : NSTimeInterval = timerLane[0].lastLapOccurance + timerLane[0].deltaTime
     
-    for i in 1..<timerLane.count
+    for i in 1 ..< timerLane.count
     {
       let timer = timerLane[i]
       
@@ -676,6 +676,21 @@ class SwimmerTimer
     state = .Idle
     
     resultTime  = max (0.0, runningTime)
+    ongoingIndividualInterval?.setTotalTime (resultTime)
+    
+    onStopped ()
+  }
+  
+  func abort ()
+  {
+    if (state == .Idle)
+    {
+      return
+    }
+    
+    state = .Idle
+    
+    resultTime  = NSTimeInterval.invalidTime ()
     ongoingIndividualInterval?.setTotalTime (resultTime)
     
     onStopped ()
