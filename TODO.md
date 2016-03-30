@@ -9,13 +9,21 @@
 - [x] Save timers after add (bug)
 - [x] Prepare for app store
 - [x] Submit to app store
-- [ ] Give an error when multiple swimmers are added with the same name
-- [ ] Give an error when the same swimmer is added to the timer view more than once
-- [ ] Change "Stop all" to "Abort" or similar and invalidate the still running times.
- 
+- [x] Give an error when multiple swimmers are added with the same name
+- [x] Give an error when the same swimmer is added to the timer view more than once
+- [x] Change "Stop all" to "Abort" or similar and invalidate the still running times.
+- [ ] Add version/build to the about box
+- [ ] Sort swimmers according to group, then name
+- [ ] Find actual swimmers using name to add e-mail (making it possible to add e-mail later)
+- [ ] Make buttons/rows in the timer view larger for the iPad 
+- [ ] Use checkmarks in a list to choose swimmers to add to the timer view
+- [ ] Add personal history for the respective interval lengths
+
+
 ## Low prio
-- [ ] Fix constraints and sizes so that everything looks nice and tidy
+- [ ] Custom buttons/look?
 - [ ] Change size and constraints to be different depending on the device resolution
+- [ ] Fix constraints and sizes so that everything looks nice and tidy
 
 
 
