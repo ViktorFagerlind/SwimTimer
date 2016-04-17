@@ -116,7 +116,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       {
         timerManager.startSession ("Pass", dateTime: NSDateFormatter.localizedStringFromDate (NSDate (), dateStyle: .MediumStyle, timeStyle: .ShortStyle))
         
-        startStopSessionButton.title = "End Session"
+        startStopSessionButton.title = "End Workout"
         
         redraw ()
       }
@@ -134,7 +134,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       saveAlert.addAction (UIAlertAction (title: "No",  style: .Default, handler: { (action: UIAlertAction!) in self.timerManager.stopSession (false); self.redraw () }))
       presentViewController (saveAlert, animated: true, completion: nil)
       
-      startStopSessionButton.title = "Start Session"
+      startStopSessionButton.title = "Start Workout"
     }
     
   }
