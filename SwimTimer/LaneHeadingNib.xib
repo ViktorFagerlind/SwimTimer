@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -24,16 +24,10 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTN-iw-EDM">
                         <rect key="frame" x="495" y="17" width="66" height="30"/>
                         <state key="normal" title="Stop next"/>
-                        <connections>
-                            <action selector="StopNextButtonPressed:" destination="ESn-Ju-X20" eventType="touchDown" id="iSR-14-qaM"/>
-                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOh-ZQ-LaB">
                         <rect key="frame" x="421" y="17" width="59" height="30"/>
                         <state key="normal" title="Lap next"/>
-                        <connections>
-                            <action selector="LapNextButtonPressed:" destination="ESn-Ju-X20" eventType="touchUpInside" id="fn8-zT-k0F"/>
-                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -45,11 +39,6 @@
                     <constraint firstItem="eOh-ZQ-LaB" firstAttribute="centerY" secondItem="8pO-If-baj" secondAttribute="centerY" id="lon-ej-MTz"/>
                 </constraints>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="lapNextButton" destination="eOh-ZQ-LaB" id="EQU-9j-Fkr"/>
-                <outlet property="stopNextButton" destination="CTN-iw-EDM" id="2wq-Bg-G4R"/>
-                <outlet property="title" destination="qzV-QM-b6j" id="G1N-Hw-IN2"/>
-            </connections>
             <point key="canvasLocation" x="313.5" y="244"/>
         </tableViewCell>
     </objects>

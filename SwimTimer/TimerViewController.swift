@@ -28,11 +28,11 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   {
     super.viewDidLoad()
     
-    let headerNib = UINib(nibName: "LaneHeadingNib", bundle: nil)
-    self.tableView.registerNib (headerNib, forCellReuseIdentifier: "header_cell")
+    //let headerNib = UINib(nibName: "LaneHeadingNib", bundle: nil)
+    //self.tableView.registerNib (headerNib, forCellReuseIdentifier: "header_cell")
     
-    let cellNib = UINib(nibName: "SwimmerTimerNib", bundle: nil)
-    self.tableView.registerNib (cellNib, forCellReuseIdentifier: "swimmer_timer_id")
+    //let cellNib = UINib(nibName: "SwimmerTimerNib", bundle: nil)
+    //self.tableView.registerNib (cellNib, forCellReuseIdentifier: "swimmer_timer_id")
     
     ResultsManager.singleton // Load results
     
@@ -204,7 +204,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   {
     if (indexPath.row == 0)
     {
-      let headerCell : LaneHeaderController = self.tableView.dequeueReusableCellWithIdentifier("header_cell") as! LaneHeaderController
+      let headerCell : LaneHeaderController = tableView.dequeueReusableCellWithIdentifier ("timer_lane_cell_id", forIndexPath: indexPath)  as! LaneHeaderController
       
       headerCell.lane     = indexPath.section
       headerCell.delegate = self
@@ -217,7 +217,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     var cell : SwimmerTimerController =
-      self.tableView.dequeueReusableCellWithIdentifier("swimmer_timer_id") as! SwimmerTimerController
+      tableView.dequeueReusableCellWithIdentifier ("timer_swimmer_cell_id", forIndexPath: indexPath)  as! SwimmerTimerController
     
     cell.delegate = self
     

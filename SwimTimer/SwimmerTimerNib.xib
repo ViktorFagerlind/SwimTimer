@@ -52,9 +52,6 @@
                             <constraint firstAttribute="width" constant="32" id="E0H-rM-fHF"/>
                         </constraints>
                         <state key="normal" title="Stop"/>
-                        <connections>
-                            <action selector="StopButtonPressed:" destination="ESn-Ju-X20" eventType="touchDown" id="zhS-ZF-O6g"/>
-                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4WR-pn-Brk">
                         <rect key="frame" x="484" y="17" width="30" height="30"/>
@@ -62,9 +59,6 @@
                             <constraint firstAttribute="width" constant="30" id="l8T-oS-uWb"/>
                         </constraints>
                         <state key="normal" title="Lap"/>
-                        <connections>
-                            <action selector="LapButtonPressed:" destination="ESn-Ju-X20" eventType="touchUpInside" id="hEm-Gk-zXN"/>
-                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F43-HU-QZX">
                         <rect key="frame" x="285" y="23" width="70" height="18"/>
@@ -93,14 +87,6 @@
                     <constraint firstItem="qzV-QM-b6j" firstAttribute="leading" secondItem="8pO-If-baj" secondAttribute="leadingMargin" constant="57" id="ukq-XC-lFa"/>
                 </constraints>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="lapButton" destination="4WR-pn-Brk" id="VXt-3K-rjB"/>
-                <outlet property="lapLabel" destination="F43-HU-QZX" id="0HR-GB-rnr"/>
-                <outlet property="nameLabel" destination="qzV-QM-b6j" id="pvj-8G-BsP"/>
-                <outlet property="stateLabel" destination="CAe-eN-MCF" id="QTF-KY-dv8"/>
-                <outlet property="stopButton" destination="CTN-iw-EDM" id="mT4-CG-p73"/>
-                <outlet property="timeLabel" destination="WTg-zi-tA7" id="bFD-ul-arz"/>
-            </connections>
             <point key="canvasLocation" x="313.5" y="244"/>
         </tableViewCell>
     </objects>
