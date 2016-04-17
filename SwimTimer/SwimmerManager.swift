@@ -45,7 +45,14 @@ class SwimmerManager
   
   func addSwimmer (name : String, mail m : String?, group : String)
   {
+    func sortSwimmers (s1 : Swimmer, s2 : Swimmer) -> Bool
+    {
+      return (s1.group.lowercaseString < s2.group.lowercaseString) || (s1.group.lowercaseString == s2.group.lowercaseString && s1.name < s2.name.lowercaseString)
+    }
+    
     swimmers.append (Swimmer (name: name, mail: m, group: group))
+    
+    swimmers.sortInPlace (sortSwimmers)
   }
   
   func findSwimmer (name : String) -> Swimmer?
