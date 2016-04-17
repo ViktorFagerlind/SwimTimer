@@ -20,9 +20,14 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   @IBOutlet var startStopSessionButton  : UIBarButtonItem!
   
   @IBOutlet var startButton             : UIBarButtonItem!
-  @IBOutlet var abortRestButton           : UIBarButtonItem!
+  @IBOutlet var abortRestButton         : UIBarButtonItem!
   
   @IBOutlet var tableView               : UITableView!
+  
+  // Size adjustments
+  var adjustedFont = DeviceType.IS_IPAD ? UIFont.systemFontOfSize (20.0) : UIFont.systemFontOfSize (15.0)
+  var headerRowHeight : CGFloat = DeviceType.IS_IPAD ? 70 : 50
+  var timerRowHeight  : CGFloat = DeviceType.IS_IPAD ? 50 : 40
   
   override func viewDidLoad()
   {
@@ -35,6 +40,8 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //self.tableView.registerNib (cellNib, forCellReuseIdentifier: "swimmer_timer_id")
     
     ResultsManager.singleton // Load results
+    
+    //tableView.rowHeight = UITableViewAutomaticDimension
     
     redraw ()
   }
@@ -221,7 +228,19 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     cell.delegate = self
     
+    // Adjust depending on size 
+    if DeviceType.IS_IPHONE_4_OR_LESS || DeviceType.IS_IPHONE_5
+    {
+      cell.lapLabel.hidden = true
+    }
+    cell.lapLabel.font    = adjustedFont
+    cell.timeLabel.font   = adjustedFont
+    cell.stateLabel.font  = adjustedFont
+    cell.nameLabel.font   = adjustedFont
+    
+    
     timerManager.fillSwimmerCells (indexPath.section, index: indexPath.row - 1, cell: &cell)
+    
     
     return cell
   }
@@ -229,6 +248,11 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   func tableView (tableView: UITableView, numberOfRowsInSection section: Int) -> Int
   {
     return timerManager.getNofSwimmers (section) + 1
+  }
+  
+  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+  {
+    return indexPath.row == 0 ? headerRowHeight : timerRowHeight
   }
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -286,7 +310,7 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
   
   override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool
   {
-    if identifier == "add_swimmer_segue" && SwimmerManager.singleton.nofSwimmers == 0
+    if identifier == "choose_swimmer_segue" && SwimmerManager.singleton.nofSwimmers == 0
     {
       let saveAlert = UIAlertController (title: "No Swimmers", message: "There are no swimmers to choose from.\nPlease add swimmers to the 'Swimmers' tab.", preferredStyle: UIAlertControllerStyle.Alert)
       saveAlert.addAction (UIAlertAction (title: "OK", style: .Default, handler: nil))

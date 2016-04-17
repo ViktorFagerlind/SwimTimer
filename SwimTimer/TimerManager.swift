@@ -290,9 +290,14 @@ class TimerManager
   
   func findNextInTurn (lane : Int) -> SwimmerTimer?
   {
+    if swimmerTimers.count == 0
+    {
+      return nil
+    }
+    
     let timerLane = swimmerTimers[lane]
     
-    if swimmerTimers.count == 0
+    if timerLane.count == 0
     {
       return nil
     }
@@ -604,11 +609,11 @@ class SwimmerTimer
       let timeSinceLap = runningTime - lastLapOccurance
       if lastLapOccurance > 0.0 && timeSinceLap < 1.0
       {
-        cell.lapLabel.font = UIFont.boldSystemFontOfSize (15.0)
+        cell.lapLabel.font = UIFont.boldSystemFontOfSize (cell.lapLabel.font.pointSize)
       }
       else
       {
-        cell.lapLabel.font = UIFont.systemFontOfSize (15.0)
+        cell.lapLabel.font = UIFont.systemFontOfSize (cell.lapLabel.font.pointSize)
       }
     }
     
