@@ -13,10 +13,13 @@
 - [x] Give an error when the same swimmer is added to the timer view more than once
 - [x] Change "Stop all" to "Abort" or similar and invalidate the still running times.
 - [ ] Add version/build to the about box
-- [ ] Sort swimmers according to group, then name
+- [x] Sort swimmers according to group, then name
 - [ ] Find actual swimmers using name to add e-mail (making it possible to add e-mail later)
-- [ ] Make buttons/rows in the timer view larger for the iPad 
+- [x] Make buttons/rows in the timer view larger for the iPad 
 - [ ] Use checkmarks in a list to choose swimmers to add to the timer view
+- [x] Make it possible to edit swimmer order during a workout
+- [x] Let the user name the workout
+- [ ] Group all successive intervals of the same lengths into a set, e.g. 10x100m
 - [ ] Add personal history for the respective interval lengths
 
 
