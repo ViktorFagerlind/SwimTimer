@@ -59,13 +59,13 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
       timer.invalidate ()
     }
     
-    editButton.enabled              = !timerManager.isInSession
-    addLaneButton.enabled           = !timerManager.isInSession && !tableView.editing
-    addSwimmerButton.enabled        = !timerManager.isInSession && !tableView.editing
+    editButton.enabled              = !timerManager.isRunning
+    addLaneButton.enabled           = !timerManager.isRunning
+    addSwimmerButton.enabled        = !timerManager.isRunning
     
-    startStopSessionButton.enabled  = !timerManager.isRunning   && !tableView.editing
+    startStopSessionButton.enabled  = !timerManager.isRunning
     startButton.enabled             = timerManager.isInSession  && !timerManager.isRunning && !tableView.editing
-    abortRestButton.enabled         = timerManager.isInSession  && timerManager.isRunning && !tableView.editing
+    abortRestButton.enabled         = timerManager.isInSession  && timerManager.isRunning  && !tableView.editing
     
     tableView.reloadData ()
   }
@@ -121,11 +121,17 @@ class TimerViewController: UIViewController, UITableViewDelegate, UITableViewDat
     {
       if timerManager.nofSwimmers > 0
       {
-        timerManager.startSession ("Pass", dateTime: NSDateFormatter.localizedStringFromDate (NSDate (), dateStyle: .MediumStyle, timeStyle: .ShortStyle))
+        let sessionNameAlert = UIAlertController (title: "Workout name", message: "Enter the name of the workout", preferredStyle: .Alert)
+        sessionNameAlert.addTextFieldWithConfigurationHandler({ (textField) -> Void in textField.text = "Pass" })
+        sessionNameAlert.addAction (UIAlertAction(title: "OK", style: .Default, handler:
+        { (action) -> Void in
+          let textField = sessionNameAlert.textFields![0] as UITextField
+          self.timerManager.startSession (textField.text!, dateTime: NSDateFormatter.localizedStringFromDate (NSDate (), dateStyle: .MediumStyle, timeStyle: .ShortStyle))
+          self.startStopSessionButton.title = "End Workout"
+          self.redraw ()
+        }))
+        presentViewController (sessionNameAlert, animated: true, completion: nil)
         
-        startStopSessionButton.title = "End Workout"
-        
-        redraw ()
       }
       else
       {
